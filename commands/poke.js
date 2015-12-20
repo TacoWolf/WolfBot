@@ -31,19 +31,19 @@ function poke(bot, user, userID, channelID, message) {
             case 0:
                 bot.sendMessage({
                     to: channelID,
-                    message: "**" + user + "** pokes " + pokedUser + " lightly."
+                    message: "**" + user + "** pokes **" + pokedUser + "** lightly."
                 });
                 break;
             case 1:
                 bot.sendMessage({
                     to: channelID,
-                    message: "**" + user + "** nudges " + pokedUser + " with a finger."
+                    message: "**" + user + "** nudges **" + pokedUser + "** with a finger."
                 });
                 break;
             case 2:
                 bot.sendMessage({
                     to: channelID,
-                    message: "**" + user + "** pokes " + pokedUser + ". You there? ;w;"
+                    message: "**" + user + "** pokes **" + pokedUser + "**. You there? ;w;"
                 });
                 break;
         }
