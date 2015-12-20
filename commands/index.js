@@ -18,6 +18,7 @@ var voice = require('./voice').command;
 var fuck = require('./fuck').command;
 var music = require('./music');
 var wb = require('./wb');
+var steamemote = require('./steamemote').command;
 
 var houses = require('./houses');
 
@@ -107,6 +108,13 @@ var commands = {
         typeOf: 'text',
         description: "WolfBot rolls some dice for you.",
         hidden: true,
+    },
+    '!steam': {
+        name: '!steam :[steamemote]:',
+        toRun: steamemote,
+        typeOf: 'text',
+        description: "Pulls an emote from the Steam API and posts it.",
+        hidden: false,
     },
     '!bark': {
         name: '!bark',

@@ -16,19 +16,19 @@ function statsget(bot, user, userID, channelID, message) {
         //BEGIN STATISTCS LOGIC
 
         if (userStats.help === 1) {
-            msg += "- You've asked for me help **" + userStats.help + "** time. \n";
+            msg += "- You've asked for my help **" + userStats.help + "** time. \n";
         } else if (userStats.help >= 2) {
-            msg += "- You've asked for me help **" + userStats.help + "** times. \n";
+            msg += "- You've asked for my help **" + userStats.help + "** times. \n";
         } else if (userStats.help === undefined) {
             msg += "- You haven't asked for help at all! Make sure to use `!help` if you ever want to. :3 \n";
         }
 
         if (userStats.emotes === 1) {
-            msg += "- You checked out all the cool emotes **" + userStats.emotes + "** time. \n";
+            msg += "- You've checked out all the cool emotes **" + userStats.emotes + "** time. \n";
         } else if (userStats.emotes >= 2) {
-            msg += "- You checked out all the cool emotes **" + userStats.emotes + "** times. \n";
+            msg += "- You've checked out all the cool emotes **" + userStats.emotes + "** times. \n";
         } else if (userStats.emotes === undefined) {
-            msg += "- You haven't checked out all of the cool emotes! D: Try `!emote` to look at 'em all~ \n";
+            msg += "- You haven't checked out all of the cool emotes! o: Try `!emote` to look at 'em all~ \n";
         }
 
         if (userStats.emoted === 1) {
@@ -53,11 +53,11 @@ function statsget(bot, user, userID, channelID, message) {
             msg += "- You haven't hugged anyone yet. :c \n"
         }
 
-        if (userStats.pokes === 1) {
+        if (userStats.poke === 1) {
             msg += "- You've poked someone once. It was pretty cool. \n";
-        } else if (userStats.pokes >= 2) {
-            msg += "- You've poked people about... **" + userStats.pokes + "** times. \n";
-        } else if (userStats.pokes === undefined) {
+        } else if (userStats.poke >= 2) {
+            msg += "- You've poked people about... **" + userStats.poke + "** times. `>:3` \n";
+        } else if (userStats.poke == undefined) {
             msg += "- You haven't poked anyone. \n"
         }
 
@@ -90,12 +90,11 @@ function statsget(bot, user, userID, channelID, message) {
         } else if (userStats.treats === undefined) {
             msg += "- ...you haven't given me any treats. Could I have one? ;w; \n";
         }
-
-        bot.sendMessage({
-            to: userID,
-            message: msg
-        });
     }
+    bot.sendMessage({
+        to: userID,
+        message: msg
+    });
 }
 
 module.exports = {

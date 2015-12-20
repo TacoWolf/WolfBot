@@ -7,13 +7,13 @@ function help(bot, user, userID, channelID, message) {
     var commands = require('./index');
     for (var key in commands) {
         var command = commands[key];
-        console.log(command);
+        //console.log(command);
         if (command.typeOf != 'text' || command.hidden) continue;
-        msg += "`" + key + "`";
+        msg += "`" + command.name + "`";
         msg += " - " + command.description;
         msg += "\n";
     }
-    console.log(command);
+    //console.log(command);
     msg += "\n"
     msg += "Use them, don't abuse them! :green_heart:";
     bot.sendMessage({
