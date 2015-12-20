@@ -1,0 +1,25 @@
+{
+  "name": "wolfbot",
+  "version": "0.2.0",
+  "description": "A Discord chat bot.",
+  "private": true,
+  "main": "bot.js",
+  "dependencies": {
+    "async": "^1.5.0",
+    "discord.io": "^1.4.9",
+    "node-opus": "^0.1.11",
+    "ytdl-core": "^0.7.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "chat",
+    "bot",
+    "chatbot",
+    "tacowolf"
+  ],
+  "author": "Daniel Gallegos",
+  "license": "MIT"
+}
