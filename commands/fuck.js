@@ -1,7 +1,7 @@
 var helpers = require('./../helpers');
 
 function fuck(bot, user, userID, channelID, message) {
-    bot.sendFiles(channelID, ["emote/torielshock.png"], function() {
+    bot.uploadFile({channel:channelID, file: fs.createReadStream("emote/torielshock.png")}, function() {
         switch (helpers.randomator(2)) {
             case 0:
                 bot.sendMessage({
