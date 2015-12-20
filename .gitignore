@@ -46,6 +46,3 @@ stats.json
 admins.json
 node_modules/*
 emote/*
-commands/*
-!commands/ping.js
-!commands/index.example.js
