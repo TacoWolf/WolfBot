@@ -7,44 +7,43 @@ function poke(bot, user, userID, channelID, message) {
             case 0:
                 bot.sendMessage({
                     to: channelID,
-                    message: "[WolfBot pokes <@" + userID + "> lightly.] o:"
+                    message: "[WolfBot pokes **" + user + "** lightly.] o:"
                 });
                 break;
             case 1:
                 bot.sendMessage({
                     to: channelID,
-                    message: "[WolfBot noses <@" + userID + "> gently, poking them.] `o3o`"
+                    message: "[WolfBot noses **" + user + "** gently, poking them.] `o3o`"
                 });
                 break;
             case 2:
                 bot.sendMessage({
                     to: channelID,
-                    message: "[WolfBot nudges <@" + userID + "> gently with a paw.]"
+                    message: "[WolfBot nudges **" + user + "** gently with a paw.]"
                 });
                 break;
         }
     } else {
         var pokedUser = "";
-        for (var i = 1; i < parameters.length; i++) {
-            pokedUser = pokedUser + parameters[1];
-        };
+        pokedUser = bot.fixMessage(parameters[1]);
+        pokedUser = pokedUser.substring(1);
         switch (helpers.randomator(3)) {
             case 0:
                 bot.sendMessage({
                     to: channelID,
-                    message: "<@" + userID + "> pokes " + pokedUser + " lightly."
+                    message: "**" + user + "** pokes " + pokedUser + " lightly."
                 });
                 break;
             case 1:
                 bot.sendMessage({
                     to: channelID,
-                    message: "<@" + userID + "> nudges " + pokedUser + " with a finger."
+                    message: "**" + user + "** nudges " + pokedUser + " with a finger."
                 });
                 break;
             case 2:
                 bot.sendMessage({
                     to: channelID,
-                    message: "<@" + userID + "> pokes " + pokedUser + ". You there? ;w;"
+                    message: "**" + user + "** pokes " + pokedUser + ". You there? ;w;"
                 });
                 break;
         }
