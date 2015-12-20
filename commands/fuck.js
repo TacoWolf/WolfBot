@@ -1,4 +1,5 @@
 var helpers = require('./../helpers');
+var fs = require('fs');
 
 function fuck(bot, user, userID, channelID, message) {
     bot.uploadFile({channel:channelID, file: fs.createReadStream("emote/torielshock.png")}, function() {
