@@ -19,6 +19,8 @@ var fuck = require('./fuck').command;
 var music = require('./music');
 var wb = require('./wb');
 var steamemote = require('./steamemote').command;
+var pokemon = require('./pokemon').command;
+
 
 var houses = require('./houses');
 
@@ -114,6 +116,13 @@ var commands = {
         toRun: steamemote,
         typeOf: 'text',
         description: "Pulls an emote from the Steam API and posts it.",
+        hidden: false,
+    },
+    '!pokemon': {
+        name: '!pokemon [name|number] [input]',
+        toRun: pokemon,
+        typeOf: 'text',
+        description: "Announces that you would like people to join the voice channel.",
         hidden: false,
     },
     '!bark': {

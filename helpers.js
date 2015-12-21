@@ -1,4 +1,3 @@
-var async = require('async');
 var stats = require('./stats.json');
 var admins = require('./admins.json');
 
