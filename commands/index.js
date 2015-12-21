@@ -122,7 +122,7 @@ var commands = {
         name: '!pokemon [name|number] [input]',
         toRun: pokemon,
         typeOf: 'text',
-        description: "Announces that you would like people to join the voice channel.",
+        description: "Searches for a Pokémon using the PokeAPI - http:///pokeapi.co",
         hidden: false,
     },
     '!bark': {
