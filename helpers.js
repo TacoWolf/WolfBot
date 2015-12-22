@@ -11,8 +11,10 @@ module.exports = {
         };
     },
     superAdmin: function(userID) {
-        for (var i = 0; i < superadmin.length; i++) {
-            if (userID === superadmin[i]) {
+        var adminCheck = admins["superadmin"];
+
+        for (var i = 0; i < adminCheck.length; i++) {
+            if (userID === adminCheck[i]) {
                 return true;
             }
         };

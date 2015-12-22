@@ -20,7 +20,7 @@ var music = require('./music');
 var wb = require('./wb');
 var steamemote = require('./steamemote').command;
 var pokemon = require('./pokemon').command;
-
+var gameset = require('./gameset').command;
 
 var houses = require('./houses');
 
@@ -213,14 +213,14 @@ var commands = {
         name: '!join',
         toRun: music.join,
         typeOf: 'text',
-        description: "L-lewd!",
+        description: "",
         hidden: true,
     },
     '!play': {
         name: '!play',
         toRun: music.play,
         typeOf: 'text',
-        description: "L-lewd!",
+        description: "",
         hidden: true,
     },
     '!stop': {
@@ -230,15 +230,13 @@ var commands = {
         description: "L-lewd!",
         hidden: true,
     },
-    /*
     '!gameset': {
         name: '!gameset [id]',
-        toRun: setgame,
+        toRun: gameset,
         typeOf: 'admin',
         description: "Set the game WolfBot is playing.",
         hidden: true,
-    },
-    */
+    },  
     // Phrase commands
     'wolfbot': {
         name: 'wolfbot',
