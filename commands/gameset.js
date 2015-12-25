@@ -4,7 +4,11 @@ function gameset(bot, user, userID, channelID, message) {
     var adminTest = helpers.superAdmin(bot, userID);
     var msg = "";
     if (adminTest = true) {
-        var id = parameters[1];
+        var id = "";
+        id = id + parameters[1] + " ";
+        for (var i = 2; i < parameters.length; i++) {
+            id = id + " " + parameters[i];
+        };
         if (id === undefined) {
             id = null;
         }
