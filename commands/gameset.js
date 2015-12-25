@@ -9,9 +9,9 @@ function gameset(bot, user, userID, channelID, message) {
             id = null;
         }
         bot.setPresence({
-            game_id: id
+            game: id
         })
-        msg += "Game ID set to **" + id + "**.";
+        msg += "Game playing set to **" + id + "**.";
     } else {
         msg += "Permission Denied: You're not an admin!"
     }
