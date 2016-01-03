@@ -63,9 +63,9 @@ function statsget(bot, user, userID, channelID, message) {
 
         if (userStats.ping === 1) {
             msg += "- You pinged me like-... **" + userStats.ping + "** time. Pong! \n";
-        } else if (userStats.emotes >= 2) {
+        } else if (userStats.ping >= 2) {
             msg += "- You pinged me like-... **" + userStats.ping + "** times. Pong! \n";
-        } else if (userStats.emotes === undefined) {
+        } else if (userStats.ping === undefined) {
             msg += "- You pinged me like-... no times. Pong? ;w; \n";
         }
 
@@ -77,9 +77,9 @@ function statsget(bot, user, userID, channelID, message) {
 
         if (userStats.pet === 1) {
             msg += "- Y-you've pet me, uhm... **" + userStats.pet + "** time. >w< \n";
-        } else if (userStats.emotes >= 2) {
+        } else if (userStats.pet >= 2) {
             msg += "- Y-you've pet me, uhm... **" + userStats.pet + "** times. >w< \n";
-        } else if (userStats.emotes === undefined) {
+        } else if (userStats.pet === undefined) {
             msg += "- A-aw... you haven't pet me... ;w; ...but you could! I-I'd like it. :3 \n"
         }
 
