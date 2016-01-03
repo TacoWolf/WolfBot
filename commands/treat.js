@@ -2,7 +2,7 @@ var helpers = require('./../helpers');
 
 function wbtreat(bot, user, userID, channelID, message) {
     helpers.statistics("treats", user, userID, channelID, message);
-    switch (randomator(3)) {
+    switch (helpers.randomator(3)) {
         case 0:
             bot.sendMessage({
                 to: channelID,
