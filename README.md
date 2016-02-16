@@ -1,11 +1,11 @@
 # WolfBot
-A simple bot for Discord.
+A simple bot for Discord, built with [discord.io](../../../../izy521/discord.io).
 
-# Requirements
+## Requirements
 
 * Node.js
 
-# Getting Started 
+## Getting Started 
 
 Clone the repository as normal. Download the packages needed by running
 
@@ -20,3 +20,7 @@ For now, you'll have to feed it servers manually by logging into them on the Dis
 Keep the bot's libraries updated by using 
 
     npm update
+
+## Licensing
+
+WolfBot is licensed under the [MIT License](LICENSE.md). If you use WolfBot in any of your projects, please let me know! We'd love to see how you use it. :grin:
