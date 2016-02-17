@@ -15,7 +15,7 @@ Make a `config.json` from the [config.example.json](config.example.json). Then, 
 
 After that, just run the bot with
 
-    node bot.js
+    npm start
   
 For now, you'll have to feed it servers manually by logging into them on the Discord Client. Administrators are set manually and are based on a user ID.
 
