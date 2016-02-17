@@ -11,7 +11,9 @@ Clone the repository as normal. Download the packages needed by running
 
     npm install
 
-Make a `config.json` from the [config.example.json](config.example.json) and then just run the bot with
+Make a `config.json` from the [config.example.json](config.example.json) and make an `admins.json` from the [admins.example.json](admins.example.json) with your UserID and the UserIDs of the admins you want to set. 
+
+After that, just run the bot with
 
     node bot.js
   

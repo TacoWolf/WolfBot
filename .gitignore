@@ -41,6 +41,7 @@ Thumbs.db
 ######################
 
 config.json
+admins.json
 bot.json
 stats.json
 admins.json
