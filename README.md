@@ -11,7 +11,7 @@ Clone the repository as normal. Download the packages needed by running
 
     npm install
 
-Make a `config.json` from the [config.example.json](config.example.json) and make an `admins.json` from the [admins.example.json](admins.example.json) with your UserID and the UserIDs of the admins you want to set. 
+Make a `config.json` from the [config.example.json](config.example.json). Then, make an `admins.json` from the [admins.example.json](admins.example.json) with your UserID and the UserIDs of the admins you want to set. Finally, make a `stats.json` from the [stats.example.json](stats.example.json). `stats.json` doesn't need to have anything in it, just `{}`.
 
 After that, just run the bot with
 
