@@ -4,63 +4,76 @@ var stats = require('./../stats.json');
 module.exports = {
     points: function(bot, user, userID, channelID, message) {
         var adminTest = helpers.admin(userID);
-        if (adminTest === true) {
-            var points = parseInt(parameters[2]);
-            var userHouse;
-            var userIDfix = parameters[1];
-            userIDfix = userIDfix.substring(2);
-            userIDfix = userIDfix.slice(0, -1);
-            for (var key in stats) {
-                if (key === userIDfix) {
-                    var uh = stats[userIDfix];
-                    userHouse = uh.house;
+        if (parameters[1] != undefined && parameters[2] != undefined) {
+            if (adminTest === true) {
+                var points = parseInt(parameters[2]);
+                var userHouse;
+                var userIDfix = parameters[1];
+                userIDfix = userIDfix.substring(2);
+                userIDfix = userIDfix.slice(0, -1);
+                for (var key in stats) {
+                    if (key === userIDfix) {
+                        var uh = stats[userIDfix];
+                        userHouse = uh.house;
+                    }
                 }
-            }
-            if (userHouse != undefined) {
-                if (points === points) {
-                    helpers.statistics("points", user, userID, channelID, message, points);
-                    // ADD +X TO USER
-                    helpers.statistics("total", user, userHouse, channelID, message, points);
-                    // ADD +X TO HOUSE
-                }
-                if (points > 0) {
-                    var userNameFix = bot.fixMessage(parameters[1]);
-                    userNameFix = userNameFix.substring(1);
-                    var nameofHouse = helpers.housetrans(uh.house);
-                    var msg = "**" + userNameFix + "** has been awarded **" + points + "** points for their house, **" + nameofHouse + "**. :3";
-                    bot.sendMessage({
-                        to: channelID,
-                        message: msg
-                    });
-                } else if (points < 0) {
-                    var userNameFix = bot.fixMessage(parameters[1]);
-                    userNameFix = userNameFix.substring(1);
-                    var nameofHouse = helpers.housetrans(uh.house);
-                    var msg = "**" + userNameFix + "** has been punished with **" + points + "** points taken away from their house, **" + nameofHouse + "**. >:c";
-                    bot.sendMessage({
-                        to: channelID,
-                        message: msg
-                    });
+                if (userHouse != undefined) {
+                    if (points === points) {
+                        helpers.statistics("points", user, userID, channelID, message, points);
+                        // ADD +X TO USER
+                        helpers.statistics("total", user, userHouse, channelID, message, points);
+                        // ADD +X TO HOUSE
+                    }
+                    if (points > 0) {
+                        var userNameFix = bot.fixMessage(parameters[1]);
+                        userNameFix = userNameFix.substring(1);
+                        var nameofHouse = helpers.housetrans(uh.house);
+                        var msg = "**" + userNameFix + "** has been awarded **" + points + "** points for their house, **" + nameofHouse + "**. :3";
+                        bot.sendMessage({
+                            to: channelID,
+                            message: msg
+                        });
+                    } else if (points < 0) {
+                        var userNameFix = bot.fixMessage(parameters[1]);
+                        userNameFix = userNameFix.substring(1);
+                        var nameofHouse = helpers.housetrans(uh.house);
+                        var msg = "**" + userNameFix + "** has been punished with **" + points + "** points taken away from their house, **" + nameofHouse + "**. >:c";
+                        bot.sendMessage({
+                            to: channelID,
+                            message: msg
+                        });
+                    } else {
+                        var userNameFix = bot.fixMessage(parameters[1]);
+                        userNameFix = userNameFix.substring(1);
+                        var nameofHouse = helpers.housetrans(uh.house);
+                        var msg = "...uh... **" + userNameFix + "** has been awarded... no points for their house, **" + nameofHouse + "**. Awkward. `>.>`";
+                        bot.sendMessage({
+                            to: channelID,
+                            message: msg
+                        });
+                    }
                 } else {
-                    var userNameFix = bot.fixMessage(parameters[1]);
-                    userNameFix = userNameFix.substring(1);
-                    var nameofHouse = helpers.housetrans(uh.house);
-                    var msg = "...uh... **" + userNameFix + "** has been awarded... no points for their house, **" + nameofHouse + "**. Awkward. `>.>`";
                     bot.sendMessage({
-                        to: channelID,
-                        message: msg
-                    });
+                        to: userID,
+                        message: "User has not been sorted or does not exist, tell them to use `!sethouse [house]`!"
+                    })
                 }
             } else {
                 bot.sendMessage({
-                    to: userID,
-                    message: "User has not been sorted or does not exist, tell them to use `!sethouse [house]`!"
-                })
+                    to: channelID,
+                    message: "You don't have the permissions to do that."
+                });
             }
         } else {
+            var msg = "...uhm... I-I dunno what kinda points you wanna give. ;w;\nC-could you check what you inputted and try again?";
             bot.sendMessage({
                 to: channelID,
-                message: "You don't have the permissions to do that."
+                message: msg
+            });
+            var pm = "The correct syntax for points is `!points @[user] [+x|-x]`. :3";
+            bot.sendMessage({
+                to: userID,
+                message: pm
             });
         }
     },
