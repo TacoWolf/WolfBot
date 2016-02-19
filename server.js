@@ -81,22 +81,24 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
     // Actually parse the message
 
     helpers.parameters(message);
-    require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
+    // require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
+    // Makes sure it isn't undefined
     if (parameters[0] != undefined) {
         // Checks for the trigger
+        rawphrase = parameters.join(' ').replace(/\!|\.|\~|\?|\,/g, '').toLowerCase().trim();
         if (parameters[0].charAt(0) === config.trigger) {
             // Removes the trigger
-            triggered = parameters[0].substring(1);
+            triggered = parameters[0].substring(1).toLowerCase().trim();
             // Searches for the command in the first word
-            if (commands.hasOwnProperty(triggered.toLowerCase().trim())) {
+            if (commands.hasOwnProperty(triggered)) {
                 // Sets the command if found
-                command = commands[triggered.toLowerCase().trim()];
-                command.toRun(bot, user, userID, channelID, message, serverID);
-            } else if (commands.hasOwnProperty(message.toLowerCase())) {
-                // Searches for phrases
-                command = commands[message.toLowerCase().trim()];
+                command = commands[triggered];
                 command.toRun(bot, user, userID, channelID, message, serverID);
             }
+        } else if (commands.hasOwnProperty(rawphrase)) {
+            // Searches for phraes
+            command = commands[rawphrase];
+            command.toRun(bot, user, userID, channelID, message, serverID);
         } else {
             // Checks for a mention
             for (var i = 0; i < parameters.length; i++) {
