@@ -4,114 +4,189 @@ module.exports = {
     emote_alphys: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/alphys.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/alphys.png")
+        });
     },
 
     emote_toby: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/dog.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/dog.png")
+        });
     },
 
     emote_tobybone: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/tobybone.gif")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/tobybone.gif")
+        });
+    },
+    
+    emote_tobysleep: function(bot, user, userID, channelID, message) {
+        var helpers = require('./../helpers');
+        helpers.statistics("emoted", user, userID, channelID, message);
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/tobysleep.gif")
+        });
+    },
+
+    emote_tobytrap: function(bot, user, userID, channelID, message) {
+        var helpers = require('./../helpers');
+        helpers.statistics("emoted", user, userID, channelID, message);
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/tobytrap.gif")
+        });
     },
 
     emote_flowey: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/flowey.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/flowey.png")
+        });
     },
 
     emote_floweyevil: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/floweyevil.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/floweyevil.png")
+        });
     },
 
     emote_papyrusglare: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/papyrusglare.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/papyrusglare.png")
+        });
     },
 
     emote_papyrusshock: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/papyruswacky.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/papyruswacky.png")
+        });
     },
 
     emote_papyruscool: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/papyruscool.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/papyruscool.png")
+        });
     },
 
     emote_sans: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/sans.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/sans.png")
+        });
     },
 
     emote_toriel: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/toriel.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/toriel.png")
+        });
     },
 
     emote_torielglare: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/torielglare.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/torielglare.png")
+        });
     },
 
     emote_torielcry: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/torielsad.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/torielsad.png")
+        });
     },
 
     emote_torielshock: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/torielshock.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/torielshock.png")
+        });
     },
 
     emote_undyne: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/undynelaugh.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/undynelaugh.png")
+        });
     },
 
     emote_blook: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/napstablook.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/napstablook.png")
+        });
     },
 
     emote_dapperblook: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/dapperblook.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/dapperblook.png")
+        });
     },
 
     emote_blookchill: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/napstablookchill.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/napstablookchill.png")
+        });
     },
 
     emote_napsta: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/napstablooktunes.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/napstablooktunes.png")
+        });
     },
 
     emote_blookworried: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
-        bot.uploadFile({to: channelID, file: fs.createReadStream("emote/napstablookworried.png")});
+        bot.uploadFile({
+            to: channelID,
+            file: fs.createReadStream("emote/napstablookworried.png")
+        });
     }
 }

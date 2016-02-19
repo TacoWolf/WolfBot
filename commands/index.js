@@ -236,7 +236,7 @@ var commands = {
         typeOf: 'admin',
         description: "Set the game WolfBot is playing.",
         hidden: true,
-    },  
+    },
     // Phrase commands
     'wolfbot': {
         name: 'wolfbot',
@@ -553,6 +553,20 @@ var commands = {
         toRun: emotes.emote_tobybone,
         typeOf: 'emote',
         description: "STOP MUNCHING ON MY SPECIAL ATTACK!!!",
+        hidden: false,
+    },
+    '!tobysleep': {
+        name: '!tobysleep',
+        toRun: emotes.emote_tobysleep,
+        typeOf: 'emote',
+        description: "sleep tight pupper",
+        hidden: false,
+    },
+    '!tobytrap': {
+        name: '!tobytrap',
+        toRun: emotes.emote_tobytrap,
+        typeOf: 'emote',
+        description: "BEHOLD! THE GAUNTLET OF DEADLY TERROR!",
         hidden: false,
     },
     '!papyrusglare': {
