@@ -53,7 +53,7 @@ bot.on("ready", function(rawEvent) {
 bot.on("message", function(user, userID, channelID, message, rawEvent) {
     // Log message from user
     var serverID = helpers.getServerID(bot, channelID);
-        console.log(flair);
+    console.log(flair);
     if (serverID === "pm") {
         console.log("PRIVATE MESSAGE");
         console.log(flairsmall);
@@ -74,7 +74,7 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
 
     // Check if bot sent message
     // If it's true, skip the rest of the function
-    if (bot.id === userID) {
+    if (bot.id == userID) {
         return
     }
 
@@ -83,15 +83,27 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
     helpers.parameters(message);
     require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
     if (parameters[0] != undefined) {
-        if (userID != bot.id) {
-            if (commands.hasOwnProperty(parameters[0].toLowerCase().trim())) {
-                command = commands[parameters[0].toLowerCase().trim()];
-                // parameters.splice(0, 1); //remove the first parameter (the command)
-                //let's run the command:
+        // Checks for the trigger
+        if (parameters[0].charAt(0) === config.trigger) {
+            // Removes the trigger
+            triggered = parameters[0].substring(1);
+            // Searches for the command in the first word
+            if (commands.hasOwnProperty(triggered.toLowerCase().trim())) {
+                // Sets the command if found
+                command = commands[triggered.toLowerCase().trim()];
                 command.toRun(bot, user, userID, channelID, message, serverID);
             } else if (commands.hasOwnProperty(message.toLowerCase())) {
+                // Searches for phrases
                 command = commands[message.toLowerCase().trim()];
                 command.toRun(bot, user, userID, channelID, message, serverID);
+            }
+        } else {
+            // Checks for a mention
+            for (var i = 0; i < parameters.length; i++) {
+                if (parameters[i] === ('<@' + bot.id + '>')) {
+                    wb = require('./commands/wb');
+                    wb.mention(bot, user, userID, channelID, message, serverID);
+                }
             }
         }
     }

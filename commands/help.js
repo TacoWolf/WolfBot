@@ -1,5 +1,6 @@
 var helpers = require('./../helpers');
 var commands = require('./index');
+var config = require('./../config.json');
 
 function help(bot, user, userID, channelID, message) {
     helpers.statistics("help", user, userID, channelID, message);
@@ -9,7 +10,7 @@ function help(bot, user, userID, channelID, message) {
         var command = commands[key];
         //console.log(command);
         if (command.typeOf != 'text' || command.hidden) continue;
-        msg += "`" + command.name + "`";
+        msg += "`" + config.trigger + command.name + "`";
         msg += " - " + command.description;
         msg += "\n";
     }

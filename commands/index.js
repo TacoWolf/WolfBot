@@ -32,206 +32,206 @@ var test = require('./test');
 
 var commands = {
     // ! commands
-    '!help': {
-        name: '!help',
+    'help': {
+        name: 'help',
         toRun: help,
         typeOf: 'text',
         description: "Shows the help page with all of the commands. You're looking at it now!",
         hidden: false,
     },
-    '!emote': {
-        name: '!emote',
+    'emote': {
+        name: 'emote',
         toRun: listemotes,
         typeOf: 'text',
         description: "Shows the list of emotes.",
         hidden: false,
     },
-    '!stats': {
-        name: '!stats',
+    'stats': {
+        name: 'stats',
         toRun: statsget,
         typeOf: 'text',
         description: "Shows your statistics for your actions across all of the servers I know you on!",
         hidden: false,
     },
     /* DO THIS SOON DAMN IT
-    '!globalstats': {
-        name: '!stats',
+    'globalstats': {
+        name: 'stats',
         toRun: help,
         typeOf: 'text',
         description: "Shows global statistics across all of the servers I'm on! :O",
         hidden: true,
     },
     */
-    '!hug': {
-        name: '!hug @[user]',
+    'hug': {
+        name: 'hug @[user]',
         toRun: hug,
         typeOf: 'text',
         description: "Hugs someone.",
         hidden: false,
     },
-    '!snuggle': {
-        name: '!snuggle @[user]',
+    'snuggle': {
+        name: 'snuggle @[user]',
         toRun: snuggle,
         typeOf: 'text',
         description: "Snuggles someone. `>w<`",
         hidden: false,
     },
-    '!poke': {
-        name: '!poke @[user]',
+    'poke': {
+        name: 'poke @[user]',
         toRun: poke,
         typeOf: 'text',
         description: "Pokes someone.",
         hidden: false,
     },
-    '!butt': {
-        name: '!butt @[user]',
+    'butt': {
+        name: 'butt @[user]',
         toRun: butt,
         typeOf: 'text',
         description: "Butts someone.",
         hidden: false,
     },
-    '!ping': {
-        name: '!ping',
+    'ping': {
+        name: 'ping',
         toRun: ping,
         typeOf: 'text',
         description: "Pings WolfBot, making him pong back.",
         hidden: false,
     },
-    '!dice': {
-        name: '!dice d[x] [amount]',
+    'dice': {
+        name: 'dice d[x] [amount]',
         toRun: diceroll,
         typeOf: 'text',
         description: "WolfBot rolls some dice for you.",
         hidden: false,
     },
-    '!roll': {
-        name: '!roll d[x] [amount]',
+    'roll': {
+        name: 'roll d[x] [amount]',
         toRun: diceroll,
         typeOf: 'text',
         description: "WolfBot rolls some dice for you.",
         hidden: true,
     },
-    '!steam': {
-        name: '!steam :[steamemote]:',
+    'steam': {
+        name: 'steam :[steamemote]:',
         toRun: steamemote,
         typeOf: 'text',
         description: "Pulls an emote from the Steam API and posts it.",
         hidden: false,
     },
-    '!pokemon': {
-        name: '!pokemon [name|number] [input]',
+    'pokemon': {
+        name: 'pokemon [name|number] [input]',
         toRun: pokemon,
         typeOf: 'text',
         description: "Searches for a Pokémon using the PokeAPI - http:///pokeapi.co",
         hidden: false,
     },
-    '!bark': {
-        name: '!bark',
+    'bark': {
+        name: 'bark',
         toRun: bark,
         typeOf: 'text',
         description: "WolfBot barks.",
         hidden: false,
     },
-    '!pet': {
-        name: '!pet',
+    'pet': {
+        name: 'pet',
         toRun: pet,
         typeOf: 'text',
         description: "Pets the WolfBot. He likes scritches. <3",
         hidden: false,
     },
-    '!treat': {
-        name: '!treat',
+    'treat': {
+        name: 'treat',
         toRun: treat,
         typeOf: 'text',
         description: "Give WolfBot a treat!",
         hidden: false,
     },
-    '!!!': {
-        name: '!!!',
+    '!!': {
+        name: '!!',
         toRun: exclaim,
         typeOf: 'text',
         description: "OH MY GOD.",
         hidden: false,
     },
-    '!sparkle': {
-        name: '!sparkle',
+    'sparkle': {
+        name: 'sparkle',
         toRun: sparkle,
         typeOf: 'text',
         description: "Fabulous.",
         hidden: false,
     },
-    '!voice': {
-        name: '!voice',
+    'voice': {
+        name: 'voice',
         toRun: voice,
         typeOf: 'text',
         description: "Announces that you would like people to join the voice channel.",
         hidden: false,
     },
-    '!sethouse': {
-        name: '!sethouse [g|h|r|s]',
+    'sethouse': {
+        name: 'sethouse [g|h|r|s]',
         toRun: houses.sethouse,
         typeOf: 'text',
         description: "Sets your house for the House Cup.",
         hidden: false,
     },
-    '!house': {
-        name: '!house [g|h|r|s]',
+    'house': {
+        name: 'house [g|h|r|s]',
         toRun: houses.houses,
         typeOf: 'text',
         description: "See the members in a specific house.",
         hidden: false,
     },
-    '!points': {
-        name: '!points [@user] [# of points]',
+    'points': {
+        name: 'points [@user] [# of points]',
         toRun: houses.points,
         typeOf: 'admin',
         description: "Awards points to users.",
         hidden: true,
     },
-    '!cup': {
-        name: '!cup',
+    'cup': {
+        name: 'cup',
         toRun: houses.cup,
         typeOf: 'text',
         description: "Shows the current standings of the house cup.",
         hidden: false,
     },
-    '!fuck': {
-        name: '!fuck',
+    'fuck': {
+        name: 'fuck',
         toRun: fuck,
         typeOf: 'text',
         description: "L-lewd!",
         hidden: true,
     },
-    '!yiff': {
-        name: '!yiff',
+    'yiff': {
+        name: 'yiff',
         toRun: emotes.emote_torielglare,
         typeOf: 'emote',
         description: "...",
         hidden: true,
     },
-    '!join': {
-        name: '!join',
+    'join': {
+        name: 'join',
         toRun: music.join,
         typeOf: 'text',
         description: "",
         hidden: true,
     },
-    '!play': {
-        name: '!play',
+    'play': {
+        name: 'play',
         toRun: music.play,
         typeOf: 'text',
         description: "",
         hidden: true,
     },
-    '!stop': {
-        name: '!stop',
+    'stop': {
+        name: 'stop',
         toRun: music.stop,
         typeOf: 'text',
         description: "L-lewd!",
         hidden: true,
     },
-    '!gameset': {
-        name: '!gameset [id]',
+    'gameset': {
+        name: 'gameset [id]',
         toRun: gameset,
         typeOf: 'admin',
         description: "Set the game WolfBot is playing.",
@@ -456,7 +456,7 @@ var commands = {
         hidden: true,
     },
     // Test functions
-    '!test': {
+    'test': {
         name: 'test',
         toRun: test.test,
         typeOf: 'text',
@@ -464,148 +464,148 @@ var commands = {
         hidden: true,
     },
     // Emoticons
-    '!flowey': {
-        name: '!flowey',
+    'flowey': {
+        name: 'flowey',
         toRun: emotes.emote_flowey,
         typeOf: 'emote',
         description: "I'm your new best friend.",
         hidden: false,
     },
-    '!floweyevil': {
-        name: '!floweyevil',
+    'floweyevil': {
+        name: 'floweyevil',
         toRun: emotes.emote_floweyevil,
         typeOf: 'emote',
         description: "In this world... it's KILL or BE KILLED.",
         hidden: false,
     },
-    '!toriel': {
-        name: '!toriel',
+    'toriel': {
+        name: 'toriel',
         toRun: emotes.emote_toriel,
         typeOf: 'emote',
         description: "Oh! My child!",
         hidden: false,
     },
-    '!torielglare': {
-        name: '!torielglare',
+    'torielglare': {
+        name: 'torielglare',
         toRun: emotes.emote_torielglare,
         typeOf: 'emote',
         description: "...",
         hidden: true,
     },
-    '!torielshock': {
-        name: '!torielshock',
+    'torielshock': {
+        name: 'torielshock',
         toRun: emotes.emote_torielshock,
         typeOf: 'emote',
         description: "Hello! I am Toriel.",
         hidden: false,
     },
-    '!torielsad': {
-        name: '!torielsad',
+    'torielsad': {
+        name: 'torielsad',
         toRun: emotes.emote_torielcry,
         typeOf: 'emote',
         description: "My child...",
         hidden: false,
     },
-    '!blook': {
-        name: '!blook',
+    'blook': {
+        name: 'blook',
         toRun: emotes.emote_blook,
         typeOf: 'emote',
         description: "* (are they gone yet)",
         hidden: false,
     },
-    '!dapperblook': {
-        name: '!dapperblook',
+    'dapperblook': {
+        name: 'dapperblook',
         toRun: emotes.emote_dapperblook,
         typeOf: 'emote',
         description: "do you like it?",
         hidden: false,
     },
-    '!blookchill': {
-        name: '!blook',
+    'blookchill': {
+        name: 'blook',
         toRun: emotes.emote_blookchill,
         typeOf: 'emote',
         description: "* after a great meal i like to lie on the ground and feel like garbage...",
         hidden: false,
     },
-    '!blookworried': {
-        name: '!blookworried',
+    'blookworried': {
+        name: 'blookworried',
         toRun: emotes.emote_blookworried,
         typeOf: 'emote',
         description: "REALLY NOT FEELIN UP TO IT RIGHT NOW. SORRY.",
         hidden: false,
     },
-    '!napsta': {
-        name: '!napsta',
+    'napsta': {
+        name: 'napsta',
         toRun: emotes.emote_napsta,
         typeOf: 'emote',
         description: "* uh, do you wanna... listen to some tunes...",
         hidden: false,
     },
-    '!toby': {
-        name: '!toby',
+    'toby': {
+        name: 'toby',
         toRun: emotes.emote_toby,
         typeOf: 'emote',
         description: "That's the hard part. Knowing that it's all over.",
         hidden: false,
     },
-    '!tobybone': {
-        name: '!tobybone',
+    'tobybone': {
+        name: 'tobybone',
         toRun: emotes.emote_tobybone,
         typeOf: 'emote',
         description: "STOP MUNCHING ON MY SPECIAL ATTACK!!!",
         hidden: false,
     },
-    '!tobysleep': {
-        name: '!tobysleep',
+    'tobysleep': {
+        name: 'tobysleep',
         toRun: emotes.emote_tobysleep,
         typeOf: 'emote',
         description: "sleep tight pupper",
         hidden: false,
     },
-    '!tobytrap': {
-        name: '!tobytrap',
+    'tobytrap': {
+        name: 'tobytrap',
         toRun: emotes.emote_tobytrap,
         typeOf: 'emote',
         description: "BEHOLD! THE GAUNTLET OF DEADLY TERROR!",
         hidden: false,
     },
-    '!papyrusglare': {
-        name: '!papyrusglare',
+    'papyrusglare': {
+        name: 'papyrusglare',
         toRun: emotes.emote_papyrusglare,
         typeOf: 'emote',
         description: "Spaghetti.",
         hidden: false,
     },
-    '!papyrusshock': {
-        name: '!papyrusshock',
+    'papyrusshock': {
+        name: 'papyrusshock',
         toRun: emotes.emote_papyrusshock,
         typeOf: 'emote',
         description: "SANS!!!",
         hidden: false,
     },
-    '!papyruscool': {
-        name: '!papyruscool',
+    'papyruscool': {
+        name: 'papyruscool',
         toRun: emotes.emote_papyruscool,
         typeOf: 'emote',
         description: "C00L DUDE",
         hidden: false,
     },
-    '!sans': {
-        name: '!sans',
+    'sans': {
+        name: 'sans',
         toRun: emotes.emote_sans,
         typeOf: 'emote',
         description: "hey.",
         hidden: false,
     },
-    '!undyne': {
-        name: '!undyne',
+    'undyne': {
+        name: 'undyne',
         toRun: emotes.emote_undyne,
         typeOf: 'emote',
         description: "HOTLAND SUUUUUUCKS!",
         hidden: false,
     },
-    '!alphys': {
-        name: '!alphys',
+    'alphys': {
+        name: 'alphys',
         toRun: emotes.emote_alphys,
         typeOf: 'emote',
         description: "D-do you like anime?",

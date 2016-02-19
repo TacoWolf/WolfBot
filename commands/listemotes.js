@@ -1,4 +1,5 @@
 var helpers = require('./../helpers');
+var config = require('./../config.json');
 
 function listemotes(bot, user, userID, channelID, message) {
     helpers.statistics("emotes", user, userID, channelID, message);
@@ -7,7 +8,7 @@ function listemotes(bot, user, userID, channelID, message) {
     for (var key in commands) {
         var command = commands[key];
         if (command.typeOf != 'emote' || command.hidden) continue;
-        msg += "`" + key + "`";
+        msg += "`" + config.trigger + key + "`";
         msg += " - " + command.description;
         msg += "\n";
     }

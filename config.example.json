@@ -2,5 +2,6 @@
     "name": "Your Bot Name",
     "email": "email@provider.com",
     "password": "yoursupersecurepassword",
-	"autorun": true
+	"autorun": true,
+	"trigger": "!"
 }
