@@ -4,7 +4,7 @@ function sparkle(bot, user, userID, channelID, message) {
     helpers.statistics("sparkle", user, userID, channelID, message);
     bot.sendMessage({
         to: channelID,
-        message: "`(ﾉ^w^)ﾉ` :sparkles: :star2: :star: :heart:"
+        message: "`(ﾉ^w^)ﾉ` ❤ ❇️ 💛 🌟 💚 ⭐ 💙 ✨ 💜"
     });
 }
 
