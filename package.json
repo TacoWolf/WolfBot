@@ -1,6 +1,6 @@
 {
   "name": "wolfbot",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "description": "A simple bot for Discord.",
   "private": true,
   "main": "server.js",
