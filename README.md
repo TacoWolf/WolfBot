@@ -3,7 +3,7 @@ A simple bot for Discord, built with [discord.io](../../../../izy521/discord.io)
 
 ## Requirements
 
-* Node.js
+* Node.js 5.x
 
 ## Getting Started 
 
