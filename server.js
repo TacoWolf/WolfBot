@@ -90,14 +90,14 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
             // Removes the trigger
             triggered = parameters[0].substring(1).toLowerCase().trim();
             // Searches for the command in the first word
-            if (commands.hasOwnProperty(triggered)) {
+            if (commands.triggers.hasOwnProperty(triggered)) {
                 // Sets the command if found
-                command = commands[triggered];
+                command = commands.triggers[triggered];
                 command.toRun(bot, user, userID, channelID, message, serverID);
             }
-        } else if (commands.hasOwnProperty(rawphrase)) {
+        } else if (commands.phrases.hasOwnProperty(rawphrase)) {
             // Searches for phraes
-            command = commands[rawphrase];
+            command = commands.phrases[rawphrase];
             command.toRun(bot, user, userID, channelID, message, serverID);
         } else {
             // Checks for a mention
