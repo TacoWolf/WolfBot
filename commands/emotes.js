@@ -6,7 +6,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/alphys.png")
+            file: "emote/alphys.png"
         });
     },
 
@@ -15,7 +15,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/dog.png")
+            file: "emote/dog.png"
         });
     },
 
@@ -24,16 +24,16 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/tobybone.gif")
+            file: "emote/tobybone.png"
         });
     },
-    
+
     emote_tobysleep: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/tobysleep.gif")
+            file: "emote/tobysleep.png"
         });
     },
 
@@ -42,7 +42,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/tobytrap.gif")
+            file: "emote/tobytrap.png"
         });
     },
 
@@ -51,7 +51,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/flowey.png")
+            file: "emote/flowey.png"
         });
     },
 
@@ -60,7 +60,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/floweyevil.png")
+            file: "emote/floweyevil.png"
         });
     },
 
@@ -69,7 +69,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/papyrusglare.png")
+            file: "emote/papyrusglare.png"
         });
     },
 
@@ -78,7 +78,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/papyruswacky.png")
+            file: "emote/papyruswacky.png"
         });
     },
 
@@ -87,7 +87,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/papyruscool.png")
+            file: "emote/papyruscool.png"
         });
     },
 
@@ -96,7 +96,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/sans.png")
+            file: "emote/sans.png"
         });
     },
 
@@ -105,7 +105,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/toriel.png")
+            file: "emote/toriel.png"
         });
     },
 
@@ -114,7 +114,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/torielglare.png")
+            file: "emote/torielglare.png"
         });
     },
 
@@ -123,7 +123,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/torielsad.png")
+            file: "emote/torielsad.png"
         });
     },
 
@@ -132,7 +132,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/torielshock.png")
+            file: "emote/torielshock.png"
         });
     },
 
@@ -141,7 +141,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/undynelaugh.png")
+            file: "emote/undynelaugh.png"
         });
     },
 
@@ -150,7 +150,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/napstablook.png")
+            file: "emote/napstablook.png"
         });
     },
 
@@ -159,7 +159,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/dapperblook.png")
+            file: "emote/dapperblook.png"
         });
     },
 
@@ -168,7 +168,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/napstablookchill.png")
+            file: "emote/napstablookchill.png"
         });
     },
 
@@ -177,7 +177,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/napstablooktunes.png")
+            file: "emote/napstablooktunes.png"
         });
     },
 
@@ -186,7 +186,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: fs.createReadStream("emote/napstablookworried.png")
+            file: "emote/napstablookworried.png"
         });
     }
 }

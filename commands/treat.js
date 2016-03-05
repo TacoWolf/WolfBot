@@ -6,7 +6,7 @@ function wbtreat(bot, user, userID, channelID, message) {
         case 0:
             bot.sendMessage({
                 to: channelID,
-                message: "[nomnomnomnom.]"
+                message: "[nomnomnomnom~]"
             });
             break;
         case 1:
@@ -18,7 +18,7 @@ function wbtreat(bot, user, userID, channelID, message) {
         case 2:
             bot.sendMessage({
                 to: channelID,
-                message: "[yips eagerly, wagging his tail as he stands on his hand paws, soon nibbling up the treat happily~]"
+                message: "[yips eagerly, wagging his tail as he stands on his hind paws, soon nibbling up the treat happily~]"
             });
             break;
     }

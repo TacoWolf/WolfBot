@@ -85,6 +85,13 @@ var commands = {
             description: "Snuggles someone. `>w<`",
             hidden: false,
         },
+        'console': {
+            name: 'console @[user]',
+            toRun: snuggle,
+            typeOf: 'text',
+            description: "Consoles someone with snuggles. `;w;`",
+            hidden: false,
+        },
         'poke': {
             name: 'poke @[user]',
             toRun: poke,
@@ -211,11 +218,32 @@ var commands = {
             description: "L-lewd!",
             hidden: true,
         },
+        'bitch': {
+            name: 'bitch',
+            toRun: fuck,
+            typeOf: 'text',
+            description: "L-lewd!",
+            hidden: true,
+        },
+        'shit': {
+            name: 'shit',
+            toRun: fuck,
+            typeOf: 'text',
+            description: "L-lewd!",
+            hidden: true,
+        },
         'yiff': {
             name: 'yiff',
             toRun: emotes.emote_torielglare,
             typeOf: 'emote',
             description: "...",
+            hidden: true,
+        },
+        'trash': {
+            name: 'trash',
+            toRun: emotes.emote_alphys,
+            typeOf: 'emote',
+            description: 'do you like anime?/?',
             hidden: true,
         },
         'join': {
