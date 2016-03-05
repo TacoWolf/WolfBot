@@ -24,7 +24,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: "emote/tobybone.png"
+            file: "emote/tobybone.gif"
         });
     },
 
@@ -33,7 +33,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: "emote/tobysleep.png"
+            file: "emote/tobysleep.gif"
         });
     },
 
@@ -42,7 +42,7 @@ module.exports = {
         helpers.statistics("emoted", user, userID, channelID, message);
         bot.uploadFile({
             to: channelID,
-            file: "emote/tobytrap.png"
+            file: "emote/tobytrap.gif"
         });
     },
 
