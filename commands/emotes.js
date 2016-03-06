@@ -1,5 +1,3 @@
-var fs = require('fs');
-
 module.exports = {
     emote_alphys: function(bot, user, userID, channelID, message) {
         var helpers = require('./../helpers');
