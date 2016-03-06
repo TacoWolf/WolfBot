@@ -1,4 +1,7 @@
+![](http://i.imgur.com/sLS6kkF.png) 
+
 # WolfBot
+
 A simple bot for Discord, built with [discord.io](../../../../izy521/discord.io).
 
 ## Requirements
