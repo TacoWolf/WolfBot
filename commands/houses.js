@@ -24,28 +24,22 @@ module.exports = {
                         helpers.statistics("total", user, userHouse, channelID, message, points);
                         // ADD +X TO HOUSE
                     }
+                    var userNameFix = bot.fixMessage(parameters[1]);
+                    userNameFix = userNameFix.substring(1);
+                    var nameofHouse = helpers.housetrans(uh.house);
                     if (points > 0) {
-                        var userNameFix = bot.fixMessage(parameters[1]);
-                        userNameFix = userNameFix.substring(1);
-                        var nameofHouse = helpers.housetrans(uh.house);
                         var msg = "**" + userNameFix + "** has been awarded **" + points + "** points for their house, **" + nameofHouse + "**. :3";
                         bot.sendMessage({
                             to: channelID,
                             message: msg
                         });
                     } else if (points < 0) {
-                        var userNameFix = bot.fixMessage(parameters[1]);
-                        userNameFix = userNameFix.substring(1);
-                        var nameofHouse = helpers.housetrans(uh.house);
                         var msg = "**" + userNameFix + "** has been punished with **" + points + "** points taken away from their house, **" + nameofHouse + "**. >:c";
                         bot.sendMessage({
                             to: channelID,
                             message: msg
                         });
                     } else {
-                        var userNameFix = bot.fixMessage(parameters[1]);
-                        userNameFix = userNameFix.substring(1);
-                        var nameofHouse = helpers.housetrans(uh.house);
                         var msg = "...uh... **" + userNameFix + "** has been awarded... no points for their house, **" + nameofHouse + "**. Awkward. `>.>`";
                         bot.sendMessage({
                             to: channelID,
