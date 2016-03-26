@@ -1,12 +1,12 @@
 {
   "name": "wolfbot",
-  "version": "0.5.9",
+  "version": "0.6.0",
   "description": "A simple bot for Discord.",
   "private": true,
   "main": "server.js",
   "dependencies": {
     "async": "^1.5.0",
-    "discord.io": "^1.4.9",
+    "discord.io": "^1.8.3",
     "node-opus": "^0.1.11",
     "request": "^2.69.0",
     "ytdl-core": "^0.7.7"

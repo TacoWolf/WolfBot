@@ -138,6 +138,13 @@ module.exports = {
     randomator: function(cases) {
         return Math.floor(Math.random() * cases);
     },
+    randomArray: function(array) {
+        random = array[Math.floor(Math.random() * array.length)];
+        return random;
+    },
+    firstToUpperCase: function(str) {
+        return str.substr(0, 1).toUpperCase() + str.substr(1);
+    },
     getServerID: function(bot, channelID) {
         var serverlist = bot.servers;
         var serverCheck = false;
@@ -158,6 +165,13 @@ module.exports = {
         if (serverCheck === false) {
             return "pm";
         }
-
+    },
+    join: function(array) {
+        output = ''
+        for (var i = 0; i < array.length; i++) {
+            output += array[i]
+            output += ' '
+        }
+        return output
     }
 }

@@ -21,6 +21,7 @@ var wb = require('./wb');
 var steamemote = require('./steamemote').command;
 var pokemon = require('./pokemon').command;
 var gameset = require('./gameset').command;
+var eightball = require('./8ball').command;
 
 var houses = require('./houses');
 
@@ -40,6 +41,7 @@ var commands = {
             description: "test function",
             hidden: true,
         },
+
         // Main commands
         'help': {
             name: 'help',
@@ -104,6 +106,13 @@ var commands = {
             toRun: butt,
             typeOf: 'text',
             description: "Butts someone.",
+            hidden: false,
+        },
+        '8ball': {
+            name: '8ball',
+            toRun: eightball,
+            typeOf: 'text',
+            description: "Shows the help page with all of the commands. You're looking at it now!",
             hidden: false,
         },
         'ping': {
@@ -441,6 +450,13 @@ var commands = {
         },
         'good boy': {
             name: 'good boy',
+            toRun: wb.gb,
+            typeOf: 'text',
+            description: '',
+            hidden: true,
+        },
+        'good boy wolfbot': {
+            name: 'good boy wolfbot',
             toRun: wb.gb,
             typeOf: 'text',
             description: '',

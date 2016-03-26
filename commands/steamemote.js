@@ -1,4 +1,5 @@
 var request = require('request');
+
 function steamemote(bot, user, userID, channelID, message) {
     var matches = [];
     var r = new RegExp(/:(.*?):/g);
@@ -12,26 +13,13 @@ function steamemote(bot, user, userID, channelID, message) {
         if (m.length > 0) {
             var emote = m.splice(0, 1)[0];
             // console.log(emote);
-            var req = request.get('http://cdn.steamcommunity.com/economy/emoticon/' + emote, function(err, res, body) {
-                if (!err && res.statusCode === 200) {
-                    // console.log("Got: http://cdn.steamcommunity.com/economy/emoticon/" + emote);
-                    bot.uploadFile({
-                        channel: channelID,
-                        file: {
-                            value: request.get('http://cdn.steamcommunity.com/economy/emoticon/' + emote),
-                            options: {
-                                filename: emote + ".png",
-                                contentType: 'image/png'
-                            }
-                        }
-                    }, function(b) {
-                        // console.log(b);
-                        getSteamEmote(m);
-                    });
-                }
-                else {
-                    bot.sendMessage({to: channelID, message: "I-I couldn't find an emote that was like **" + parameters[1] + "**... ;w;"})
-                }
+            req = request.get('http://cdn.steamcommunity.com/economy/emoticon/' + emote, { encoding: null }, function(err, res, body) {
+                if (err) return console.log(err);
+                bot.uploadFile({
+                    to: channelID,
+                    file: body,
+                    filename: 'file.png'
+                });
             });
         } else {
             return;

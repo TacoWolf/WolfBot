@@ -1,26 +1,12 @@
 var helpers = require('./../helpers');
 
 function exclaim(bot, user, userID, channelID, message) {
-    switch (helpers.randomator(2)) {
-        case 0:
-            bot.sendMessage({
-                to: channelID,
-                message: "**!!!**"
-            });
-            break;
-        case 1:
-            bot.sendMessage({
-                to: channelID,
-                message: "**???**"
-            });
-            break;
-        default:
-            bot.sendMessage({
-                to: channelID,
-                message: "**!!!**"
-            });
-            break;
-    }
+    punctuation = ['**!!!**','**???**','**...**']
+    msg = helpers.randomArray(punctuation)
+    bot.sendMessage({
+        to: channelID,
+        message: msg
+    });
 };
 
 module.exports = {

@@ -79,13 +79,15 @@ bot.on("message", function(user, userID, channelID, message, rawEvent) {
     }
 
     // Actually parse the message
-
     helpers.parameters(message);
+
     // require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
-    // Makes sure it isn't undefined
+    // Used for debugging
+
+    // Makes sure message isn't undefined
     if (parameters[0] != undefined) {
         // Checks for the trigger
-        rawphrase = parameters.join(' ').replace(/\!|\.|\~|\?|\,/g, '').toLowerCase().trim();
+        rawphrase = parameters.join(' ').replace(/([^\w\s])/g, '').toLowerCase().trim();
         if (parameters[0].charAt(0) === config.trigger) {
             // Removes the trigger
             triggered = parameters[0].substring(1).toLowerCase().trim();
