@@ -109,10 +109,10 @@ var commands = {
             hidden: false,
         },
         '8ball': {
-            name: '8ball',
+            name: '8ball [question]',
             toRun: eightball,
             typeOf: 'text',
-            description: "Shows the help page with all of the commands. You're looking at it now!",
+            description: "WolfBot gives you guidance. o:",
             hidden: false,
         },
         'ping': {
@@ -144,7 +144,7 @@ var commands = {
             hidden: false,
         },
         'pokemon': {
-            name: 'pokemon [name|number] [input]',
+            name: 'pokemon [name|number]',
             toRun: pokemon,
             typeOf: 'text',
             description: "Searches for a Pokémon using the PokeAPI - http:///pokeapi.co",
