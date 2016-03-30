@@ -6,7 +6,7 @@ function diceroll(bot, user, userID, channelID, message) {
   if (!isNaN(parseInt(roll[0])) && !isNaN(parseInt(roll[1]))) {
     amount = parseInt(roll[0]);
     dietype = parseInt(roll[1]);
-    if (amount <= 50 && dietype <= 20) {
+    if (amount <= 25 && dietype <= 1000) {
       for (var i = 0; i < amount; i++) {
         roll = Math.floor(Math.random() * dietype) + 1;
         rolllog = rolllog + ' ' + roll;
@@ -15,7 +15,7 @@ function diceroll(bot, user, userID, channelID, message) {
       msg += '`' + rolllog + '` \n\nT-that\'s a good roll, right? :3';
       helpers.statistics('dice', user, userID, channelID, message);
     }
-    if (amount > 50 || dietype > 20) {
+    if (amount > 25 || dietype > 1000) {
       msg += '...th-that\'s a lot of dice... ;w;\n I-I can\'t count that high... try using smaller numbers?';
     }
   } else {
