@@ -1,6 +1,14 @@
 # Set language to NodeJS
 language: node_js
 
+# Add C++ libraries
+env:
+  - CXX=g++-4.8
+addons:
+  apt:
+    packages:
+    - g++-4.8
+
 # Cache node modules
 cache: node_modules
 

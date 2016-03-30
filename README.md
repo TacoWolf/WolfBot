@@ -2,7 +2,7 @@
 
 # WolfBot
 
-[![Dependency Status](https://david-dm.org/tacowolf/wolfbot.svg)](https://david-dm.org/tacowolf/wolfbot)
+[![Build Status](https://travis-ci.org/TacoWolf/WolfBot.svg?branch=master)](https://travis-ci.org/TacoWolf/WolfBot) [![Dependency Status](https://david-dm.org/tacowolf/wolfbot.svg)](https://david-dm.org/tacowolf/wolfbot)
 
 A simple bot for Discord, built with [discord.io](../../../../izy521/discord.io).
 
