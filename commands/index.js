@@ -115,19 +115,12 @@ var commands = {
       description: 'Pings WolfBot, making him pong back.',
       hidden: false
     },
-    'dice': {
-      name: 'dice d[x] [amount]',
+    'roll': {
+      name: 'roll [x]d[x]',
       toRun: diceroll,
       typeOf: 'text',
       description: 'WolfBot rolls some dice for you.',
       hidden: false
-    },
-    'roll': {
-      name: 'roll d[x] [amount]',
-      toRun: diceroll,
-      typeOf: 'text',
-      description: 'WolfBot rolls some dice for you.',
-      hidden: true
     },
     'steam': {
       name: 'steam :[steamemote]:',
