@@ -1,47 +1,26 @@
 var helpers = require('./../helpers');
 function diceroll(bot, user, userID, channelID, message) {
-  var msg = '[WolfBot rolls some dice.] \n \n';
+  var msg = '**[WolfBot rolls some dice.]** \n';
   var rolllog = '';
-  var dietype = parameters[1];
-  var amount = parameters[2];
-  if (dietype === undefined || amount === undefined) {
-    msg += 'Uhm... I dunno how many dice to roll. ;w; \nMaybe try putting in an actual value and trying again?';
-    bot.sendMessage({
-      to: channelID,
-      message: msg
-    });
-    return;
+  var roll = parameters[1].split('d');
+  if (!isNaN(parseInt(roll[0])) && !isNaN(parseInt(roll[1]))) {
+    amount = parseInt(roll[0]);
+    dietype = parseInt(roll[1]);
+    if (amount <= 25 && dietype <= 1000) {
+      for (var i = 0; i < amount; i++) {
+        roll = Math.floor(Math.random() * dietype) + 1;
+        rolllog = rolllog + ' ' + roll;
+      }
+      msg += 'Ooh! I rolled **' + amount + 'd' + dietype + '** and I got... \n \n';
+      msg += '`' + rolllog + '` \n\nT-that\'s a good roll, right? :3';
+      helpers.statistics('dice', user, userID, channelID, message);
+    }
+    if (amount > 25 || dietype > 1000) {
+      msg += '...th-that\'s a lot of dice... ;w;\n I-I can\'t count that high... try using smaller numbers?';
+    }
+  } else {
+    msg += 'Uhm... I dunno what to do. ;w; \nMaybe try putting something in like `1d20` and trying again?';
   }
-  if (amount > 20) {
-    msg += 'Those are _way_ too many dice! I-I can\'t count that many... ;w; \nMaybe try a smaller amount and try again?';
-    bot.sendMessage({
-      to: channelID,
-      message: msg
-    });
-    return;
-  }
-  while (dietype[0] === 'd') {
-    dietype = dietype.substr(1);
-  }
-  dietype = parseInt(dietype);
-  console.log(dietype);
-  console.log(typeof dietype);
-  console.log(isNaN(dietype));
-  if (isNaN(dietype) === true) {
-    msg += '...aww, something went wrong with my dice.... ;w;\nMaybe check what you sent and try again?';
-    bot.sendMessage({
-      to: channelID,
-      message: msg
-    });
-    return;
-  }
-  for (var i = 0; i < amount; i++) {
-    roll = Math.floor(Math.random() * dietype) + 1;
-    rolllog = rolllog + ' ' + roll;
-  }
-  msg += 'Ooh! I rolled **' + amount + 'd' + dietype + '** and I got... \n \n';
-  msg += '`' + rolllog + '` \n\nT-that\'s a good roll, right? :3';
-  helpers.statistics('dice', user, userID, channelID, message);
   bot.sendMessage({
     to: channelID,
     message: msg
