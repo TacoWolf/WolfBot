@@ -1,21 +1,29 @@
 var stats = require('./stats.json');
-var admins = require('./admins.json');
 module.exports = {
-  admin: function (userID) {
-    var adminCheck = admins.admins;
-    for (var i = 0; i < adminCheck.length; i++) {
-      if (adminCheck[i] === userID) {
-        return true;
+  roleCheck: function(bot, serverID, userID, roleType){
+    var checker = '';
+    var adminid;
+    var verifier = false;
+    var roles = bot.servers[serverID].roles;
+    var userRole = bot.servers[serverID].members[userID].roles
+    if (roleType == 'admin') {
+      checker = 'wb admin';
+    } else if (roleType == 'superadmin') {
+      checker = 'wb superadmin';
+    } else if (roleType == 'headmaster') {
+      checker = 'headmaster';
+    }
+    for (var key in roles) {
+      if (roles[key].name.toLowerCase() === checker) {
+        adminid = roles[key].id;
       }
     }
-  },
-  superAdmin: function (userID) {
-    var adminCheck = admins.superadmin;
-    for (var i = 0; i < adminCheck.length; i++) {
-      if (userID === adminCheck[i]) {
-        return true;
+    for (var i = 0; i < userRole.length; i++) {
+      if (userRole[i] === adminid) {
+        verifier = true;
       }
     }
+    return verifier;
   },
   statistics: function (item, user, userID, channelID, message, points) {
     // [eternal screaming]
@@ -50,16 +58,16 @@ module.exports = {
   housetrans: function (house) {
     var convertHouse = '';
     switch (house) {
-    case 'g':
+      case 'g':
       convertHouse = 'Gryffindor';
       break;
-    case 'h':
+      case 'h':
       convertHouse = 'Hufflepuff';
       break;
-    case 'r':
+      case 'r':
       convertHouse = 'Ravenclaw';
       break;
-    case 's':
+      case 's':
       convertHouse = 'Slytherin';
       break;
     }
