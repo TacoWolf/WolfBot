@@ -1,8 +1,9 @@
 var helpers = require('./../helpers');
 function gameset(bot, user, userID, channelID, message) {
-  var adminTest = helpers.superAdmin(bot, userID);
+  var serverID = helpers.getServerID(bot, channelID);
+  var adminCheck = helpers.roleCheck(bot, serverID, userID, 'superadmin');
   var msg = '';
-  if (adminTest === true) {
+  if (adminCheck === true) {
     var id = parameters[1];
     for (var i = 2; i < parameters.length; i++) {
       id = id + ' ' + parameters[i];

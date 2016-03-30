@@ -3,9 +3,10 @@ var stats = require('./../stats.json');
 module.exports = {
   points: function (bot, user, userID, channelID, message) {
     var msg = '';
-    var adminTest = helpers.admin(userID);
+    var serverID = helpers.getServerID(bot, channelID);
+    var adminCheck = helpers.roleCheck(bot, serverID, userID, 'headmaster');
     if (parameters[1] !== undefined && parameters[2] !== undefined) {
-      if (adminTest === true) {
+      if (adminCheck === true) {
         var points = parseInt(parameters[2]);
         var userHouse;
         var userIDfix = parameters[1];
