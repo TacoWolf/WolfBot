@@ -1,19 +1,19 @@
 var helpers = require('./../helpers');
 var stats = require('./../stats.json');
 var msg = '';
-function addToHouse(bot, userID){
-  var houseName = ''
-  addHouse = stats[userID]
+function addToHouse(bot, userID) {
+  var houseName = '';
+  addHouse = stats[userID];
   if (addHouse.house !== undefined) {
-    houseName = helpers.housetrans(addHouse.house)
-    msg = 'You\'ve already been sorted into ' + houseName + '!\nIf you wanna change your house, let `taco#0634` know. :3'
+    houseName = helpers.housetrans(addHouse.house);
+    msg = 'You\'ve already been sorted into ' + houseName + '!\nIf you wanna change your house, let `taco#0634` know. :3';
   } else if (addHouse.house === undefined) {
     addHouse.house = parameters[1];
     require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
-    houseName = helpers.housetrans(addHouse.house)
-    msg = 'You have been successfully sorted into ' + houseName + '.'
+    houseName = helpers.housetrans(addHouse.house);
+    msg = 'You have been successfully sorted into ' + houseName + '.';
   } else {
-    msg = 'You got some weird error with the houses... tell `taco#0634` about it. >.>'
+    msg = 'You got some weird error with the houses... tell `taco#0634` about it. >.>';
   }
   return msg;
 }
@@ -108,7 +108,7 @@ module.exports = {
             msg += 'Please try again with a real house, like: `!sethouse g`, which would set your house to Gryffindor.';
           }
         } else {
-          msg = 'Oh, hai! I-I don\'t know you very well... Try `!ping`ing me first. :3'
+          msg = 'Oh, hai! I-I don\'t know you very well... Try `!ping`ing me first. :3';
         }
       }
     }
@@ -163,19 +163,19 @@ module.exports = {
     var hs = '';
     var members = [];
     switch (parameters[1]) {
-      case 'g':
+    case 'g':
       hs = 'g';
       break;
-      case 'h':
+    case 'h':
       hs = 'h';
       break;
-      case 'r':
+    case 'r':
       hs = 'r';
       break;
-      case 's':
+    case 's':
       hs = 's';
       break;
-      default:
+    default:
       msg = 'House invalid. Valid houses are: \n \n';
       msg += '`g` - Gryffindor \n';
       msg += '`h` - Hufflepuff \n';
