@@ -3,7 +3,7 @@ var stats = require('./../stats.json');
 var msg = '';
 function addToHouse(bot, userID) {
   var houseName = '';
-  addHouse = stats[userID];
+  var addHouse = stats[userID];
   if (addHouse.house !== undefined) {
     houseName = helpers.housetrans(addHouse.house);
     msg = 'You\'ve already been sorted into ' + houseName + '!\nIf you wanna change your house, let `taco#0634` know. :3';
@@ -21,9 +21,9 @@ module.exports = {
   points: function (bot, user, userID, channelID, message) {
     var serverID = helpers.getServerID(bot, channelID);
     var adminCheck = helpers.roleCheck(bot, serverID, userID, 'headmaster');
-    if (parameters[1] !== undefined && parameters[2] !== undefined) {
+    if (parameters[1] !== undefined && /\d+$/.test(parameters[2])) {
       if (adminCheck === true) {
-        var points = parseInt(parameters[2]);
+        var points = parseInt(parameters[2],10);
         var userHouse;
         var userIDfix = parameters[1];
         var house = parameters[1];
@@ -56,10 +56,16 @@ module.exports = {
           } else {
             msg = '...uh... **' + userNameFix + '** has been awarded... no points for their house, **' + nameofHouse + '**. Awkward. `>.>`';
           }
-          if (points === points) {
+          if (points !== undefined) {
+            console.log('doing the thing with the points')
+            console.log('clp ' + points)
+            console.log(uh.house)
             helpers.statistics('points', userID);
             // ADD +X TO USER
-            helpers.statistics('total', user, userHouse, channelID, message, points);  // ADD +X TO HOUSE
+            helpers.statistics('total', uh.house, points);  
+
+            console.log('not doing the thing with the points')
+            // ADD +X TO HOUSE
           }
         } else {
           bot.sendMessage({

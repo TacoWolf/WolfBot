@@ -25,8 +25,7 @@ module.exports = {
     }
     return verifier;
   },
-  statistics: function (item, userID) {
-    // [eternal screaming]
+  statistics: function (item, userID, points) {
     if (stats[userID] === undefined) {
       stats[userID] = {};
     }
@@ -34,7 +33,11 @@ module.exports = {
     if (appendStat[item] === undefined) {
       appendStat[item] = 0;
     }
-    appendStat[item] = appendStat[item] + 1;
+    console.log(points)
+    if (!points){
+      points = 1
+    }
+    appendStat[item] = appendStat[item] + points;
     require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
   },
   parameters: function (message) {
