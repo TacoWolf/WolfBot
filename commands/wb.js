@@ -8,7 +8,7 @@ function send(bot, channelID, msg) {
 }
 module.exports = {
   mention: function (bot, user, userID, channelID, message) {
-    helpers.statistics('mentions', user, userID, channelID, message);
+    helpers.statistics('mentions', userID);
     mentions = [
       'What? ;w;',
       '[yip?]',
@@ -25,7 +25,7 @@ module.exports = {
     send(bot, channelID, msg);
   },
   wbtreat: function (bot, user, userID, channelID, message) {
-    helpers.statistics('treats', user, userID, channelID, message);
+    helpers.statistics('treats', userID);
     treats = [
       '[nomnomnomnom~]',
       '[nibbles up the treat happily~]',
@@ -39,17 +39,17 @@ module.exports = {
     send(bot, channelID, msg);
   },
   sandwich: function (bot, user, userID, channelID, message) {
-    helpers.statistics('sandwich', user, userID, channelID, message);
+    helpers.statistics('sandwich', userID);
     msg = 'What? Make it yourself.';
     send(bot, channelID, msg);
   },
   sudo: function (bot, user, userID, channelID, message) {
-    helpers.statistics('sudosandwich', user, userID, channelID, message);
+    helpers.statistics('sudosandwich', userID);
     msg = 'Okay.';
     send(bot, channelID, msg);
   },
   love: function (bot, user, userID, channelID, message) {
-    helpers.statistics('love', user, userID, channelID, message);
+    helpers.statistics('love', userID);
     msg = 'I-I love you, too. >w< :green_heart:';
     send(bot, channelID, msg);
   },

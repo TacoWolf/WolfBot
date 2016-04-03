@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function poke(bot, user, userID, channelID, message) {
-  helpers.statistics('poke', user, userID, channelID, message);
+  helpers.statistics('poke', userID);
   msg = '';
   if (parameters[1] === undefined) {
     pokes = [

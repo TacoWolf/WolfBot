@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function snuggle(bot, user, userID, channelID, message) {
-  helpers.statistics('snuggles', user, userID, channelID, message);
+  helpers.statistics('snuggles', userID);
   if (parameters[1] === undefined) {
     snuggles = [
       '[WolfBot bounds up and snuggles up to **' + user + '** happily~] :green_heart:',

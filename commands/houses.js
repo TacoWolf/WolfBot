@@ -57,7 +57,7 @@ module.exports = {
             msg = '...uh... **' + userNameFix + '** has been awarded... no points for their house, **' + nameofHouse + '**. Awkward. `>.>`';
           }
           if (points === points) {
-            helpers.statistics('points', user, userID, channelID, message, points);
+            helpers.statistics('points', userID);
             // ADD +X TO USER
             helpers.statistics('total', user, userHouse, channelID, message, points);  // ADD +X TO HOUSE
           }
@@ -94,7 +94,7 @@ module.exports = {
       msg += 'Please try again with a real house, like: `!sethouse g`, which would set your house to Gryffindor.';
     } else {
       var houseName = '';
-      helpers.statistics('houseset', user, userID, channelID, message);
+      helpers.statistics('houseset', userID);
       for (var key in stats) {
         if (key === userID) {
           if (/g|h|r|s/.test(parameters[1])) {

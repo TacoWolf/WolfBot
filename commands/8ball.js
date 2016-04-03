@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function eightball(bot, user, userID, channelID, message) {
-  helpers.statistics('8ball', user, userID, channelID, message);
+  helpers.statistics('8ball', userID);
   answers = [
     'It is certain~',
     'It is decidedly so. >w>',

@@ -5,7 +5,7 @@ function uploadEmote(bot, channelID, file, userID, user) {
     file: 'emote/' + file,
     message: '<@' + userID + '>'
   });
-  helpers.statistics('emoted', user, userID, channelID, message);
+  helpers.statistics('emoted', userID);
 }
 module.exports = {
   emote_alphys: function (bot, user, userID, channelID, message) {

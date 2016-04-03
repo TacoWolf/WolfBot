@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function butt(bot, user, userID, channelID, message) {
-  helpers.statistics('butt', user, userID, channelID, message);
+  helpers.statistics('butt', userID);
   if (parameters[1] === undefined) {
     butts = [
       'You know who\'s a butt? **' + user + '**. At least... _they_ think so. o:',
