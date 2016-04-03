@@ -2,7 +2,8 @@ function moduleAvailable(name) {
   try {
     require.resolve(name);
     return true;
-  } catch(e){}
+  } catch (e) {
+  }
   return false;
 }
 var Discordbot = require('discord.io');
@@ -12,18 +13,18 @@ var stats;
 var commands;
 var helpers;
 if (moduleAvailable('./stats.json')) {
-  console.log('`stats.json` found! Loading...')
+  console.log('`stats.json` found! Loading...');
   stats = require('./stats.json');
   commands = require('./commands/index');
   helpers = require('./helpers');
-} else  {
+} else {
   var statsExample = require('./stats.example.json');
-  console.log('`stats.json` not found, generating a new one.')
-  require('fs').writeFile('./stats.json', JSON.stringify(statsExample, null, '\t'), function (err){
+  console.log('`stats.json` not found, generating a new one.');
+  require('fs').writeFile('./stats.json', JSON.stringify(statsExample, null, '\t'), function (err) {
     stats = require('./stats.json');
     commands = require('./commands/index');
     helpers = require('./helpers');
-  }) ;
+  });
 }
 var bot = new Discordbot({
   email: config.email,
@@ -61,8 +62,8 @@ bot.on('ready', function (rawEvent) {
     require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
     console.log(flairsmall);
     console.log(config.name + " config successfully generated."); */
-    console.log(flair);
-  });
+  console.log(flair);
+});
 bot.on('message', function (user, userID, channelID, message, rawEvent) {
   // Log message from user
   var serverID = helpers.getServerID(bot, channelID, userID);

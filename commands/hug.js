@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function hug(bot, user, userID, channelID, message) {
-  helpers.statistics('hug', user, userID, channelID, message);
+  helpers.statistics('hug', userID);
   msg = '';
   if (parameters[1] === undefined) {
     hugs = [

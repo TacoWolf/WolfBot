@@ -2,7 +2,7 @@ var helpers = require('./../helpers');
 var commands = require('./index');
 var config = require('./../config.json');
 function help(bot, user, userID, channelID, message) {
-  helpers.statistics('help', user, userID, channelID, message);
+  helpers.statistics('help', userID);
   var msg = '**O-oh! You need help?** Here\'s a list of commands. :3 \n \n';
   var commands = require('./index');
   for (var key in commands.triggers) {

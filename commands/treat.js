@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function wbtreat(bot, user, userID, channelID, message) {
-  helpers.statistics('treats', user, userID, channelID, message);
+  helpers.statistics('treats', userID);
   treats = [
     '[nomnomnomnom~]',
     '[nibbles up the treat happily~]',

@@ -13,7 +13,7 @@ function diceroll(bot, user, userID, channelID, message) {
       }
       msg += 'Ooh! I rolled **' + amount + 'd' + dietype + '** and I got... \n \n';
       msg += '`' + rolllog + '` \n\nT-that\'s a good roll, right? :3';
-      helpers.statistics('dice', user, userID, channelID, message);
+      helpers.statistics('dice', userID);
     }
     if (amount > 25 || dietype > 1000) {
       msg += '...th-that\'s a lot of dice... ;w;\n I-I can\'t count that high... try using smaller numbers?';

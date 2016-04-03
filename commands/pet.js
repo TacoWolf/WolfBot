@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function pet(bot, user, userID, channelID, message) {
-  helpers.statistics('pet', user, userID, channelID, message);
+  helpers.statistics('pet', userID);
   pets = [
     '[it rolls over and exposes its belly, wagging its tail and seeming to ask for more pets~]',
     '[murrs happily, leaning into the pets~]',

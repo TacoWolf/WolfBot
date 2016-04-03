@@ -1,6 +1,6 @@
 var helpers = require('./../helpers');
 function eightball(bot, user, userID, channelID, message) {
-  helpers.statistics('8ball', user, userID, channelID, message);
+  helpers.statistics('8ball', userID);
   answers = [
     'It is certain~',
     'It is decidedly so. >w>',
@@ -22,9 +22,15 @@ function eightball(bot, user, userID, channelID, message) {
     'Outlook... not so good. ;w;',
     'Very doubtful. =w='
   ];
-  answer = answers[Math.floor(Math.random() * answers.length)];
+  answer = helpers.randomArray(answers);
   rawQuestion = helpers.parameters(message);
   rawQuestion.shift();
+  for (var i = rawQuestion.length - 1; i >= 0; i--) {
+    if (/<@.*>/.test(rawQuestion[i])) {
+      rawQuestion[i] = bot.fixMessage(rawQuestion[i]);
+      rawQuestion[i] = '[' + rawQuestion[i] + ']';
+    }
+  }
   question = helpers.join(rawQuestion);
   msg = ':grey_question: **Question:** `' + question + '`\n:crystal_ball: **Answer:** `' + answer + '`';
   bot.sendMessage({

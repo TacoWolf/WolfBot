@@ -43,12 +43,19 @@ var commands = {
       description: 'Shows the help page with all of the commands. You\'re looking at it now!',
       hidden: false
     },
-    'emote': {
-      name: 'emote',
+    'emotes': {
+      name: 'emotes',
       toRun: listemotes,
       typeOf: 'text',
       description: 'Shows the list of emotes.',
       hidden: false
+    },
+    'emote': {
+      name: 'emote',
+      toRun: listemotes,
+      typeOf: 'text',
+      description: 'alias for emotes',
+      hidden: true
     },
     'stats': {
       name: 'stats',
