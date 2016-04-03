@@ -12,13 +12,19 @@ A simple bot for Discord, built with [discord.io](../../../../izy521/discord.io)
 
 ## Getting Started 
 
+### Installation
+
 Clone the repository as normal. Download the packages needed by running
 
     npm install
 
-Make a `config.json` from the [config.example.json](config.example.json). Then, make an `admins.json` from the [admins.example.json](admins.example.json) with your UserID and the UserIDs of the admins you want to set. Finally, make a `stats.json` from the [stats.example.json](stats.example.json). `stats.json` doesn't need to have anything in it, just `{}`.
+Make a `config.json` from the [config.example.json](config.example.json). Then, make a `stats.json` from the [stats.example.json](stats.example.json). `stats.json` doesn't need to have anything in it, just `{}`.
 
-After that, just run the bot with
+Admin permissions are set dynamically through Roles. If you have the role `WB Admin` in the server, you'll have generic admin permissions. If you have the role `WB Superadmin`, you'll have access to all server functions. The role `Headmaster` is used to get points. These roles are case insensitive.
+
+### Running the bot
+
+Just run the bot with
 
     npm start
   

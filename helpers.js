@@ -1,11 +1,11 @@
 var stats = require('./stats.json');
 module.exports = {
-  roleCheck: function(bot, serverID, userID, roleType){
+  roleCheck: function (bot, serverID, userID, roleType) {
     var checker = '';
     var adminid;
     var verifier = false;
     var roles = bot.servers[serverID].roles;
-    var userRole = bot.servers[serverID].members[userID].roles
+    var userRole = bot.servers[serverID].members[userID].roles;
     if (roleType == 'admin') {
       checker = 'wb admin';
     } else if (roleType == 'superadmin') {
@@ -58,16 +58,16 @@ module.exports = {
   housetrans: function (house) {
     var convertHouse = '';
     switch (house) {
-      case 'g':
+    case 'g':
       convertHouse = 'Gryffindor';
       break;
-      case 'h':
+    case 'h':
       convertHouse = 'Hufflepuff';
       break;
-      case 'r':
+    case 'r':
       convertHouse = 'Ravenclaw';
       break;
-      case 's':
+    case 's':
       convertHouse = 'Slytherin';
       break;
     }
@@ -83,25 +83,12 @@ module.exports = {
   firstToUpperCase: function (str) {
     return str.substr(0, 1).toUpperCase() + str.substr(1);
   },
-  getServerID: function (bot, channelID) {
-    var serverlist = bot.servers;
-    var serverCheck = false;
-    for (var key in serverlist) {
-      var serverKey = serverlist[key];
-      for (key in serverKey) {
-        var serverInfo = serverKey[key];
-        for (key in serverInfo) {
-          var serverProps = serverInfo[key];
-          if (key === channelID) {
-            serverCheck = true;
-            var serverID = serverKey.id;
-            return serverID;
-          }
-        }
-      }
-    }
-    if (serverCheck === false) {
+  getServerID: function (bot, channelID, userID) {
+    var serverID = bot.serverFromChannel(channelID);
+    if (serverID === undefined) {
       return 'pm';
+    } else {
+      return serverID;
     }
   },
   join: function (array) {

@@ -2,7 +2,6 @@
 var Discordbot = require('discord.io');
 var config = require('./config.json');
 var package = require('./package.json');
-var admins = require('./admins.json');
 var commands = require('./commands/index');
 var helpers = require('./helpers');
 var bot = new Discordbot({
@@ -45,7 +44,7 @@ bot.on('ready', function (rawEvent) {
 });
 bot.on('message', function (user, userID, channelID, message, rawEvent) {
   // Log message from user
-  var serverID = helpers.getServerID(bot, channelID);
+  var serverID = helpers.getServerID(bot, channelID, userID);
   console.log(flair);
   if (serverID === 'pm') {
     console.log('PRIVATE MESSAGE');
