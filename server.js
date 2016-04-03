@@ -67,23 +67,14 @@ bot.on('ready', function (rawEvent) {
 bot.on('message', function (user, userID, channelID, message, rawEvent) {
   // Log message from user
   var serverID = helpers.getServerID(bot, channelID, userID);
-  console.log(flair);
+  console.log(flairsmall)
   if (serverID === 'pm') {
-    console.log('PRIVATE MESSAGE');
-    console.log(flairsmall);
-    console.log(user + ' (' + userID + ')');
-    console.log('PM - (' + channelID + ')');
-    console.log(flairsmall);
-    console.log(message);
-    console.log(flair);
+    console.log('PM | ' + user + ' - ' + channelID)
+    console.log('- ' + message)
   } else {
-    console.log(bot.servers[serverID].name + ' (' + serverID + ')');
-    console.log(flairsmall);
-    console.log(user + ' (' + userID + ')');
-    console.log('in channel #' + bot.servers[serverID].channels[channelID].name + ' (' + channelID + ')');
-    console.log(flairsmall);
-    console.log(message);
-    console.log(flair);
+    console.log(bot.servers[serverID].name)
+    console.log('- ' + user + ' | #' + bot.servers[serverID].channels[channelID].name);
+    console.log('- "' + message + '"')
   }
   // Check if bot sent message
   // If it's true, skip the rest of the function
