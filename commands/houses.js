@@ -57,14 +57,9 @@ module.exports = {
             msg = '...uh... **' + userNameFix + '** has been awarded... no points for their house, **' + nameofHouse + '**. Awkward. `>.>`';
           }
           if (points !== undefined) {
-            console.log('doing the thing with the points')
-            console.log('clp ' + points)
-            console.log(uh.house)
             helpers.statistics('points', userID);
             // ADD +X TO USER
             helpers.statistics('total', uh.house, points);  
-
-            console.log('not doing the thing with the points')
             // ADD +X TO HOUSE
           }
         } else {
