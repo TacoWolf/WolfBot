@@ -1,8 +1,24 @@
 var helpers = require('./../helpers');
 var stats = require('./../stats.json');
+var msg = '';
+function addToHouse(bot, userID){
+  var houseName = ''
+  addHouse = stats[userID]
+  if (addHouse.house !== undefined) {
+    houseName = helpers.housetrans(addHouse.house)
+    msg = 'You\'ve already been sorted into ' + houseName + '!\nIf you wanna change your house, let `taco#0634` know. :3'
+  } else if (addHouse.house === undefined) {
+    addHouse.house = parameters[1];
+    require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
+    houseName = helpers.housetrans(addHouse.house)
+    msg = 'You have been successfully sorted into ' + houseName + '.'
+  } else {
+    msg = 'You got some weird error with the houses... tell `taco#0634` about it. >.>'
+  }
+  return msg;
+}
 module.exports = {
   points: function (bot, user, userID, channelID, message) {
-    var msg = '';
     var serverID = helpers.getServerID(bot, channelID);
     var adminCheck = helpers.roleCheck(bot, serverID, userID, 'headmaster');
     if (parameters[1] !== undefined && parameters[2] !== undefined) {
@@ -10,6 +26,7 @@ module.exports = {
         var points = parseInt(parameters[2]);
         var userHouse;
         var userIDfix = parameters[1];
+        var house = parameters[1];
         userIDfix = userIDfix.substring(2);
         userIDfix = userIDfix.slice(0, -1);
         var uh;
@@ -19,177 +36,86 @@ module.exports = {
             userHouse = uh.house;
           }
         }
-        if (userHouse !== undefined) {
+        if (/g|h|r|s/.test(parameters[1])) {
+          if (points > 0) {
+            msg = '**House ' + helpers.housetrans(parameters[1]) + '** has been awarded **' + points + '** point(s). :3';
+          } else if (points < 0) {
+            msg = '**House ' + helpers.housetrans(parameters[1]) + '** has been punished with **' + points + '** point(s) taken away. -w-';
+          } else {
+            msg = '...uh... **' + helpers.housetrans(parameters[1]) + '** has been awarded... no points. Awkward. `>w>`';
+          }
+          helpers.statistics('total', user, house, channelID, message, points);
+        } else if (userHouse !== undefined) {
+          var userNameFix = bot.fixMessage(parameters[1]);
+          userNameFix = userNameFix.substring(1);
+          var nameofHouse = helpers.housetrans(uh.house);
+          if (points > 0) {
+            msg = '**' + userNameFix + '** has been awarded **' + points + '** point(s) for their house, **' + nameofHouse + '**. :3';
+          } else if (points < 0) {
+            msg = '**' + userNameFix + '** has been punished with **' + points + '** point(s) taken away from their house, **' + nameofHouse + '**. >:c';
+          } else {
+            msg = '...uh... **' + userNameFix + '** has been awarded... no points for their house, **' + nameofHouse + '**. Awkward. `>.>`';
+          }
           if (points === points) {
             helpers.statistics('points', user, userID, channelID, message, points);
             // ADD +X TO USER
             helpers.statistics('total', user, userHouse, channelID, message, points);  // ADD +X TO HOUSE
           }
-          var userNameFix = bot.fixMessage(parameters[1]);
-          userNameFix = userNameFix.substring(1);
-          var nameofHouse = helpers.housetrans(uh.house);
-          if (points > 0) {
-            msg = '**' + userNameFix + '** has been awarded **' + points + '** points for their house, **' + nameofHouse + '**. :3';
-            bot.sendMessage({
-              to: channelID,
-              message: msg
-            });
-          } else if (points < 0) {
-            msg = '**' + userNameFix + '** has been punished with **' + points + '** points taken away from their house, **' + nameofHouse + '**. >:c';
-            bot.sendMessage({
-              to: channelID,
-              message: msg
-            });
-          } else {
-            msg = '...uh... **' + userNameFix + '** has been awarded... no points for their house, **' + nameofHouse + '**. Awkward. `>.>`';
-            bot.sendMessage({
-              to: channelID,
-              message: msg
-            });
-          }
         } else {
           bot.sendMessage({
             to: userID,
-            message: 'User has not been sorted or does not exist, tell them to use `!sethouse [house]`!'
+            message: 'That user hasn\'t been sorted or I don\'t know about that house... ;w;'
           });
+          return;
         }
       } else {
-        bot.sendMessage({
-          to: channelID,
-          message: 'You don\'t have the permissions to do that.'
-        });
+        msg = 'You don\'t have the permissions to do that. ;w;';
       }
     } else {
       msg = '...uhm... I-I dunno what kinda points you wanna give. ;w;\nC-could you check what you inputted and try again?';
-      bot.sendMessage({
-        to: channelID,
-        message: msg
-      });
       var pm = 'The correct syntax for points is `!points @[user] [+x|-x]`. :3';
       bot.sendMessage({
         to: userID,
         message: pm
       });
     }
+    bot.sendMessage({
+      to: channelID,
+      message: msg
+    });
   },
   sethouse: function (bot, user, userID, channelID, message) {
     if (parameters[1] === undefined) {
-      msg = 'House invalid. Valid houses are: \n \n';
+      msg = 'I don\'t think that house exists... the houses are: \n \n';
       msg += '`g` - Gryffindor \n';
       msg += '`h` - Hufflepuff \n';
       msg += '`r` - Ravenclaw \n';
       msg += '`s` - Slytherin \n \n';
-      msg += 'Please try again with a valid syntax, like: `!sethouse g`, which would set your house to Gryffindor.';
-      bot.sendMessage({
-        to: userID,
-        message: msg
-      });
+      msg += 'Please try again with a real house, like: `!sethouse g`, which would set your house to Gryffindor.';
     } else {
       var houseName = '';
+      helpers.statistics('houseset', user, userID, channelID, message);
       for (var key in stats) {
         if (key === userID) {
-          var addHouse = stats[userID];
-          switch (parameters[1]) {
-          case 'g':
-            if (addHouse.house !== undefined) {
-              bot.sendMessage({
-                to: userID,
-                message: 'You\'ve already been sorted! Please ask Taco if you want to change your house.'
-              });
-            } else if (addHouse.house === undefined) {
-              addHouse.house = parameters[1];
-              houseName = helpers.housetrans(parameters[1]);
-              bot.sendMessage({
-                to: userID,
-                message: 'You have been successfully sorted into ' + houseName + '.'
-              });
-              require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
-            } else {
-              bot.sendMessage({
-                to: userID,
-                message: 'You got some weird error with the houses... tell Taco about it. >.>'
-              });
-            }
-            break;
-          case 'h':
-            if (addHouse.house !== undefined) {
-              bot.sendMessage({
-                to: userID,
-                message: 'You\'ve already been sorted! Please ask Taco if you want to change your house.'
-              });
-            } else if (addHouse.house === undefined) {
-              addHouse.house = parameters[1];
-              houseName = helpers.housetrans(parameters[1]);
-              bot.sendMessage({
-                to: userID,
-                message: 'You have been successfully sorted into ' + houseName + '.'
-              });
-              require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
-            } else {
-              bot.sendMessage({
-                to: userID,
-                message: 'You got some weird error with the houses... tell Taco about it. >.>'
-              });
-            }
-            break;
-          case 'r':
-            if (addHouse.house !== undefined) {
-              bot.sendMessage({
-                to: userID,
-                message: 'You\'ve already been sorted! Please ask Taco if you want to change your house.'
-              });
-            } else if (addHouse.house === undefined) {
-              addHouse.house = parameters[1];
-              houseName = helpers.housetrans(parameters[1]);
-              bot.sendMessage({
-                to: userID,
-                message: 'You have been successfully sorted into ' + houseName + '.'
-              });
-              require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
-            } else {
-              bot.sendMessage({
-                to: userID,
-                message: 'You got some weird error with the houses... tell Taco about it. >.>'
-              });
-            }
-            break;
-          case 's':
-            if (addHouse.house !== undefined) {
-              bot.sendMessage({
-                to: userID,
-                message: 'You\'ve already been sorted! Please ask Taco if you want to change your house.'
-              });
-            } else if (addHouse.house === undefined) {
-              addHouse.house = parameters[1];
-              houseName = helpers.housetrans(parameters[1]);
-              bot.sendMessage({
-                to: userID,
-                message: 'You have been successfully sorted into ' + houseName + '.'
-              });
-              require('fs').writeFileSync('./stats.json', JSON.stringify(stats, null, '\t'));
-            } else {
-              bot.sendMessage({
-                to: userID,
-                message: 'You got some weird error with the houses... tell Taco about it. >.>'
-              });
-            }
-            break;
-          default:
-            msg = 'House invalid. Valid houses are: \n \n';
+          if (/g|h|r|s/.test(parameters[1])) {
+            msg = addToHouse(bot, userID);
+          } else {
+            msg = 'I don\'t think that house exists... the houses are: \n \n';
             msg += '`g` - Gryffindor \n';
             msg += '`h` - Hufflepuff \n';
             msg += '`r` - Ravenclaw \n';
             msg += '`s` - Slytherin \n \n';
-            msg += 'Please try again with a valid syntax, like: `!sethouse g`, which would set your house to Gryffindor.';
-            bot.sendMessage({
-              to: userID,
-              message: msg
-            });
+            msg += 'Please try again with a real house, like: `!sethouse g`, which would set your house to Gryffindor.';
           }
         } else {
+          msg = 'Oh, hai! I-I don\'t know you very well... Try `!ping`ing me first. :3'
         }
       }
     }
+    bot.sendMessage({
+      to: userID,
+      message: msg
+    });
   },
   cup: function (bot, user, userID, channelID, message) {
     var houseList = [];
@@ -237,19 +163,19 @@ module.exports = {
     var hs = '';
     var members = [];
     switch (parameters[1]) {
-    case 'g':
+      case 'g':
       hs = 'g';
       break;
-    case 'h':
+      case 'h':
       hs = 'h';
       break;
-    case 'r':
+      case 'r':
       hs = 'r';
       break;
-    case 's':
+      case 's':
       hs = 's';
       break;
-    default:
+      default:
       msg = 'House invalid. Valid houses are: \n \n';
       msg += '`g` - Gryffindor \n';
       msg += '`h` - Hufflepuff \n';
