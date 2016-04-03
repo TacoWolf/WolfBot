@@ -193,7 +193,7 @@ var commands = {
       hidden: false
     },
     'points': {
-      name: 'points [@user] [# of points]',
+      name: 'points [@user|house] [# of points]',
       toRun: houses.points,
       typeOf: 'admin',
       description: 'Awards points to users.',

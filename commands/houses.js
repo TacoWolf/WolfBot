@@ -26,6 +26,7 @@ module.exports = {
         var points = parseInt(parameters[2]);
         var userHouse;
         var userIDfix = parameters[1];
+        var house = parameters[1];
         userIDfix = userIDfix.substring(2);
         userIDfix = userIDfix.slice(0, -1);
         var uh;
@@ -35,14 +36,23 @@ module.exports = {
             userHouse = uh.house;
           }
         }
-        if (userHouse !== undefined) {
+        if (/g|h|r|s/.test(parameters[1])) {
+          if (points > 0) {
+            msg = '**House ' + helpers.housetrans(parameters[1]) + '** has been awarded **' + points + '** point(s). :3';
+          } else if (points < 0) {
+            msg = '**House ' + helpers.housetrans(parameters[1]) + '** has been punished with **' + points + '** point(s) taken away. -w-';
+          } else {
+            msg = '...uh... **' + helpers.housetrans(parameters[1]) + '** has been awarded... no points. Awkward. `>w>`';
+          }
+          helpers.statistics('total', user, house, channelID, message, points);
+        } else if (userHouse !== undefined) {
           var userNameFix = bot.fixMessage(parameters[1]);
           userNameFix = userNameFix.substring(1);
           var nameofHouse = helpers.housetrans(uh.house);
           if (points > 0) {
-            msg = '**' + userNameFix + '** has been awarded **' + points + '** points for their house, **' + nameofHouse + '**. :3';
+            msg = '**' + userNameFix + '** has been awarded **' + points + '** point(s) for their house, **' + nameofHouse + '**. :3';
           } else if (points < 0) {
-            msg = '**' + userNameFix + '** has been punished with **' + points + '** points taken away from their house, **' + nameofHouse + '**. >:c';
+            msg = '**' + userNameFix + '** has been punished with **' + points + '** point(s) taken away from their house, **' + nameofHouse + '**. >:c';
           } else {
             msg = '...uh... **' + userNameFix + '** has been awarded... no points for their house, **' + nameofHouse + '**. Awkward. `>.>`';
           }
@@ -54,7 +64,7 @@ module.exports = {
         } else {
           bot.sendMessage({
             to: userID,
-            message: 'User has not been sorted or I don\'t know about them, tell them to use `!sethouse [house]`!'
+            message: 'That user hasn\'t been sorted or I don\'t know about that house... ;w;'
           });
           return;
         }
