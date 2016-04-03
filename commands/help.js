@@ -17,7 +17,7 @@ function help(bot, user, userID, channelID, message) {
   //console.log(command);
   msg += '\nUse them, don\'t abuse them! :green_heart:';
   msg += '\nI-if you find an issue with WolfBot or want to submit an idea, feel free to use WolfBot\'s GitHub issues page.';
-  msg += '\n<https://github.com/TacoWolf/WolfBot/issues> :green_heart';
+  msg += '\n<https://github.com/TacoWolf/WolfBot/issues> :green_heart:';
   bot.sendMessage({
     to: userID,
     message: msg

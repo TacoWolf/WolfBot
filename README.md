@@ -18,9 +18,11 @@ Clone the repository as normal. Download the packages needed by running
 
     npm install
 
-Make a `config.json` from the [config.example.json](config.example.json). Then, make a `stats.json` from the [stats.example.json](stats.example.json). `stats.json` doesn't need to have anything in it, just `{}`.
+Make a `config.json` from the [config.example.json](config.example.json).
 
 Admin permissions are set dynamically through Roles. If you have the role `WB Admin` in the server, you'll have generic admin permissions. If you have the role `WB Superadmin`, you'll have access to all server functions. The role `Headmaster` is used to get points. These roles are case insensitive.
+
+Stats are stored in [`stats.json`](stats.example.json), which is automatically generated if you don't have one made. 
 
 ### Running the bot
 
