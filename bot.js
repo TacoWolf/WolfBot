@@ -1,61 +1,80 @@
-// ===========================================================
-//          _
-//        / \      _-'
-//      _/|  \-''- _ /
-// __-' { |          \
-//     /             \
-//     /        ^    ^}  
-//     |            \ ;     
-//                   ',     
-//        \_         __\  _    _       _  ________       _   
-//          ''-_    \.// | |  | |     | |/ _| ___ \     | |  
-//            / '-____'  | |  | | ___ | | |_| |_/ / ___ | |_ 
-//           /           | |/\| |/ _ \| |  _| ___ \/ _ \| __|
-//         _'            \  /\  / (_) | | | | |_/ / (_) | |_ 
-//       _-'              \/  \/ \___/|_|_| \____/ \___/ \__|
-// ===========================================================
-//                            Awoo.
+//                      .
+//                     / V\ - Awoooo~!
+//                   / `  /
+//                  <<   |
+//                  /    |
+//                /      |  _    _       _  ________       _   
+//              /        | | |  | |     | |/ _| ___ \     | |   
+//            /    \  \ /  | |  | | ___ | | |_| |_/ / ___ | |_ 
+//           (      ) | |  | |/\| |/ _ \| |  _| ___ \/ _ \| __|
+//   ________|   _/_  | |  \  /\  / (_) | | | | |_/ / (_) | |_ 
+// <__________\______)\__)  \/  \/ \___/|_|_| \____/ \___/ \__|
+// ---------------------------------------------------------------
+// | Author: TacoWolf                                            |
+// | Team: thattacoguy                                           |
+// | Name: WolfBot                                               |
+// | Download: https://github.com/TacoWolf/WolfBot               |
+// | Version: v1.0                                               |
+// | License: MIT                                                |
+// | Year: 2016                                                  |
+// ---------------------------------------------------------------
 
 // Load WolfBot library
-var lib = require('./lib');
+var wolfbot = require('./lib');
 
 // Load requirements
 var async = require('async');
+var helpers = require(__dirname + '/helpers/');
 
 // Declare variables
-var bot = lib.core.bot;
-var database = lib.core.storage;
-var keywordIndex = lib.scripts.index();
-var keywordMatch = lib.scripts.match;
-var keywordContext = lib.scripts.context;
+var bot = wolfbot.core.bot;
+var logger = wolfbot.core.logger;
+var database = wolfbot.database;
+var keywordIndex = wolfbot.scripts.index();
+var keywordMatch = wolfbot.scripts.match;
+var keywordContext = wolfbot.scripts.context;
 
-bot.on('message', function(user, userID, channelID, message, rawEvent) {
-    if (message.charAt(0) !== process.env.WOLFBOT_TRIGGER) {
-        return;
-    } else {
-        message = message.substring(1).toLowerCase().trim();
-        async.each(keywordIndex, function(keyword, callback) {
-            var match = keywordMatch(keyword, message);
-            if (!match) {
-                callback();
-            } else {
-                serverID = bot.serverFromChannel(channelID);
-                event = {
-                    bot: bot,
-                    storage: database,
-                    user: user,
-                    userID: userID,
-                    serverID: serverID,
-                    channelID: channelID,
-                    message: message
-                }
-                command = keywordContext(event);
-                command(event);
-                callback();
-            }
-        });
+bot.on('ready', function(rawEvent) {
+    logger('info', 'Connected to Discord!')
+    logger('info', 'Servers connected to:')
+    for (var key in bot.servers) {
+        logger('info', bot.servers[key].name + ' - (' + bot.servers[key].id + ')');
     }
+    logger('info', 'Grabbing bot configuration...')
+    require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
+    logger('info', bot.username + ' config successfully generated.');
 });
 
-// Start bot keepAlive server
-var keepAlive = lib.keepalive.start()
+bot.on('message', function(user, userID, channelID, message, rawEvent) {
+    var serverID = bot.serverFromChannel(channelID);
+    logger('log', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
+    if (userID === bot.id) {
+        return;
+    } else {
+        if (message.charAt(0) !== process.env.WOLFBOT_TRIGGER) {
+            console.log('no no')
+            return;
+        } else {
+            message = message.substring(1).toLowerCase().trim();
+            async.each(keywordIndex, function(keyword, callback) {
+                var match = keywordMatch(keyword, message);
+                if (!match) {
+                    callback();
+                } else {
+                    event = {
+                        bot: bot,
+                        user: user,
+                        userID: userID,
+                        serverID: serverID,
+                        channelID: channelID,
+                        message: message,
+                        storage: database
+                    }
+                    command = keywordContext(event);
+                    command(event);
+                    return;
+                }
+            });
+        }
+    }
+});

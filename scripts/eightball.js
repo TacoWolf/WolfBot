@@ -27,13 +27,12 @@ eightBall = function(event) {
     rawQuestion.shift();
     for (var i = rawQuestion.length - 1; i >= 0; i--) {
         if (/<@.*>/.test(rawQuestion[i])) {
-            rawQuestion[i] = bot.fixMessage(rawQuestion[i]);
+            rawQuestion[i] = event.bot.fixMessage(rawQuestion[i]);
             rawQuestion[i] = '[' + rawQuestion[i] + ']';
         }
     }
     question = helpers.join(rawQuestion);
     msg = ':grey_question: **Question:** `' + question + '`\n:crystal_ball: **Answer:** `' + answer + '`';
-    helpers.statistics(event, '8ball', event.userID);
     event.bot.sendMessage({
         to: event.channelID,
         message: msg
