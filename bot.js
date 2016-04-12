@@ -34,25 +34,39 @@ var keywordIndex = wolfbot.scripts.index();
 var keywordMatch = wolfbot.scripts.match;
 var keywordContext = wolfbot.scripts.context;
 
+
+
 bot.on('ready', function(rawEvent) {
     logger('info', 'Connected to Discord!')
     logger('info', 'Servers connected to:')
     for (var key in bot.servers) {
         logger('info', bot.servers[key].name + ' - (' + bot.servers[key].id + ')');
     }
-    logger('info', 'Grabbing bot configuration...')
-    require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
-    logger('info', bot.username + ' config successfully generated.');
+    if (process.env.DEBUG) {
+        logger('info', 'Grabbing bot configuration...')
+        require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
+        logger('info', bot.username + ' config successfully generated.');
+    }
+    logger('info', 'Updating database with new information...')
+    wolfbot.database.seed(logger, bot);
 });
 
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
+    var event = {
+        bot: bot,
+        user: user,
+        userID: userID,
+        serverID: serverID,
+        channelID: channelID,
+        message: message,
+        storage: database
+    };
     var serverID = bot.serverFromChannel(channelID);
-    logger('log', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
+    logger('chat', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
     if (userID === bot.id) {
         return;
     } else {
         if (message.charAt(0) !== process.env.WOLFBOT_TRIGGER) {
-            console.log('no no')
             return;
         } else {
             message = message.substring(1).toLowerCase().trim();
@@ -61,15 +75,6 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
                 if (!match) {
                     callback();
                 } else {
-                    event = {
-                        bot: bot,
-                        user: user,
-                        userID: userID,
-                        serverID: serverID,
-                        channelID: channelID,
-                        message: message,
-                        storage: database
-                    }
                     command = keywordContext(event);
                     command(event);
                     return;

@@ -10,22 +10,14 @@ module.exports = {
             if (err) {
                 throw err;
             } else {
-                db.collection('users', {
-                    validator: {
-                        $or: [{
-                            userID: { $type: 'string' }
-                        }]
-                    },
-                    upsert: true
-                }, function(err, callback) {
-                    db.users.find({
-                        userID: event.userID,
-                        servers: { $elemMatch: { events.serverID } }
-                    });
-                });
+                var col = db.collection('users')
+                var increment = {}
+                increment[name] = value
+                var user = { $inc: increment }
+                col.updateOne({ userID: event.userID }, user);
             };
         });
-    }
+    },
     parameters: function(message) {
         // Check the parameters of each message
         parameters = [];
