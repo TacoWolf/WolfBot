@@ -68,10 +68,22 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
     if (userID === bot.id) {
         return;
     } else {
-        if (message.charAt(0) === process.env.WOLFBOT_TRIGGER || botMention.test(message)) {
-            message = message.substring(1).toLowerCase().trim();
+        if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
+            event.message = message.substring(1).toLowerCase().trim();
             async.each(keywordIndex, function(keyword, callback) {
-                var match = keywordMatch(keyword, message);
+                var match = keywordMatch(keyword, event.message);
+                if (!match) {
+                    callback();
+                } else {
+                    command = keywordContext(event);
+                    command(event);
+                    return;
+                }
+            });
+        } else if (botMention.test(event.message)) {
+            event.message = message.replace('<@' + bot.id + '> ', '').toLowerCase().trim();
+            async.each(keywordIndex, function(keyword, callback) {
+                var match = keywordMatch(keyword, event.message);
                 if (!match) {
                     callback();
                 } else {

@@ -1,7 +1,7 @@
 var helpers = require(__dirname + '/../helpers/');
 
 eightBall = function(event) {
-    answers = [
+    var answers = [
         'It is certain~',
         'It is decidedly so. >w>',
         'Without a doubt~',
@@ -22,17 +22,16 @@ eightBall = function(event) {
         'Outlook... not so good. ;w;',
         'Very doubtful. =w='
     ];
-    answer = helpers.randomArray(answers);
-    rawQuestion = helpers.parameters(event.message);
-    rawQuestion.shift();
+    var answer = helpers.randomArray(answers);
+    var rawQuestion = helpers.parameters(event.message);
     for (var i = rawQuestion.length - 1; i >= 0; i--) {
         if (/<@.*>/.test(rawQuestion[i])) {
             rawQuestion[i] = event.bot.fixMessage(rawQuestion[i]);
             rawQuestion[i] = '[' + rawQuestion[i] + ']';
         }
     }
-    question = helpers.join(rawQuestion);
-    msg = '**[WolfBot pulls out a crystal ball and gazes into the unknown...]**\n:grey_question: **Question:** `' + question + '`\n:crystal_ball: **Answer:** `' + answer + '`';
+    var question = helpers.join(rawQuestion);
+    var msg = '**[WolfBot pulls out a crystal ball and gazes into the unknown...]**\n:grey_question: **Question:** `' + question + '`\n:crystal_ball: **Answer:** `' + answer + '`';
     event.bot.sendMessage({
         to: event.channelID,
         message: msg
