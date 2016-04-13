@@ -31,7 +31,7 @@ eightBall = function(event) {
         }
     }
     var question = helpers.join(rawQuestion);
-    var msg = '**[WolfBot pulls out a crystal ball and gazes into the unknown...]**\n:grey_question: **Question:** `' + question + '`\n:crystal_ball: **Answer:** `' + answer + '`';
+    var msg = '**[WolfBot pulls out a crystal ball and gazes into the unknown...]**\n:grey_question: **Question:** `' + question + '`\n:crystal_ball: **Answer:  ** `' + answer + '`';
     event.bot.sendMessage({
         to: event.channelID,
         message: msg
