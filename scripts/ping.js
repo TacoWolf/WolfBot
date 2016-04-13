@@ -9,9 +9,8 @@ function ping(event) {
 }
 module.exports = {
     name: 'ping',
-    author: 'Daniel Gallegos (thattacoguy)',
+    author: 'thattacoguy',
     patterns: ['ping'],
-    types: ['direct_message', 'direct_mention'],
     description: 'Ping the bot!',
     command: ping
 }

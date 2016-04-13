@@ -59,16 +59,16 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         serverID: serverID,
         channelID: channelID,
         message: message,
-        storage: database
+        storage: database,
+        logger: logger
     };
+    var botMention = new RegExp('<@' + bot.id + '>', '')
     var serverID = bot.serverFromChannel(channelID);
     logger('chat', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
     if (userID === bot.id) {
         return;
     } else {
-        if (message.charAt(0) !== process.env.WOLFBOT_TRIGGER) {
-            return;
-        } else {
+        if (message.charAt(0) === process.env.WOLFBOT_TRIGGER || botMention.test(message)) {
             message = message.substring(1).toLowerCase().trim();
             async.each(keywordIndex, function(keyword, callback) {
                 var match = keywordMatch(keyword, message);
