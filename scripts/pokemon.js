@@ -27,7 +27,7 @@ function pokemon(event) {
             height = parseFloat(response.height) * 10 / 100;
             weight = parseFloat(response.weight) * 10 / 100;
             types = response.types[0].type.name;
-            imgmsg = 'Oh, you\'re looking for **' + name + '** (' + response.id + ')! Here\'s what I know about that Pokemon...';
+            imgmsg = '<@' + event.userID + '>, that\'s **' + name + '** (' + response.id + ')! Here\'s what I know about that Pokemon...';
             msg += '**' + name + '**\'s national pokedex number is **' + response.id + '**. They\'re normally **' + height + 'm** tall and weigh about **' + weight + 'kg**.';
             for (var i = 1; i < response.types.length; i++) {
                 types = types + '** and **' + response.types[i].type.name;

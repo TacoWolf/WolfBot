@@ -52,7 +52,27 @@ bot.on('ready', function(rawEvent) {
     wolfbot.database.seed(logger, bot);
 });
 
+function messageCheck(event) {
+    var m = true;
+    async.each(keywordIndex, function(keyword, callback) {
+        var match = keywordMatch(keyword, event.message);
+        if (!match) {
+            callback();
+        } else {
+            command = keywordContext(event);
+            command(event);
+            m = false
+            callback();
+        }
+    });
+    if (m === true) {
+        bark.command(event);
+    }
+}
+
 bot.on('message', function(user, userID, channelID, message, rawEvent) {
+    var botMention = new RegExp('<@' + bot.id + '>', '')
+    var serverID = bot.serverFromChannel(channelID);
     var event = {
         bot: bot,
         user: user,
@@ -61,12 +81,12 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
         channelID: channelID,
         message: message,
         storage: database,
-        logger: logger
+        logger: logger,
+        pm: false
     };
-    var botMention = new RegExp('<@' + bot.id + '>', '')
-    var serverID = bot.serverFromChannel(channelID);
     if (!event.serverID) {
-        logger('chat', 'PM (' + bot.userID + ')' + ' | ' + user + ' - ' + message);
+        logger('chat', 'PM (' + event.channelID + ')' + ' | ' + user + ' - ' + message);
+        event.pm = true;
     } else {
         logger('chat', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
     }
@@ -75,33 +95,10 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
     } else {
         if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
             event.message = message.substring(1).toLowerCase().trim();
-            async.each(keywordIndex, function(keyword, callback) {
-                var match = keywordMatch(keyword, event.message);
-                if (!match) {
-                    callback();
-                } else {
-                    command = keywordContext(event);
-                    command(event);
-                    return;
-                }
-            });
+            messageCheck(event);
         } else if (botMention.test(event.message)) {
             event.message = message.replace('<@' + bot.id + '> ', '').toLowerCase().trim();
-            var m = true;
-            async.each(keywordIndex, function(keyword, callback) {
-                var match = keywordMatch(keyword, event.message);
-                if (!match) {
-                    callback();
-                } else {
-                    command = keywordContext(event);
-                    command(event);
-                    m = false
-                    callback();
-                }
-            });
-            if (m === true) {
-                bark.command(event);
-            }
+            messageCheck(event);
         }
     }
 });
