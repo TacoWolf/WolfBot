@@ -1,12 +1,71 @@
 var MongoClient = require('mongodb').MongoClient
+var mongourl = process.env.MONGOLAB_URI
 
 module.exports = {
-    statistics: function(event, name, value) {
-        var url = process.env.MONGOLAB_URI
+    roleCheck: function(event, roleType) {
+        var checker = '';
+        var adminid;
+        var verifier = false;
+        var roles = event.bot.servers[event.serverID].roles;
+        var userRole = event.bot.servers[event.serverID].members[userID].roles;
+        if (roleType == 'admin') {
+            checker = 'wb admin';
+        } else if (roleType == 'superadmin') {
+            checker = 'wb superadmin';
+        } else if (roleType == 'headmaster') {
+            checker = 'headmaster';
+        }
+        for (var key in roles) {
+            if (roles[key].name.toLowerCase() === checker) {
+                adminid = roles[key].id;
+            }
+        }
+        for (var i = 0; i < userRole.length; i++) {
+            if (userRole[i] === adminid) {
+                verifier = true;
+            }
+        }
+        return verifier;
+    },
+    houseDetail: function(house) {
+        var convertHouse = '';
+        switch (house) {
+            case 'g':
+                convertHouse = 'Gryffindor';
+                break;
+            case 'h':
+                convertHouse = 'Hufflepuff';
+                break;
+            case 'r':
+                convertHouse = 'Ravenclaw';
+                break;
+            case 's':
+                convertHouse = 'Slytherin';
+                break;
+        }
+        return convertHouse;
+    },
+    points: function(event, house, value) {
         if (!value) {
             value = 1
         }
-        MongoClient.connect(url, function(err, db) {
+        MongoClient.connect(mongourl, function(err, db) {
+            if (err) {
+                throw err;
+            } else {
+                var col = db.collection('servers')
+                var increment = {}
+                increment[house] = value
+                var points = { $inc: increment }
+                col.updateOne({ serverID: event.serverID }, points);
+            };
+        });
+    },
+    statistics: function(event, name, value) {
+        if (!value) {
+            value = 1
+        }
+        MongoClient.connect(mongourl, function(err, db) {
             if (err) {
                 throw err;
             } else {
