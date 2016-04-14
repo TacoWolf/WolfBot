@@ -25,6 +25,7 @@ var wolfbot = require('./lib');
 // Load requirements
 var async = require('async');
 var helpers = require(__dirname + '/helpers/');
+var bark = require('./scripts/bark.js');
 
 // Declare variables
 var bot = wolfbot.core.bot;
@@ -82,6 +83,7 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
             });
         } else if (botMention.test(event.message)) {
             event.message = message.replace('<@' + bot.id + '> ', '').toLowerCase().trim();
+            var m = true;
             async.each(keywordIndex, function(keyword, callback) {
                 var match = keywordMatch(keyword, event.message);
                 if (!match) {
@@ -89,9 +91,13 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
                 } else {
                     command = keywordContext(event);
                     command(event);
-                    return;
+                    m = false
+                    callback();
                 }
             });
+            if (m === true){
+                bark.command(event);
+            }
         }
     }
 });
