@@ -1,6 +1,7 @@
 var helpers = require(__dirname + '/../helpers/');
 
 eightBall = function(event) {
+    helpers.statistics(event, 'eightball');
     var answers = [
         'It is certain~',
         'It is decidedly so. >w>',
@@ -41,6 +42,7 @@ eightBall = function(event) {
 module.exports = {
     name: '8ball',
     author: 'thattacoguy',
+    syntax: '8ball [question]',
     patterns: ['8ball (.*)'],
     description: 'Ask for advice from the universe, oooo~',
     command: eightBall

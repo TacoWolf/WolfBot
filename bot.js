@@ -65,7 +65,11 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
     };
     var botMention = new RegExp('<@' + bot.id + '>', '')
     var serverID = bot.serverFromChannel(channelID);
-    logger('chat', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
+    if (!event.serverID) {
+        logger('chat', 'PM (' + bot.userID + ')' + ' | ' + user + ' - ' + message);
+    } else {
+        logger('chat', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
+    }
     if (userID === bot.id) {
         return;
     } else {
@@ -95,7 +99,7 @@ bot.on('message', function(user, userID, channelID, message, rawEvent) {
                     callback();
                 }
             });
-            if (m === true){
+            if (m === true) {
                 bark.command(event);
             }
         }

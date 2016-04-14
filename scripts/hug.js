@@ -16,9 +16,9 @@ function hug(event) {
         huggedUser = event.bot.fixMessage(res[1]);
         huggedUser = huggedUser.substring(1);
         hugs = [
-            '**' + event.user + '** gives **' + huggedUser + '** a really big hug. :3',
-            '**' + event.user + '** hugs **' + huggedUser + '** tightly! :green_heart:',
-            '**' + event.user + '** hugs **' + huggedUser + '** lovingly~ :green_heart:',
+            '**[WolfBot gives __' + huggedUser + '__ a really big hug.]** :green_heart',
+            '**[WolfBot hugs __' + huggedUser + '__ tightly!]** :green_heart:',
+            '**[WolfBot hugs __' + huggedUser + '__ lovingly~]** :green_heart:',
         ];
         msg = helpers.randomArray(hugs);
     }
@@ -30,7 +30,8 @@ function hug(event) {
 module.exports = {
     name: 'hug',
     author: 'thattacoguy',
-    patterns: ['hug me', 'hug (<@.*>)', 'give (<@.*>) (a hug|hugs)', 'give me (a hug|hugs)'],
+    syntax: 'hug [@someone|me]',
+    patterns: ['hug me', 'hug (<@.*>)', 'give (<@.*>) (a hug|hugs|a big hug)', 'give me (a hug|hugs)', 'snuggle me', 'snuggle <@.*>'],
     description: 'Hug someone. >w<',
     command: hug
 }

@@ -41,7 +41,8 @@ function diceroll(event) {
 module.exports = {
     name: 'ping',
     author: 'thattacoguy',
+    syntax: 'roll [x]d[x][+x|-x]',
     patterns: ['roll ([0-9]*d[0-9]*)(\\+[0-9]*|\\-[0-9]*)?'],
-    description: 'Ping the bot!',
+    description: 'Roll some dice!',
     command: diceroll
 }
