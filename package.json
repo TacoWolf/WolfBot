@@ -26,5 +26,9 @@
     "discordapp"
   ],
   "author": "Daniel Gallegos",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "fixmyjs": "^1.0.3",
+    "jshint": "^2.9.1"
+  }
 }
