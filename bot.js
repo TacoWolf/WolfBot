@@ -3,11 +3,11 @@
 //                   / `  /
 //                  <<   |
 //                  /    |
-//                /      |  _    _       _  ________       _   
-//              /        | | |  | |     | |/ _| ___ \     | |   
-//            /    \  \ /  | |  | | ___ | | |_| |_/ / ___ | |_ 
+//                /      |  _    _       _  ________       _
+//              /        | | |  | |     | |/ _| ___ \     | |
+//            /    \  \ /  | |  | | ___ | | |_| |_/ / ___ | |_
 //           (      ) | |  | |/\| |/ _ \| |  _| ___ \/ _ \| __|
-//   ________|   _/_  | |  \  /\  / (_) | | | | |_/ / (_) | |_ 
+//   ________|   _/_  | |  \  /\  / (_) | | | | |_/ / (_) | |_
 // <__________\______)\__)  \/  \/ \___/|_|_| \____/ \___/ \__|
 // ---------------------------------------------------------------
 // | Author: TacoWolf                                            |
@@ -77,11 +77,14 @@ bot.on('message', function(user, userID, channelID, message) {
     logger: logger,
     pm: false
   };
+  var msg = '';
   if (!event.serverID) {
-    logger('chat', 'PM (' + event.channelID + ')' + ' | ' + user + ' - ' + message);
+    msg = 'PM (' + event.channelID + ')' + ' | ' + user + ' - ' + message;
+    logger('chat', msg);
     event.pm = true;
   } else {
-    logger('chat', bot.servers[serverID].name + ' | ' + user + ' - ' + message);
+    msg = bot.servers[serverID].name + ' | ' + user + ' - ' + message;
+    logger('chat', msg);
   }
   if (userID === bot.id) {
     return;
@@ -90,7 +93,8 @@ bot.on('message', function(user, userID, channelID, message) {
       event.message = message.substring(1).toLowerCase().trim();
       messageCheck(event);
     } else if (botMention.test(event.message)) {
-      event.message = message.replace('<@' + bot.id + '> ', '').toLowerCase().trim();
+      msg = message.replace('<@' + bot.id + '> ', '').toLowerCase().trim();
+      event.message = msg;
       messageCheck(event);
     }
   }

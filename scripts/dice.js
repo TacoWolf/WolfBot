@@ -23,15 +23,18 @@ function diceroll(event) {
       for (i in rolllog) { total += rolllog[i]; }
       msg += 'Which comes out to... `' + total + '`!';
       if (res[2]) {
-        msg += '\nAnd if I throw in `' + parseInt(res[2]) + '`, that comes out to `' + (total + parseInt(res[2])) + '`.';
+        msg += '\nAnd if I throw in `' + parseInt(res[2]);
+        msg += '`, that comes out to `' + (total + parseInt(res[2])) + '`.';
       }
     }
 
     if (amount > 100 || dietype > 100) {
-      msg += '...th-those are some big numbers... ;w;\n I-I can\'t count that high... try using smaller numbers?';
+      msg += '...th-those are some big numbers... ;w;';
+      msg += '\nI-I can\'t count that high... try using smaller numbers?';
     }
   } else {
-    msg += 'Uhm... I dunno what to do. ;w; \nMaybe try putting something in like `1d20` and trying again?';
+    msg += 'Uhm... I dunno what to do. ;w;';
+    msg += '\nMaybe try putting something in like `1d20` and trying again?';
   }
   helpers.statistics(event, 'dice');
   event.bot.sendMessage({

@@ -14,14 +14,18 @@ function setHouse(event) {
       } else {
         var col = db.collection('users');
         var houseName = '';
-        col.findOne({ userID: event.userID }, function(err, user) {
+        col.findOne({userID: event.userID}, function(err, user) {
           if (!user.house) {
-            col.updateOne({ userID: event.userID }, { $set: { house: userHouse } });
+            col.updateOne({userID: event.userID}, {
+              $set: {house: userHouse}
+            });
             houseName = helpers.houseDetail(userHouse);
-            msg = 'You have successfully been sorted into `' + houseName + '`, **' + event.user + '** ! `^w^`';
+            msg = 'You have successfully been sorted into `';
+            msg += houseName + '`, **' + event.user + '** ! `^w^`';
           } else {
             houseName = helpers.houseDetail(user.house);
-            msg = 'You\'ve already been sorted into `' + houseName + '`, **' + event.user + '**. >w>';
+            msg = 'You\'ve already been sorted into `';
+            msg += houseName + '`, **' + event.user + '**. >w>';
           }
           event.bot.sendMessage({
             to: event.userID,

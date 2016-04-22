@@ -7,13 +7,14 @@ module.exports = {
     var checker = '';
     var adminid;
     var verifier = false;
-    var roles = event.bot.servers[event.serverID].roles;
-    var userRole = event.bot.servers[event.serverID].members[event.userID].roles;
-    if (roleType == 'admin') {
+    var serverID = event.bot.servers[event.serverID];
+    var roles = serverID.roles;
+    var userRole = serverID.members[event.userID].roles;
+    if (roleType === 'admin') {
       checker = 'wb admin';
-    } else if (roleType == 'superadmin') {
+    } else if (roleType === 'superadmin') {
       checker = 'wb superadmin';
-    } else if (roleType == 'headmaster') {
+    } else if (roleType === 'headmaster') {
       checker = 'headmaster';
     }
     for (var key in roles) {
@@ -57,8 +58,8 @@ module.exports = {
         var col = db.collection('users');
         var increment = {};
         increment[name] = value;
-        var user = { $inc: increment };
-        col.updateOne({ userID: event.userID }, user);
+        var user = {$inc: increment};
+        col.updateOne({userID: event.userID}, user);
         db.close();
       }
     });
@@ -74,8 +75,8 @@ module.exports = {
         var col = db.collection('servers');
         var increment = {};
         increment[house] = {};
-        var points = { $inc: increment };
-        col.updateOne({ serverID: event.serverID }, points);
+        var points = {$inc: increment};
+        col.updateOne({serverID: event.serverID}, points);
         db.close();
       }
     });
