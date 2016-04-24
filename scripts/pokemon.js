@@ -73,7 +73,7 @@ module.exports = {
   name: 'pokemon',
   author: 'thattacoguy',
   syntax: 'pokemon [name|number]',
-  patterns: ['pokemon (.*)'],
+  patterns: [/pokemon (.*)/i],
   description: 'Search for Pokemon.',
   command: pokemon
 };

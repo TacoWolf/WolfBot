@@ -1,7 +1,7 @@
 'use strict';
 var helpers = require(__dirname + '/../helpers/');
 var MongoClient = require('mongodb').MongoClient;
-var mongourl = process.env.MONGOLAB_URI;
+var mongourl = process.env.MONGODB_URI;
 
 function points(event) {
   var msg = '';
@@ -9,8 +9,8 @@ function points(event) {
   if (check === true) {
     // jscs:disable
     var resOne = new RegExp('points (<@[0-9]*>) (\\+[0-9]*|\\-[0-9]*)', 'i');
-    var resTwo = new RegExp('(<@[0-9]*>) (\\-[0-9]*|\\+?[0-9]*|a) points?', 'i');  // jshint ignore:line
-    var resThree = new RegExp('(\\-[0-9]*|\\+?[0-9]*|a) points? (?:to|from) (<@[0-9]*>)', 'i');   // jshint ignore:line
+    var resTwo = new RegExp('(<@[0-9]*>) (\\-[0-9]*|\\+?[0-9]*|a) points?', 'i'); // jshint ignore:line
+    var resThree = new RegExp('(\\-[0-9]*|\\+?[0-9]*|a) points? (?:to|from) (<@[0-9]*>)', 'i'); // jshint ignore:line
     // jscs:enable
     var recipient = '';
     var amount = 0;
@@ -34,7 +34,7 @@ function points(event) {
     }
     MongoClient.connect(mongourl, function(err, db) {
       var col = db.collection('users');
-      var user = col.findOne({userID: event.userID});
+      var user = col.findOne({ userID: event.userID });
       if (user.house) {
         if (amount < 0) {
           msg = recipient + ' has been punished with `';
@@ -72,9 +72,10 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'points',
   hidden: true,
-  // jscs:disable
-  patterns: ['points (<@[0-9]*>) (\\+[0-9]*|\\-[0-9]*)', '(<@[0-9]*>) (\\-[0-9]*|\\+?[0-9]*|a) points?', '(\\-[0-9]*|\\+?[0-9]*|a) points? (?:to|from) (<@[0-9]*>)'],  // jshint ignore:line
-  // jscs:enable
+  patterns: [/points (<@[0-9]*>) (\\+[0-9]*|\\-[0-9]*)/i,
+    /(<@[0-9]*>) (\\-[0-9]*|\\+?[0-9]*|a) points?/i,
+    /(\\-[0-9]*|\\+?[0-9]*|a) points? (?:to|from) (<@[0-9]*>)/i,
+  ],
   description: '[Admin Only] Give points to users!',
   command: points
 };

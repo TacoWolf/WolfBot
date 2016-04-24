@@ -22,7 +22,7 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'thanks',
   hidden: true,
-  patterns: ['thank(s| you)'],
+  patterns: [/thank(s| you)/i],
   description: 'danke',
   command: thanks
 };

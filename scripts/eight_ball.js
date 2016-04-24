@@ -25,7 +25,8 @@ var eightBall = function(event) {
     'Very doubtful. =w='
   ];
   var answer = helpers.randomArray(answers);
-  var rawQuestion = helpers.parameters(event.message);
+  var massage = event.message.match(/8ball (.*)/i);
+  var rawQuestion = helpers.parameters(massage[1]);
   for (var i = rawQuestion.length - 1; i >= 0; i--) {
     if (/<@.*>/.test(rawQuestion[i])) {
       rawQuestion[i] = event.bot.fixMessage(rawQuestion[i]);
@@ -48,7 +49,7 @@ module.exports = {
   name: '8ball',
   author: 'thattacoguy',
   syntax: '8ball [question]',
-  patterns: ['8ball (.*)'],
+  patterns: [/8ball (.*)/i],
   description: 'Ask for advice from the universe, oooo~',
   command: eightBall
 };

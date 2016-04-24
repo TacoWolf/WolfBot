@@ -16,7 +16,7 @@ module.exports = {
   name: 'coin',
   author: 'thattacoguy',
   syntax: 'coin',
-  patterns: ['(flip a )?coin'],
+  patterns: [/(flip a )?coin/i],
   description: 'Flip a coin!',
   command: coin
 };

@@ -21,7 +21,7 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'pet',
   hidden: true,
-  patterns: ['pet'],
+  patterns: [/pet/i],
   description: 'Pet WolfBot! :green_heart:',
   command: pet
 };

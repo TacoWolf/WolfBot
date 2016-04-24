@@ -1,6 +1,6 @@
 'use strict';
 var MongoClient = require('mongodb').MongoClient;
-var mongourl = process.env.MONGOLAB_URI;
+var mongourl = process.env.MONGODB_URI;
 
 module.exports = {
   roleCheck: function(event, roleType) {

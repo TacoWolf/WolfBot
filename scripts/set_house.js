@@ -1,7 +1,7 @@
 'use strict';
 var helpers = require(__dirname + '/../helpers/');
 var MongoClient = require('mongodb').MongoClient;
-var mongourl = process.env.MONGOLAB_URI;
+var mongourl = process.env.MONGODB_URI;
 
 function setHouse(event) {
   var msg = '';
@@ -41,7 +41,7 @@ module.exports = {
   name: 'Set House',
   author: 'thattacoguy',
   syntax: 'house set (g|r|h|s)',
-  patterns: ['house set (g.*?|r.*?|h.*?|s.*?)'],
+  patterns: [/house set (g.*?|r.*?|h.*?|s.*?)/i],
   description: 'Set your house for the House Cup! :o',
   command: setHouse
 };

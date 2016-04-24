@@ -37,7 +37,7 @@ module.exports = {
   name: 'help',
   author: 'thattacoguy',
   syntax: 'help',
-  patterns: ['help'],
+  patterns: [/help (?:me)?/i],
   description: 'Get help from WolfBot! (T-that\'s me.) >w<',
   command: help
 };
