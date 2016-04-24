@@ -1,5 +1,6 @@
 'use strict';
 var fs = require('fs');
+var async = require('async');
 var emotes = [];
 var emoteList = '(';
 var items = fs.readdirSync(__dirname + '/../emote/');
@@ -12,13 +13,24 @@ for (var i = 0; i < items.length; i++) {
     emoteList += res[1] + ')';
   }
 }
+emoteList = new RegExp('^' + emoteList + '$', 'i');
 
 function emoteTrigger(event) {
-  var res = items[i].match(/(.*)\..*/);
-  console.log(res);
-  event.bot.sendMessage({
-    to: event.channelID,
-    message: 'i got it fam'
+  var emote = event.message.match(emoteList);
+  var matcher = new RegExp('^' + emote[1] + '\\..*','i');
+  async.each(items, function(item, callback) {
+    if (matcher.test(item)) {
+      event.bot.uploadFile({
+        to: event.channelID,
+        file: __dirname + '/../emote/' + item,
+        message: '<@' + event.userID + '>'
+      });
+      callback();
+    } else {
+      callback();
+    }
+  }, function(err) {
+    if (err) {}
   });
 }
 module.exports = {
