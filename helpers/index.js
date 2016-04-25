@@ -58,8 +58,7 @@ module.exports = {
         var col = db.collection('users');
         var increment = {};
         increment[name] = value;
-        var user = {$inc: increment};
-        col.updateOne({userID: event.userID}, user);
+        col.updateOne({userID: event.userID}, {$inc: increment});
         db.close();
       }
     });
@@ -74,9 +73,8 @@ module.exports = {
       } else {
         var col = db.collection('servers');
         var increment = {};
-        increment[house] = {};
-        var points = {$inc: increment};
-        col.updateOne({serverID: event.serverID}, points);
+        increment[house] = value;
+        col.updateOne({serverID: event.serverID}, {$inc: increment});
         db.close();
       }
     });
