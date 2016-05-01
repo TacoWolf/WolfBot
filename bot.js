@@ -72,6 +72,7 @@ bot.on('message', function(user, userID, channelID, message) {
     serverID: serverID,
     channelID: channelID,
     message: message,
+    rawMessage: message,
     storage: database,
     logger: logger,
     pm: false
@@ -89,10 +90,10 @@ bot.on('message', function(user, userID, channelID, message) {
     return;
   } else {
     if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
-      event.message = message.substring(1).toLowerCase().trim();
+      event.message = message.substring(1).trim();
       messageCheck(event);
     } else if (botMention.test(event.message)) {
-      msg = message.replace('<@' + bot.id + '> ', '').toLowerCase().trim();
+      msg = message.replace('<@' + bot.id + '> ', '') .trim();
       event.message = msg;
       messageCheck(event);
     }
