@@ -1,44 +1,52 @@
 'use strict';
-var rawScripts = require('require-all')(__dirname + '/../scripts');
-var async = require('async');
-
-var msg = '**Hi! I\'m WolfBot!** :3 :green_heart:';
-msg += '\n\nHere\'s some stuff to help you out:\n```md\n';
+var helpers = require(__dirname + '/../helpers/');
 
 function help(event) {
-  msg += '# Commands\n\n[help](You already know what this is. ;3)';
-  async.forEachOf(rawScripts, function(value, key, callback) {
-    if (key === 'help' || rawScripts[key].hidden === true) {
-      callback();
-    } else {
-      console.log(rawScripts[key].hidden)
+  if (event.pm === true) {
+    msg = 'S-sorry, you can\'t do that in a PM with me. ;w;';
+    event.bot.sendMessage({
+      to: event.channelID,
+      message: msg
+    });
+  } else {
+    var msg = '**Hi! I\'m WolfBot!** :3 :green_heart:';
+    msg += '\n\nHere\'s some stuff to help you out:\n```md\n';
+    msg += '# Commands\n\n[help](You already know what this is. ;3)';
+    var rawScripts = require('require-all')(__dirname + '/../scripts');
+    var check = helpers.roleCheck(event, 'admin');
+    for (var key in rawScripts) {
       var name = rawScripts[key].syntax;
       var description = rawScripts[key].description;
       var helper = '\n[' + name + '](' + description + ')';
-      msg += helper;
-      callback();
+      if (check === true) {
+        msg += helper;
+      } else {
+        if (key !== 'help' && rawScripts[key].hidden !== true) {
+          msg += helper;
+        }
+      }
     }
-  });
-  msg += '```\n\nI-I hope that helped! >w<';
-  msg += '\n\nI-if you find an issue with WolfBot or want to submit an idea,';
-  msg += ' feel free to use WolfBot\'s GitHub issues page. ';
-  msg += '<https://github.com/TacoWolf/WolfBot/issues> :3 ';
-  msg += '\n Thanks! :green_heart:';
-  event.bot.sendMessage({
-    to: event.channelID,
-    message: 'Send you a PM, <@' + event.userID + '>! `^w^`'
-  });
-  event.bot.sendMessage({
-    to: event.userID,
-    message: msg
-  });
+    msg += '```\n\nI-I hope that helped! >w<';
+    msg += '\n\nI-if you find an issue with WolfBot or want to submit an idea,';
+    msg += ' feel free to use WolfBot\'s GitHub issues page. ';
+    msg += '<https://github.com/TacoWolf/WolfBot/issues> :3 ';
+    msg += '\n Thanks! :green_heart:';
+    event.bot.sendMessage({
+      to: event.channelID,
+      message: 'Sent you a PM, <@' + event.userID + '>! `^w^`'
+    });
+    event.bot.sendMessage({
+      to: event.userID,
+      message: msg
+    });
+  }
 }
 
 module.exports = {
   name: 'help',
   author: 'thattacoguy',
   syntax: 'help',
-  patterns: [/^help( me)?/i],
-  description: 'Get help from WolfBot! (T-that\'s me.) >w<',
+  patterns: [/^help$/i],
+  description: 'Get help from WolfBot! T-that\'s me. >w<',
   command: help
 };

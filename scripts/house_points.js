@@ -15,9 +15,9 @@ function points(event) {
     var check = helpers.roleCheck(event, 'headmaster');
     if (check === true) {
       // jscs:disable
-      var resOne = /points (<@[0-9]*>) (\-[0-9]*|\+?[0-9]*)/i;
-      var resTwo = /(<@[0-9]*>) (\-[0-9]*|\+?[0-9]*|a) points?/i; // jshint ignore:line
-      var resThree = /(\-[0-9]*|\+?[0-9]*|a) points? (?:to|from) (<@[0-9]*>)/i; // jshint ignore:line
+      var resOne = /points <@(?:\!|\&)?([0-9]*)> (\-[0-9]*|\+?[0-9]*)/i;
+      var resTwo = /<@(?:\!|\&)?([0-9]*)> (\-[0-9]*|\+?[0-9]*|a) points?/i; // jshint ignore:line
+      var resThree = /(\-[0-9]*|\+?[0-9]*|a) points? (?:to|from) <@(?:\!|\&)?([0-9]*)>/i; // jshint ignore:line
       // jscs:enable
       var recipient = '';
       var amount = 0;
@@ -43,16 +43,16 @@ function points(event) {
       }
       MongoClient.connect(mongourl, function(err, db) {
         var col = db.collection('users');
-        col.find({ userID: event.userID }).limit(1).each(function(err, user) {
+        col.find({ userID: recipient }).limit(1).each(function(err, user) {
           if (user) {
             if (user.house) {
               if (amount < 0) {
-                msg = recipient + ' has been punished with `';
+                msg = '<@' + recipient + '> has been punished with `';
                 msg += amount + '` point(s) taken away from ';
                 msg += helpers.houseDetail(user.house);
                 msg += ' by <@' + event.userID + '>. =w=';
               } else {
-                msg = recipient + ' has been awarded with `';
+                msg = '<@' + recipient + '> has been awarded with `';
                 msg += amount + '` point(s) given to ';
                 msg += helpers.houseDetail(user.house);
                 msg += ' by <@' + event.userID + '>. `^w^`';
@@ -87,9 +87,9 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'points',
   hidden: true,
-  patterns: [/points (<@[0-9]*>) (\+?[0-9]*|\-[0-9]*)/i,
-    /(<@[0-9]*>) (\-[0-9]*|\+?[0-9]*|a) points?/i,
-    /(\-[0-9]*|\+?[0-9]*|a) points? (?:to|from) (<@[0-9]*>)/i,
+  patterns: [/points <@(?:\!|\&)?([0-9]*)> (\+?[0-9]*|\-[0-9]*)/i,
+    /<@(?:\!|\&)?([0-9]*)> (\-[0-9]*|\+?[0-9]*|a) points?/i,
+    /(\-[0-9]*|\+?[0-9]*|a) points? (?:to|from) <@(?:\!|\&)?([0-9]*)>/i,
   ],
   description: '[Admin Only] Give points to users!',
   command: points
