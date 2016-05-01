@@ -5,7 +5,7 @@ function hug(event) {
   helpers.statistics(event, 'hug');
   var msg = '';
   var hugs = [];
-  var res = event.message.match(/(<@\d*>)/i);
+  var res = event.message.match(/<@(?:\!|\&)?([0-9]*)>/i);
   if (!res) {
     // jscs:disable
     hugs = [
