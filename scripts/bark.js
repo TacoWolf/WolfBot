@@ -22,7 +22,7 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'bark',
   hidden: true,
-  patterns: [/bark/i, /woof/i, /yip/i, /woof/i, /speak/i],
+  patterns: [/^bark/i, /^woof/i, /^yip/i, /^woof/i, /^speak/i],
   description: 'boof',
   command: bark
 };

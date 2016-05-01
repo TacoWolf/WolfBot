@@ -43,13 +43,14 @@ function emoteTrigger(event) {
     }, function(err) {
       if (err) {}
     });
+    helpers.statistics(event, 'emote');
   }
 }
 module.exports = {
   name: 'ping',
   author: 'thattacoguy',
   syntax: 'ping',
-  patterns: [emoteList, /emotes/i],
+  patterns: [emoteList, /^emotes/i],
   description: 'Ping the bot!',
   command: emoteTrigger
 };

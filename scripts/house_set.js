@@ -5,7 +5,7 @@ var mongourl = process.env.MONGODB_URI;
 
 function setHouse(event) {
   var msg = '';
-  var house = event.message.match(/house set (g.*?|r.*?|h.*?|s.*?)/);
+  var house = event.message.match(/house set (g|r|h|s).*?/);
   if (house) {
     var userHouse = house[1].toString();
     MongoClient.connect(mongourl, function(err, db) {
@@ -38,10 +38,10 @@ function setHouse(event) {
   }
 }
 module.exports = {
-  name: 'Set House',
+  name: 'house set',
   author: 'thattacoguy',
   syntax: 'house set (g|r|h|s)',
-  patterns: [/house set (g.*?|r.*?|h.*?|s.*?)/i],
+  patterns: [/^house set (g|r|h|s).*?/i],
   description: 'Set your house for the House Cup! :o',
   command: setHouse
 };

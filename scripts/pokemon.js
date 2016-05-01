@@ -72,8 +72,8 @@ function pokemon(event) {
 module.exports = {
   name: 'pokemon',
   author: 'thattacoguy',
-  syntax: 'pokemon [name|number]',
-  patterns: [/pokemon (.*)/i],
+  syntax: 'pokemon (name|number)',
+  patterns: [/^pokemon (.*)/i],
   description: 'Search for Pokemon.',
   command: pokemon
 };
