@@ -47,3 +47,4 @@ stats.json
 admins.json
 node_modules/*
 tenc
+old/*

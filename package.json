@@ -3,19 +3,19 @@
   "version": "0.6.1",
   "description": "A simple bot for Discord.",
   "private": true,
-  "main": "server.js",
+  "main": "bot.js",
   "dependencies": {
     "async": "^1.5.0",
     "discord.io": "^1.8.3",
+    "mongodb": "^2.1.16",
     "node-opus": "^0.1.11",
     "request": "^2.69.0",
+    "require-all": "^2.0.0",
     "ytdl-core": "^0.7.7"
   },
-  "devDependencies": {
-    "jshint": "^2.9.1"
-  },
   "scripts": {
-    "test": "echo \"I don't have tests written for this yet.\" && exit 0"
+    "test": "jshint . --exclude node_modules",
+    "start": "node bot.js"
   },
   "keywords": [
     "chat",
@@ -26,5 +26,9 @@
     "discordapp"
   ],
   "author": "Daniel Gallegos",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "fixmyjs": "^1.0.3",
+    "jshint": "^2.9.2"
+  }
 }
