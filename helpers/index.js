@@ -3,6 +3,13 @@ var MongoClient = require('mongodb').MongoClient;
 var mongourl = process.env.MONGODB_URI;
 
 module.exports = {
+  usersInServer: function(event) {
+    var members = [];
+    for (var key in event.bot.servers[event.serverID].members) {
+      members.push(key);
+    }
+    return members;
+  },
   roleCheck: function(event, roleType) {
     var checker = '';
     var adminid;
@@ -58,7 +65,7 @@ module.exports = {
         var col = db.collection('users');
         var increment = {};
         increment[name] = value;
-        col.updateOne({userID: event.userID}, {$inc: increment});
+        col.updateOne({ userID: event.userID }, { $inc: increment });
         db.close();
       }
     });
@@ -74,7 +81,7 @@ module.exports = {
         var col = db.collection('servers');
         var increment = {};
         increment[house] = value;
-        col.updateOne({serverID: event.serverID}, {$inc: increment});
+        col.updateOne({ serverID: event.serverID }, { $inc: increment });
         db.close();
       }
     });

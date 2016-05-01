@@ -28,6 +28,7 @@ var bark = require('./scripts/bark.js');
 var bot = wolfbot.core.bot;
 var logger = wolfbot.core.logger;
 var database = wolfbot.database;
+var keepAlive = wolfbot.keepAlive;
 var keywordIndex = wolfbot.scripts.index();
 var keywordMatch = wolfbot.scripts.match;
 var keywordContext = wolfbot.scripts.context;
@@ -48,17 +49,15 @@ bot.on('ready', function() {
 
 function messageCheck(event) {
   var m = true;
-  async.each(keywordIndex, function(keyword, callback) {
-    var match = keywordMatch(keyword, event.message);
-    if (!match) {
-      callback();
-    } else {
+  for (var i = keywordIndex.length - 1; i >= 0; i--) {
+    var match = keywordMatch(keywordIndex[i], event.message);
+    if (match) {
       var command = keywordContext(event);
       command(event);
       m = false;
-      callback();
+      return;
     }
-  });
+  }
   if (m === true) {
     bark.command(event);
   }
@@ -99,3 +98,5 @@ bot.on('message', function(user, userID, channelID, message) {
     }
   }
 });
+
+keepAlive.start(logger);
