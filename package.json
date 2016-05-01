@@ -7,6 +7,7 @@
   "dependencies": {
     "async": "^1.5.0",
     "discord.io": "^1.8.3",
+    "httpdispatcher": "^1.0.0",
     "mongodb": "^2.1.16",
     "node-opus": "^0.1.11",
     "request": "^2.69.0",

@@ -47,10 +47,10 @@ function emoteTrigger(event) {
   }
 }
 module.exports = {
-  name: 'ping',
+  name: 'emotes',
   author: 'thattacoguy',
-  syntax: 'ping',
+  syntax: 'emotes',
   patterns: [emoteList, /^emotes/i],
-  description: 'Ping the bot!',
+  description: 'Get a list of emotes!',
   command: emoteTrigger
 };

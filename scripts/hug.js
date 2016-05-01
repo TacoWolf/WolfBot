@@ -19,9 +19,9 @@ function hug(event) {
     huggedUser = res[1];
     // jscs:disable
     hugs = [
-      '**[WolfBot gives ' + huggedUser + ' a really big hug.]** :green_heart:', // jshint ignore:line
-      '**[WolfBot hugs ' + huggedUser + ' tightly!]** :green_heart:', // jshint ignore:line
-      '**[WolfBot hugs ' + huggedUser + ' lovingly~]** :green_heart:', // jshint ignore:line
+      '**[WolfBot gives <@' + huggedUser + '> a really big hug.]** :green_heart:', // jshint ignore:line
+      '**[WolfBot hugs <@' + huggedUser + '> tightly!]** :green_heart:', // jshint ignore:line
+      '**[WolfBot hugs <@' + huggedUser + '> lovingly~]** :green_heart:', // jshint ignore:line
     ];
     // jscs:enable
   }
@@ -36,8 +36,8 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'hug (@someone|me)',
   patterns: [/^hug me/i,
-    /^hug (<@.*>)/i,
-    /^give (<@.*>) (a hug|hugs|a big hug)/i,
+    /^hug <@(?:\!|\&)?([0-9]*)>/i,
+    /^give <@(?:\!|\&)?([0-9]*)> (a hug|hugs|a big hug)/i,
     /^give me (a hug|hugs)/i,
     /^snuggle me/i,
     /^snuggle <@.*>/i,
