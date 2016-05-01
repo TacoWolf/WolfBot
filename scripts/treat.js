@@ -18,7 +18,7 @@ module.exports = {
   name: 'treat',
   author: 'thattacoguy',
   syntax: 'treat',
-  patterns: [/^treat/i],
+  patterns: [/^(have a |take a )?treat/i],
   description: 'G-give me a treat~ >w<',
   command: treat
 };
