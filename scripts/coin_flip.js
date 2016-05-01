@@ -4,8 +4,8 @@ var helpers = require(__dirname + '/../helpers/');
 function coin(event) {
   var coin = ['heads', 'tails'];
   var res = helpers.randomArray(coin);
-  var msg = '[WolBot flips a coin for <@';
-  msg += event.userID + '>]\nYou got... **' + res + '**.';
+  var msg = '**[WolfBot flips a coin for <@';
+  msg += event.userID + '>]**\nYou got... **' + res + '**.';
   event.bot.sendMessage({
     to: event.channelID,
     message: msg
