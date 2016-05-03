@@ -1,6 +1,7 @@
 'use strict';
 var fs = require('fs');
 var async = require('async');
+var helpers = require(__dirname + '/../helpers/');
 var emotes = [];
 var emoteList = '(';
 var items = fs.readdirSync(__dirname + '/../emote/');
