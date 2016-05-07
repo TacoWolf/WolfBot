@@ -12,7 +12,7 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'yiff',
   hidden: true,
-  patterns: [/yiff|kink|kinky/i],
+  patterns: [/^(yiff|kink|kinky)/i],
   description: 'I swear, my child...',
   command: glare
 };
