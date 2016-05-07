@@ -8,7 +8,7 @@ function love(event) {
     'T-thanks, <@' + event.userID + '>~... >w<',
     'A-aw, thanks, <@' + event.userID + '>. I-I love you too! :3',
     '**[blush~]** >w<'
-  ]
+  ];
   var msg = helpers.randomArray(love);
   event.bot.sendMessage({
     to: event.channelID,

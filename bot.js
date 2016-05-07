@@ -22,7 +22,6 @@
 // Load WolfBot library
 var wolfbot = require('./lib');
 // Load requirements
-var async = require('async');
 var bark = require('./scripts/bark.js');
 // Declare variables
 var bot = wolfbot.core.bot;
@@ -63,7 +62,7 @@ function messageCheck(event) {
   }
 }
 bot.on('message', function(user, userID, channelID, message) {
-  var botMention = new RegExp('<@' + bot.id + '>', '');
+  var botMention = new RegExp('<@(?:\!|\&)?' + bot.id + '>', '');
   var serverID = bot.serverFromChannel(channelID);
   var event = {
     bot: bot,
@@ -80,11 +79,15 @@ bot.on('message', function(user, userID, channelID, message) {
   var msg = '';
   if (!event.serverID) {
     msg = 'PM (' + event.channelID + ')' + ' | ' + user + ' - ' + message;
-    logger('chat', msg);
     event.pm = true;
+    event.server = event.channelID;
+    logger('chat', msg, event);
   } else {
-    msg = bot.servers[serverID].name + ' | ' + user + ' - ' + message;
-    logger('chat', msg);
+    event.server = bot.servers[serverID].name;
+    event.channel = bot.servers[serverID].channels[channelID].name;
+    msg = event.server + ' | #' + event.channel +' | ';
+    msg += user + ' - ' + message;
+    logger('chat', msg, event);
   }
   if (userID === bot.id) {
     return;
@@ -93,7 +96,7 @@ bot.on('message', function(user, userID, channelID, message) {
       event.message = message.substring(1).trim();
       messageCheck(event);
     } else if (botMention.test(event.message)) {
-      msg = message.replace('<@' + bot.id + '> ', '') .trim();
+      msg = message.replace('<@(?:\!|\&)?' + bot.id + '>', '').trim();
       event.message = msg;
       messageCheck(event);
     }

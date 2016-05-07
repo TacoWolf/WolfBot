@@ -17,12 +17,10 @@ module.exports = {
     var serverID = event.bot.servers[event.serverID];
     var roles = serverID.roles;
     var userRole = serverID.members[event.userID].roles;
-    if (roleType === 'admin') {
-      checker = 'wb admin';
-    } else if (roleType === 'superadmin') {
-      checker = 'wb superadmin';
-    } else if (roleType === 'headmaster') {
+    if (roleType === 'headmaster') {
       checker = 'headmaster';
+    } else {
+      checker = 'wb admin';
     }
     for (var key in roles) {
       if (roles[key].name.toLowerCase() === checker) {

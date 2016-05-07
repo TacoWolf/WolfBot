@@ -2,6 +2,7 @@
 var helpers = require(__dirname + '/../helpers/');
 
 function help(event) {
+  var msg = '';
   if (event.pm === true) {
     msg = 'S-sorry, you can\'t do that in a PM with me. ;w;';
     event.bot.sendMessage({
@@ -9,7 +10,7 @@ function help(event) {
       message: msg
     });
   } else {
-    var msg = '**Hi! I\'m WolfBot!** :3 :green_heart:';
+    msg = '**Hi! I\'m WolfBot!** :3 :green_heart:';
     msg += '\n\nHere\'s some stuff to help you out:\n```md\n';
     msg += '# Commands\n\n[help](You already know what this is. ;3)';
     var rawScripts = require('require-all')(__dirname + '/../scripts');

@@ -19,7 +19,7 @@ module.exports = {
   author: 'thattacoguy',
   syntax: 'fuck',
   hidden: true,
-  patterns: [/fuck|shit|bitch|cunt/i],
+  patterns: [/^(fuck|shit|bitch|cunt)/i],
   description: '>:c',
   command: scold
 };

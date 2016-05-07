@@ -37,7 +37,7 @@ function houseCup(event) {
             msg += '\nYou\'ve thanked me `';
             msg += user.thanks + '` time(s). You\'re welcome~!';
           }
-          msg += '\n\nIf you wanna see these numbers grow, keep playing with me~!'
+          msg += '\n\nIf you wanna see these numbers grow, keep playing with me~!'; //jshint ignore:line
           event.bot.sendMessage({
             to: event.userID,
             message: msg
