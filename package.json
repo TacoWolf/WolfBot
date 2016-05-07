@@ -16,7 +16,7 @@
   },
   "scripts": {
     "test": "jshint . --exclude node_modules",
-    "start": "node bot.js"
+    "start": "forever start --uid \"wolfbot\" --killSignal=SIGTERM -a -c node bot.js"
   },
   "keywords": [
     "chat",
