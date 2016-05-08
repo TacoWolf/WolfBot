@@ -62,7 +62,7 @@ function messageCheck(event) {
   }
 }
 bot.on('message', function(user, userID, channelID, message) {
-  var botMention = new RegExp('<@(?:\!|\&)?' + bot.id + '>', '');
+  var botMention = new RegExp('(<@(\!|\&)?' + bot.id + '>)', '');
   var serverID = bot.serverFromChannel(channelID);
   var event = {
     bot: bot,
@@ -92,11 +92,12 @@ bot.on('message', function(user, userID, channelID, message) {
   if (userID === bot.id) {
     return;
   } else {
+    var mentionMatcher = event.message.match(botMention);
     if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
       event.message = message.substring(1).trim();
       messageCheck(event);
-    } else if (botMention.test(event.message)) {
-      msg = message.replace('<@(?:\!|\&)?' + bot.id + '>', '').trim();
+    } else if (mentionMatcher[1]) {
+      msg = message.replace(mentionMatcher[0], '').trim();
       event.message = msg;
       messageCheck(event);
     }
