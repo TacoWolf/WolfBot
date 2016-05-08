@@ -60,10 +60,10 @@ function points(event) {
               helpers.points(event, user.house, amount);
             } else {
               msg = 'Uhm... I don\'t think ';
-              msg += recipient + ' has sorted themselves into a house, <@';
+              msg += '<@' + recipient + '> has sorted themselves into a house, <@';
               msg += event.userID + '>. .w.\n';
               msg += 'Use `!house set [g|h|r|s]` for that, ';
-              msg += recipient + '! `^w^`';
+              msg += '<@' + recipient + '>! `^w^`';
             }
             event.bot.sendMessage({
               to: event.channelID,
