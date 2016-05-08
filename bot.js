@@ -96,7 +96,7 @@ bot.on('message', function(user, userID, channelID, message) {
     if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
       event.message = message.substring(1).trim();
       messageCheck(event);
-    } else if (mentionMatcher[0]) {
+    } else if (mentionMatcher) {
       msg = message.replace(mentionMatcher[0], '').trim();
       event.message = msg;
       messageCheck(event);
