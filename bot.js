@@ -27,7 +27,6 @@ var bark = require('./scripts/bark.js');
 var bot = wolfbot.core.bot;
 var logger = wolfbot.core.logger;
 var database = wolfbot.database;
-var keepAlive = wolfbot.keepAlive;
 var keywordIndex = wolfbot.scripts.index();
 var keywordMatch = wolfbot.scripts.match;
 var keywordContext = wolfbot.scripts.context;
@@ -85,7 +84,7 @@ bot.on('message', function(user, userID, channelID, message) {
   } else {
     event.server = bot.servers[serverID].name;
     event.channel = bot.servers[serverID].channels[channelID].name;
-    msg = event.server + ' | #' + event.channel +' | ';
+    msg = event.server + ' | #' + event.channel + ' | ';
     msg += user + ' - ' + message;
     logger('chat', msg, event);
   }
@@ -104,4 +103,6 @@ bot.on('message', function(user, userID, channelID, message) {
   }
 });
 
-keepAlive.start(logger);
+bot.on('disconnect', function() {
+  bot.connect();
+});
