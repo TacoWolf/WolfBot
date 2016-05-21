@@ -6,6 +6,8 @@
   "main": "bot.js",
   "dependencies": {
     "async": "^1.5.0",
+    "caption": "^0.1.1",
+    "chance": "^1.0.3",
     "discord.io": "^1.8.3",
     "mongodb": "^2.1.16",
     "node-opus": "^0.1.11",
