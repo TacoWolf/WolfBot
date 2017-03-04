@@ -21,6 +21,7 @@ function houseMembers(event) {
     const res = event.message.match(matcher);
     const house = res[1];
     const serverUsers = helpers.usersInServer(event);
+    const userIDs = [];
     MongoClient.connect(mongourl, (err, db) => {
       if (err) {
         throw err;
@@ -34,9 +35,12 @@ function houseMembers(event) {
             const userID = users[i].userID;
             for (let j = 0; j < serverUsers.length; j += 1) {
               if (userID === serverUsers[j]) {
-                embed.description += `\n${j + 1}. **<@${userID}>**`;
+                userIDs.push(userID);
               }
             }
+          }
+          for (let i = 0; i < userIDs.length; i += 1) {
+            embed.description += `\n${i + 1}. **<@${userIDs[i]}>**`;
           }
           event.bot.sendMessage({
             to: event.channelID,
