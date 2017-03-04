@@ -27,16 +27,14 @@ function houseMembers(event) {
       } else {
         const col = db.collection('users');
         col.find({ house }).toArray((er, users) => {
-          const members = event.bot.servers[event.serverID].members;
           const msg = `<@${event.userID}>`;
           embed.title = 'Members of **House ';
           embed.title += `${helpers.houseDetail(house)}** `;
-          embed.description += `<@${event.userID}>:\n`;
           for (let i = 0; i < users.length; i += 1) {
             const userID = users[i].userID;
             for (let j = 0; j < serverUsers.length; j += 1) {
               if (userID === serverUsers[j]) {
-                embed.description += `\n> **${members[userID].username}**`;
+                embed.description += `\n${j + 1}. **<@${userID}>**`;
               }
             }
           }
