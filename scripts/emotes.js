@@ -1,48 +1,46 @@
-'use strict';
-var fs = require('fs');
-var async = require('async');
-var helpers = require(__dirname + '/../helpers/');
-var emotes = [];
-var emoteList = '(';
-var items = fs.readdirSync(__dirname + '/../emote/');
-var emoteHelpList = '';
-for (var i = 0; i < items.length; i++) {
+const fs = require('fs');
+const async = require('async');
+
+const helpers = require(`${__dirname}/../helpers/`);
+const emotes = [];
+let emoteList = '(';
+const items = fs.readdirSync(`${__dirname}/../emote/`);
+let emoteHelpList = '';
+for (let i = 0; i < items.length; i += 1) {
   emotes.push(items[i]);
-  var res = items[i].match(/(.*)\..*/);
+  const res = items[i].match(/(.*)\..*/);
   if (i !== items.length - 1) {
-    emoteList += res[1] + '|';
-    emoteHelpList += '`' + res[1] + '`, ';
+    emoteList += `${res[1]}|`;
+    emoteHelpList += `\`${res[1]}\`, `;
   } else {
-    emoteList += res[1] + ')';
-    emoteHelpList += 'and `' + res[1] + '`';
+    emoteList += `${res[1]})`;
+    emoteHelpList += `and \`${res[1]}\``;
   }
 }
-emoteList = new RegExp('^' + emoteList + '$', 'i');
+emoteList = new RegExp(`^${emoteList}$`, 'i');
 
 function emoteTrigger(event) {
   if (event.message === 'emotes') {
-    var msg = 'O-oh! Here\'s a list of emotes I know about! `^w^` \n';
-    msg += emoteHelpList + ' are all emotes that I can post. :3';
+    let msg = 'O-oh! Here\'s a list of emotes I know about! `^w^` \n';
+    msg += `${emoteHelpList} are all emotes that I can post. :3`;
     event.bot.sendMessage({
       to: event.userID,
       message: msg,
     });
   } else {
-    var emote = event.message.match(emoteList);
-    var matcher = new RegExp('^' + emote[1] + '\\..*', 'i');
-    async.each(items, function(item, callback) {
+    const emote = event.message.match(emoteList);
+    const matcher = new RegExp(`^${emote[1]}\\..*`, 'i');
+    async.each(items, (item, callback) => {
       if (matcher.test(item)) {
         event.bot.uploadFile({
           to: event.channelID,
-          file: __dirname + '/../emote/' + item,
-          message: '<@' + event.userID + '>'
+          file: `${__dirname}/../emote/${item}`,
+          message: `<@${event.userID}>`,
         });
         callback();
       } else {
         callback();
       }
-    }, function(err) {
-      if (err) {}
     });
     helpers.statistics(event, 'emote');
   }
@@ -53,5 +51,5 @@ module.exports = {
   syntax: 'emotes',
   patterns: [emoteList, /^emotes/i],
   description: 'Get a list of emotes!',
-  command: emoteTrigger
+  command: emoteTrigger,
 };

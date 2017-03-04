@@ -1,41 +1,41 @@
-'use strict';
-var MongoClient = require('mongodb').MongoClient;
-var mongourl = process.env.MONGODB_URI;
+const MongoClient = require('mongodb').MongoClient;
+
+const mongourl = process.env.MONGODB_URI;
 
 module.exports = {
-  usersInServer: function(event) {
-    var members = [];
-    for (var key in event.bot.servers[event.serverID].members) {
+  usersInServer(event) {
+    const members = [];
+    for (const key in event.bot.servers[event.serverID].members) {
       members.push(key);
     }
     return members;
   },
-  roleCheck: function(event, roleType) {
-    var checker = '';
-    var adminid;
-    var verifier = false;
-    var serverID = event.bot.servers[event.serverID];
-    var roles = serverID.roles;
-    var userRole = serverID.members[event.userID].roles;
+  roleCheck(event, roleType) {
+    let checker = '';
+    let adminid;
+    let verifier = false;
+    const serverID = event.bot.servers[event.serverID];
+    const roles = serverID.roles;
+    const userRole = serverID.members[event.userID].roles;
     if (roleType === 'headmaster') {
       checker = 'headmaster';
     } else {
       checker = 'wb admin';
     }
-    for (var key in roles) {
+    for (const key in roles) {
       if (roles[key].name.toLowerCase() === checker) {
         adminid = roles[key].id;
       }
     }
-    for (var i = 0; i < userRole.length; i++) {
+    for (let i = 0; i < userRole.length; i += 1) {
       if (userRole[i] === adminid) {
         verifier = true;
       }
     }
     return verifier;
   },
-  houseDetail: function(house) {
-    var convertHouse = '';
+  houseDetail(house) {
+    let convertHouse = '';
     switch (house) {
       case 'g':
         convertHouse = 'Gryffindor';
@@ -49,60 +49,63 @@ module.exports = {
       case 's':
         convertHouse = 'Slytherin';
         break;
+      default:
+        convertHouse = 'Gryffindor';
+        break;
     }
     return convertHouse;
   },
-  statistics: function(event, name, value) {
+  statistics(event, name, value) {
     if (!value) {
       value = 1;
     }
-    MongoClient.connect(mongourl, function(err, db) {
+    MongoClient.connect(mongourl, (err, db) => {
       if (err) {
         throw err;
       } else {
-        var col = db.collection('users');
-        var increment = {};
+        const col = db.collection('users');
+        const increment = {};
         increment[name] = value;
         col.updateOne({ userID: event.userID }, { $inc: increment });
         db.close();
       }
     });
   },
-  points: function(event, house, value) {
+  points(event, house, value) {
     if (!value) {
       value = 1;
     }
-    MongoClient.connect(mongourl, function(err, db) {
+    MongoClient.connect(mongourl, (err, db) => {
       if (err) {
         throw err;
       } else {
-        var col = db.collection('servers');
-        var increment = {};
+        const col = db.collection('servers');
+        const increment = {};
         increment[house] = value;
         col.updateOne({ serverID: event.serverID }, { $inc: increment });
         db.close();
       }
     });
   },
-  parameters: function(message) {
+  parameters(message) {
     // Check the parameters of each message
-    var parameters = [];
+    let parameters = [];
     parameters = message.split(' ');
     return parameters;
   },
-  randomArray: function(array) {
-    var random = array[Math.floor(Math.random() * array.length)];
+  randomArray(array) {
+    const random = array[Math.floor(Math.random() * array.length)];
     return random;
   },
-  firstToUpperCase: function(str) {
+  firstToUpperCase(str) {
     return str.substr(0, 1).toUpperCase() + str.substr(1);
   },
-  join: function(array) {
-    var output = '';
-    for (var i = 0; i < array.length; i++) {
+  join(array) {
+    let output = '';
+    for (let i = 0; i < array.length; i += 1) {
       output += array[i];
       output += ' ';
     }
     return output;
-  }
+  },
 };

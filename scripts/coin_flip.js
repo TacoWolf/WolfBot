@@ -1,14 +1,15 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
+const helpers = require(`${__dirname}/../helpers/`);
 
 function coin(event) {
-  var coin = ['heads', 'tails'];
-  var res = helpers.randomArray(coin);
-  var msg = '**[WolfBot flips a coin for <@';
-  msg += event.userID + '>]**\nYou got... **' + res + '**.';
+  const coins = ['heads', 'tails'];
+  const res = helpers.randomArray(coins);
+  const embed = {
+    description: `You got **${res}**, <@${event.userID}>!`,
+    color: 6592564,
+  };
   event.bot.sendMessage({
     to: event.channelID,
-    message: msg
+    embed,
   });
   helpers.statistics(event, 'coin');
 }
@@ -18,5 +19,5 @@ module.exports = {
   syntax: 'coin',
   patterns: [/^(flip a )?coin/i],
   description: 'Flip a coin!',
-  command: coin
+  command: coin,
 };

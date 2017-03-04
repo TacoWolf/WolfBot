@@ -1,23 +1,20 @@
 {
   "name": "wolfbot",
-  "version": "0.6.1",
-  "description": "A simple bot for Discord.",
+  "version": "2.0.0",
+  "description": "TacoWolf's chat bot for Discord.",
   "private": true,
   "main": "bot.js",
   "dependencies": {
-    "async": "^1.5.0",
-    "caption": "^0.1.1",
-    "chance": "^1.0.3",
-    "discord.io": "^1.8.3",
-    "mongodb": "^2.1.16",
-    "node-opus": "^0.1.11",
-    "request": "^2.69.0",
-    "require-all": "^2.0.0",
-    "ytdl-core": "^0.7.7"
+    "async": "^2.1.5",
+    "chance": "^1.0.6",
+    "discord.io": "^2.4.2",
+    "mongodb": "^2.2.24",
+    "request": "^2.79.0",
+    "require-all": "^2.2.0"
   },
   "scripts": {
-    "test": "jshint . --exclude node_modules",
-    "start": "forever start --uid \"wolfbot\" --killSignal=SIGTERM -a -c node bot.js"
+    "test": "eslint .",
+    "start": "node bot.js"
   },
   "keywords": [
     "chat",
@@ -28,9 +25,5 @@
     "discordapp"
   ],
   "author": "Daniel Gallegos",
-  "license": "MIT",
-  "devDependencies": {
-    "fixmyjs": "^1.0.3",
-    "jshint": "^2.9.2"
-  }
+  "license": "MIT"
 }

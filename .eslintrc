@@ -1,0 +1,22 @@
+extends: airbnb
+parser: babel-eslint
+env:
+  node: true
+  browser: true
+ecmaFeatures:
+  classes: true
+sourceType: "module"
+rules:
+  camelcase: 0
+  func-names:
+    - 0
+    - as-needed
+  global-require: 0
+  guard-for-in: 0
+  no-param-reassign: 0
+  no-console: 0
+  no-restricted-syntax: 0
+  import/no-extraneous-dependencies: 0
+  import/extensions: 0
+  import/no-unresolved: 0
+  import/no-dynamic-require: 0

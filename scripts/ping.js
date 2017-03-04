@@ -1,10 +1,11 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
+
+
+const helpers = require(`${__dirname}/../helpers/`);
 
 function ping(event) {
   event.bot.sendMessage({
     to: event.channelID,
-    message: 'Pong!'
+    message: 'Pong!',
   });
   helpers.statistics(event, 'ping');
 }
@@ -14,5 +15,5 @@ module.exports = {
   syntax: 'ping',
   patterns: [/^ping/i],
   description: 'Ping the bot!',
-  command: ping
+  command: ping,
 };

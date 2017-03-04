@@ -1,18 +1,19 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
+
+
+const helpers = require(`${__dirname}/../helpers/`);
 
 function awoo(event) {
-  var awoos = [
+  const awoos = [
     '**[howl~]**',
     'Awoooooooooooooo~! `^w^`',
     'A-awoo~ >w<',
     'Awoo! :3',
-    'Awoo! >w<'
+    'Awoo! >w<',
   ];
-  var msg = helpers.randomArray(awoos);
+  const msg = helpers.randomArray(awoos);
   event.bot.sendMessage({
     to: event.channelID,
-    message: msg
+    message: msg,
   });
   helpers.statistics(event, 'awoo');
 }
@@ -23,5 +24,5 @@ module.exports = {
   hidden: true,
   patterns: [/^awoo/i, /^howl/i, /^speak/i],
   description: 'awoooo',
-  command: awoo
+  command: awoo,
 };

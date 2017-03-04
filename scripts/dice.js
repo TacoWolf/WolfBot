@@ -1,53 +1,62 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
+
+
+const helpers = require(`${__dirname}/../helpers/`);
 
 function diceroll(event) {
-  var msg = '**[WolfBot rolls some dice for <@' + event.userID + '>]**\n';
-  var rolllog = [];
-  var res = event.message.match(/roll ([0-9]*d[0-9]*)(\+[0-9]*|\-[0-9]*)?/i);
-  var rawDice = res[1];
-  var roll = rawDice.split('d');
-  if (!isNaN(parseInt(roll[0])) && !isNaN(parseInt(roll[1]))) {
-    var amount = parseInt(roll[0]);
-    var dietype = parseInt(roll[1]);
+  const embed = {
+    title: '**[WolfBot rolls some dice.]**',
+    description: '',
+    color: 6592564,
+  };
+  const rolllog = [];
+  const res = event.message.match(/roll ([0-9]*d[0-9]*)(\+[0-9]*|-[0-9]*)?/i);
+  const rawDice = res[1];
+  let roll = rawDice.split('d');
+  if (!isNaN(parseInt(roll[0], 10)) && !isNaN(parseInt(roll[1], 10))) {
+    const amount = parseInt(roll[0], 10);
+    const dietype = parseInt(roll[1], 10);
     if (amount <= 100 && dietype <= 100) {
-      for (var i = 0; i < amount; i++) {
+      for (let i = 0; i < amount; i += 1) {
         roll = Math.floor(Math.random() * dietype) + 1;
         rolllog.push(roll);
+        if (roll === 1) {
+          embed.color = 12000284;
+        } else if (roll === 20) {
+          embed.color = 16761856;
+        }
       }
-      var r = rolllog.sort(function(a, b) {
-        return a - b; });
-      msg += 'Ooh! I rolled **' + amount + 'd' + dietype + '** and I got... \n';
-      msg += '`' + r + '`\n';
-      var total = 0;
-      for (i in rolllog) { total += rolllog[i]; }
-      msg += 'Which comes out to... `' + total + '`!';
+      const r = rolllog.sort((a, b) => a - b);
+      embed.description += `Ooh! I rolled **${amount}d${dietype}** and I got... \n`;
+      embed.description += `\`${r}\`\n`;
+      let total = 0;
+      for (const i in rolllog) { total += rolllog[i]; }
+      embed.description += `Which comes out to... \`${total}\`!`;
       if (res[2]) {
-        msg += '\nAnd if I throw in `' + parseInt(res[2]);
-        msg += '`, that comes out to `' + (total + parseInt(res[2])) + '`.';
+        embed.description += `\nAnd if I throw in \`${parseInt(res[2], 10)}`;
+        embed.description += `\`, that comes out to \`${total + parseInt(res[2], 10)}\`.`;
       }
     }
 
     if (amount > 100 || dietype > 100) {
-      msg += '...th-those are some big numbers... ;w;';
-      msg += '\nI-I can\'t count that high... try using smaller numbers?';
+      embed.description += '...th-those are some big numbers... ;w;';
+      embed.description += '\nI-I can\'t count that high... try using smaller numbers?';
     }
   } else {
-    msg += 'Uhm... I dunno what to do. ;w;';
-    msg += '\nMaybe try putting something in like `1d20` and trying again?';
+    embed.description += 'Uhm... I dunno what to do. ;w;';
+    embed.description += '\nMaybe try putting something in like `1d20` and trying again?';
   }
   helpers.statistics(event, 'dice');
   event.bot.sendMessage({
     to: event.channelID,
-    message: msg
+    message: `<@${event.userID}>`,
+    embed,
   });
-
 }
 module.exports = {
   name: 'roll',
   author: 'thattacoguy',
   syntax: 'roll (x)d(x)(+x|-x)',
-  patterns: [/^roll ([0-9]*d[0-9]*)(\+[0-9]*|\-[0-9]*)?/i],
+  patterns: [/^roll ([0-9]*d[0-9]*)(\+[0-9]*|-[0-9]*)?/i],
   description: 'Roll some dice!',
-  command: diceroll
+  command: diceroll,
 };
