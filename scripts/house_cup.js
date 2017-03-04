@@ -1,31 +1,35 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
-var MongoClient = require('mongodb').MongoClient;
-var mongourl = process.env.MONGODB_URI;
+const helpers = require(`${__dirname}/../helpers/`);
+const MongoClient = require('mongodb').MongoClient;
+
+const mongourl = process.env.MONGODB_URI;
 
 function houseCup(event) {
-  var msg = '';
+  const embed = {
+    title: '',
+    description: '',
+    color: 16763432,
+  };
   if (event.pm === true) {
-    msg = 'S-sorry, you can\'t do that in a PM with me. ;w;';
+    const msg = 'S-sorry, you can\'t do that in a PM with me. ;w;';
     event.bot.sendMessage({
       to: event.channelID,
-      message: msg
+      message: msg,
     });
   } else {
-    MongoClient.connect(mongourl, function(err, db) {
+    MongoClient.connect(mongourl, (err, db) => {
       if (err) {
         throw err;
       } else {
-        var col = db.collection('servers');
+        const col = db.collection('servers');
         col.find({
-          serverID: event.serverID
-        }).limit(1).each(function(err, server) {
+          serverID: event.serverID,
+        }).limit(1).each((er, server) => {
           if (server) {
-            var houses = [];
-            var g = { name: helpers.houseDetail('g') };
-            var h = { name: helpers.houseDetail('h') };
-            var r = { name: helpers.houseDetail('r') };
-            var s = { name: helpers.houseDetail('s') };
+            const houses = [];
+            const g = { name: helpers.houseDetail('g') };
+            const h = { name: helpers.houseDetail('h') };
+            const r = { name: helpers.houseDetail('r') };
+            const s = { name: helpers.houseDetail('s') };
             if (server.g) {
               g.points = server.g;
             } else { g.points = 0; }
@@ -39,28 +43,26 @@ function houseCup(event) {
               s.points = server.s;
             } else { s.points = 0; }
             houses.push(g, h, r, s);
-            houses.sort(function(a, b) {
-              return parseFloat(b.points) - parseFloat(a.points);
-            });
-            msg = '**HOUSE CUP RANKINGS**\n';
-            msg += '1. **' + houses[0].name;
-            msg += '** with **' + houses[0].points + '** points. \n';
-            msg += '2. **' + houses[1].name;
-            msg += '** with **' + houses[1].points + '** points. \n';
-            msg += '3. **' + houses[2].name;
-            msg += '** with **' + houses[2].points + '** points. \n';
-            msg += '4. **' + houses[3].name;
-            msg += '** with **' + houses[3].points + '** points. \n';
+            houses.sort((a, b) => parseFloat(b.points) - parseFloat(a.points));
+            embed.title = '**House Cup Rankings**';
+            embed.description += `1. **${houses[0].name}`;
+            embed.description += `** with **${houses[0].points}** points. \n`;
+            embed.description += `2. **${houses[1].name}`;
+            embed.description += `** with **${houses[1].points}** points. \n`;
+            embed.description += `3. **${houses[2].name}`;
+            embed.description += `** with **${houses[2].points}** points. \n`;
+            embed.description += `4. **${houses[3].name}`;
+            embed.description += `** with **${houses[3].points}** points. \n`;
             event.bot.sendMessage({
               to: event.channelID,
-              message: msg
+              message: `<@${event.userID}>`,
+              embed,
             });
           }
         });
       }
     });
   }
-
 }
 module.exports = {
   name: 'House Cup',
@@ -68,5 +70,5 @@ module.exports = {
   syntax: 'house cup',
   patterns: [/^house cup/i],
   description: 'See all the houses and their rankings in the cup!',
-  command: houseCup
+  command: houseCup,
 };

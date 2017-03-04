@@ -1,9 +1,15 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
 
-var eightBall = function(event) {
+
+const helpers = require(`${__dirname}/../helpers/`);
+
+const eightBall = function (event) {
+  const embed = {
+    title: '',
+    description: '',
+    color: 2201331,
+  };
   helpers.statistics(event, 'eightball');
-  var answers = [
+  const answers = [
     'It is certain~',
     'It is decidedly so. >w>',
     'Without a doubt~',
@@ -22,26 +28,27 @@ var eightBall = function(event) {
     '...don\'t count on it. ;w;',
     'My reply is no. =w=',
     'Outlook... not so good. ;w;',
-    'Very doubtful. =w='
+    'Very doubtful. =w=',
   ];
-  var answer = helpers.randomArray(answers);
-  var massage = event.message.match(/8ball (.*)/i);
-  var rawQuestion = helpers.parameters(massage[1]);
-  for (var i = rawQuestion.length - 1; i >= 0; i--) {
+  const answer = helpers.randomArray(answers);
+  const massage = event.message.match(/8ball (.*)/i);
+  const rawQuestion = helpers.parameters(massage[1]);
+  for (let i = rawQuestion.length - 1; i >= 0; i -= 1) {
     if (/<@.*>/.test(rawQuestion[i])) {
       rawQuestion[i] = event.bot.fixMessage(rawQuestion[i]);
-      rawQuestion[i] = '[' + rawQuestion[i] + ']';
+      rawQuestion[i] = `[${rawQuestion[i]}]`;
     }
   }
-  var question = helpers.join(rawQuestion);
-  var msg = '**[WolfBot pulls out a crystal ball and';
-  msg += ' gazes into the unknown...]**';
-  msg += '\n:grey_question: **Question:** `' + question;
-  msg += '`\n:crystal_ball: **Answer:   ** `' + answer + '`';
+  const question = helpers.join(rawQuestion);
+  embed.title += '**[WolfBot pulls out a crystal ball and';
+  embed.title += ' gazes into the unknown...]**';
+  embed.description += `\n:grey_question: **Question:** \`${question}`;
+  embed.description += `\`\n:crystal_ball: **Answer:   ** \`${answer}\``;
   helpers.statistics(event, 'eightball');
   event.bot.sendMessage({
     to: event.channelID,
-    message: msg
+    message: `<@${event.userID}>`,
+    embed,
   });
 };
 
@@ -51,5 +58,5 @@ module.exports = {
   syntax: '8ball (question)',
   patterns: [/^8ball (.*)/i],
   description: 'Ask for advice from the universe, oooo~',
-  command: eightBall
+  command: eightBall,
 };

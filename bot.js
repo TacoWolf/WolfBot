@@ -14,43 +14,44 @@
 // | Team: thattacoguy                                           |
 // | Name: WolfBot                                               |
 // | Download: https://github.com/TacoWolf/WolfBot               |
-// | Version: v1.0                                               |
+// | Version: v2.0                                               |
 // | License: MIT                                                |
 // | Year: 2016                                                  |
 // ---------------------------------------------------------------
-'use strict';
+
+
 // Load WolfBot library
-var wolfbot = require('./lib');
+const wolfbot = require('./lib');
 // Load requirements
-var bark = require('./scripts/bark.js');
+const bark = require('./scripts/bark.js');
 // Declare variables
-var bot = wolfbot.core.bot;
-var logger = wolfbot.core.logger;
-var database = wolfbot.database;
-var keywordIndex = wolfbot.scripts.index();
-var keywordMatch = wolfbot.scripts.match;
-var keywordContext = wolfbot.scripts.context;
-bot.on('ready', function() {
+const bot = wolfbot.core.bot;
+const logger = wolfbot.core.logger;
+const database = wolfbot.database;
+const keywordIndex = wolfbot.scripts.index();
+const keywordMatch = wolfbot.scripts.match;
+const keywordContext = wolfbot.scripts.context;
+bot.on('ready', () => {
   logger('info', 'Connected to Discord!');
   logger('info', 'Servers connected to:');
-  for (var key in bot.servers) {
-    logger('info', bot.servers[key].name + ' - (' + bot.servers[key].id + ')');
+  for (const key in bot.servers) {
+    logger('info', `${bot.servers[key].name} - (${bot.servers[key].id})`);
   }
   if (process.env.DEBUG) {
     logger('info', 'Grabbing bot configuration...');
     require('fs').writeFileSync('./bot.json', JSON.stringify(bot, null, '\t'));
-    logger('info', bot.username + ' config successfully generated.');
+    logger('info', `${bot.username} config successfully generated.`);
   }
   logger('info', 'Updating database with new information...');
   wolfbot.database.seed(logger, bot);
 });
 
 function messageCheck(event) {
-  var m = true;
-  for (var i = keywordIndex.length - 1; i >= 0; i--) {
-    var match = keywordMatch(keywordIndex[i], event.message);
+  let m = true;
+  for (let i = keywordIndex.length - 1; i >= 0; i -= 1) {
+    const match = keywordMatch(keywordIndex[i], event.message);
     if (match) {
-      var command = keywordContext(event);
+      const command = keywordContext(event);
       command(event);
       m = false;
       return;
@@ -60,49 +61,50 @@ function messageCheck(event) {
     bark.command(event);
   }
 }
-bot.on('message', function(user, userID, channelID, message) {
-  var botMention = new RegExp('(<@(\!|\&)?' + bot.id + '>)', '');
-  var serverID = bot.serverFromChannel(channelID);
-  var event = {
-    bot: bot,
-    user: user,
-    userID: userID,
-    serverID: serverID,
-    channelID: channelID,
-    message: message,
+bot.on('message', (user, userID, channelID, message) => {
+  const botMention = new RegExp(`(<@(!|&)?${bot.id}>)`, '');
+  const event = {
+    bot,
+    user,
+    userID,
+    serverID: '',
+    channelID,
+    message,
     rawMessage: message,
     storage: database,
-    logger: logger,
-    pm: false
+    logger,
+    pm: false,
   };
-  var msg = '';
-  if (!event.serverID) {
-    msg = 'PM (' + event.channelID + ')' + ' | ' + user + ' - ' + message;
+  try {
+    event.serverID = bot.channels[channelID].guild_id;
+  } catch (e) {
+    event.serverID = userID;
+    event.pm = true;
+  }
+  let msg = '';
+  if (event.pm) {
+    msg = `PM (${event.channelID}) | ${user} - ${message}`;
     event.pm = true;
     event.server = event.channelID;
     logger('chat', msg, event);
   } else {
-    event.server = bot.servers[serverID].name;
-    event.channel = bot.servers[serverID].channels[channelID].name;
-    msg = event.server + ' | #' + event.channel + ' | ';
-    msg += user + ' - ' + message;
+    event.server = bot.servers[event.serverID].name;
+    event.channel = bot.servers[event.serverID].channels[channelID].name;
+    msg = `${event.server} | #${event.channel} | `;
+    msg += `${user} - ${message}`;
     logger('chat', msg, event);
   }
-  if (userID === bot.id) {
-    return;
-  } else {
-    var mentionMatcher = event.message.match(botMention);
-    if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
-      event.message = message.substring(1).trim();
-      messageCheck(event);
-    } else if (mentionMatcher) {
-      msg = message.replace(mentionMatcher[0], '').trim();
-      event.message = msg;
-      messageCheck(event);
-    }
+  const mentionMatcher = event.message.match(botMention);
+  if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
+    event.message = message.substring(1).trim();
+    messageCheck(event);
+  } else if (mentionMatcher) {
+    msg = message.replace(mentionMatcher[0], '').trim();
+    event.message = msg;
+    messageCheck(event);
   }
 });
 
-bot.on('disconnect', function() {
+bot.on('disconnect', () => {
   bot.connect();
 });

@@ -1,26 +1,20 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
-var Chance = require('chance');
-var chance = new Chance;
-var caption = require('caption');
-var fs = require('fs');
+const helpers = require(`${__dirname}/../helpers/`);
+const request = require('request');
 
 function itWasMe(event) {
-  var rawMessage = event.message.match(/(?:me |me, )(.*)?/i);
-  var message = (rawMessage) ? rawMessage[1] : 'Dio';
-  var fileName = chance.hash() + '.jpg';
-  var cap = 'It was me, ' + message + '!';
-  caption.url('https://cdn.meme.am/images/11472809.jpg', {
-    caption: cap,
-    outputFile: fileName
-  }, function(err, filename) {
+  const rawMessage = event.message.match(/(?:me |me, )(.*)?/i);
+  const message = (rawMessage) ? rawMessage[1] : 'Dio';
+  request.get(`https://memegen.link/custom/_/it-was-me%2C-${message}.jpg?alt=https://i.imgur.com/pH4gb8G.jpg`, { encoding: null }, (e, r, b) => {
+    if (e) {
+      return console.log(e);
+    }
     event.bot.uploadFile({
       to: event.channelID,
-      file: fileName,
-      message: '<@' + event.userID + '>'
-    }, function(){
-      fs.unlinkSync(fileName);
+      file: b,
+      filename: 'diogen.png',
+      message: '',
     });
+    return true;
   });
   helpers.statistics(event, 'dio');
 }
@@ -30,5 +24,5 @@ module.exports = {
   syntax: 'dio',
   patterns: [/^it was (?:me |me, |me)(.*)?/i, /^dio$/i],
   description: 'I bet you expected a description, but...',
-  command: itWasMe
+  command: itWasMe,
 };

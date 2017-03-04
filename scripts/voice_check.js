@@ -1,8 +1,9 @@
-'use strict';
-var helpers = require(__dirname + '/../helpers/');
+
+
+const helpers = require(`${__dirname}/../helpers/`);
 
 function voiceCheck(event) {
-  var msg = 'Hey, everyone @here ! <@';
+  let msg = 'Hey, everyone @here ! <@';
   msg += event.userID;
   msg += '> wants to see who wants to join voice chat. `^w^`';
   event.bot.sendMessage({
@@ -17,5 +18,5 @@ module.exports = {
   syntax: 'voice',
   patterns: [/^voice/i],
   description: 'Check who wants to join voice chat!',
-  command: voiceCheck
+  command: voiceCheck,
 };
