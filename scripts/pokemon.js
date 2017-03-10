@@ -62,7 +62,7 @@ function pokefunction(event) {
         inline: true,
       }, {
         name: 'Weight',
-        value: `${weight}m`,
+        value: `${weight}kg`,
         inline: true,
       }, {
         name: 'Types',
