@@ -62,7 +62,7 @@ function pokefunction(event) {
         inline: true,
       }, {
         name: 'Weight',
-        value: `${weight}m`,
+        value: `${weight}kg`,
         inline: true,
       }, {
         name: 'Types',
@@ -80,7 +80,7 @@ function pokefunction(event) {
       return true;
     }
     msg = '...I-I couldn\'t find a pokémon with information matching your request.';
-    msg += 'I\'m sorry... ;w;';
+    msg += ' I\'m sorry... ;w;';
     event.bot.sendMessage({
       to: event.channelID,
       message: msg,
