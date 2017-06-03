@@ -95,10 +95,7 @@ bot.on('message', (user, userID, channelID, message) => {
     logger('chat', msg, event);
   }
   const mentionMatcher = event.message.match(botMention);
-  if (message.charAt(0) === process.env.WOLFBOT_TRIGGER) {
-    event.message = message.substring(1).trim();
-    messageCheck(event);
-  } else if (mentionMatcher) {
+  if (mentionMatcher) {
     msg = message.replace(mentionMatcher[0], '').trim();
     event.message = msg;
     messageCheck(event);
