@@ -28,7 +28,7 @@ function setHouse(event) {
             msg += `${houseName}\`, **${event.user}**. >w>`;
           }
           event.bot.sendMessage({
-            to: event.userID,
+            to: event.channelID,
             message: msg,
           });
           db.close();
