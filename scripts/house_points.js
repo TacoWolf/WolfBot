@@ -62,7 +62,7 @@ function points(event) {
               msg = 'Uhm... I don\'t think ';
               msg += `<@${recipient}> has sorted themselves into a house, <@`;
               msg += `${event.userID}>. .w.\n`;
-              msg += 'Use `!house set [g|h|r|s]` for that, ';
+              msg += 'Use `@WolfBot#8759 house set [g|h|r|s]` for that, ';
               msg += `<@${recipient}>! \`^w^\``;
             }
             event.bot.sendMessage({
