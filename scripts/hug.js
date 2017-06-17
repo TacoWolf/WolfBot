@@ -1,5 +1,3 @@
-
-
 const helpers = require(`${__dirname}/../helpers/`);
 
 function hug(event) {

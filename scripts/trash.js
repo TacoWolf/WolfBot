@@ -1,5 +1,3 @@
-
-
 function trash(event) {
   event.bot.uploadFile({
     to: event.channelID,

@@ -1,5 +1,3 @@
-
-
 const helpers = require(`${__dirname}/../helpers/`);
 
 function diceroll(event) {
@@ -19,15 +17,14 @@ function diceroll(event) {
       for (let i = 0; i < amount; i += 1) {
         roll = Math.floor(Math.random() * dietype) + 1;
         rolllog.push(roll);
-        if (roll === 1) {
+        if (roll === 1 && amount === 1) {
           embed.color = 12000284;
-        } else if (roll === 20) {
+        } else if (roll === dietype && amount === 1) {
           embed.color = 16761856;
         }
       }
-      const r = rolllog.sort((a, b) => a - b);
       embed.description += `Ooh! I rolled **${amount}d${dietype}** and I got... \n`;
-      embed.description += `\`${r}\`\n`;
+      embed.description += `\`${rolllog}\`\n`;
       let total = 0;
       for (const i in rolllog) { total += rolllog[i]; }
       embed.description += `Which comes out to... \`${total}\`!`;
