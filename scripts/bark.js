@@ -2,12 +2,12 @@ const helpers = require(`${__dirname}/../helpers/`);
 
 function bark(event) {
   const answers = [
-    '**[yip!]**',
-    '**[grrrruff~]**',
-    '**[snorts awake]**',
+    '_yip!_',
+    '_grrrruff~_',
+    '_snorts awake_',
     'Awrr? ;w;',
-    '**[tailwag]**',
-    '**[bark, bark!]**',
+    '_tailwag_',
+    '_bark, bark!_',
   ];
   const msg = helpers.randomArray(answers);
   event.bot.sendMessage({

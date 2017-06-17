@@ -2,7 +2,7 @@ const helpers = require(`${__dirname}/../helpers/`);
 
 function awoo(event) {
   const awoos = [
-    '**[howl~]**',
+    '_howl~_',
     'Awoooooooooooooo~! `^w^`',
     'A-awoo~ >w<',
     'Awoo! :3',
