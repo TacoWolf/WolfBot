@@ -1,8 +1,6 @@
-
-
 const helpers = require(`${__dirname}/../helpers/`);
 
-const eightBall = function (event) {
+const eightBall = function(event) {
   const embed = {
     title: '',
     description: '',

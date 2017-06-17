@@ -1,5 +1,3 @@
-
-
 const helpers = require(`${__dirname}/../helpers/`);
 
 function diceroll(event) {

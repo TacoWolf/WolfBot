@@ -1,5 +1,3 @@
-
-
 function glare(event) {
   event.bot.uploadFile({
     to: event.channelID,
