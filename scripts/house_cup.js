@@ -66,7 +66,6 @@ function houseCup(event) {
 }
 module.exports = {
   name: 'House Cup',
-  author: 'thattacoguy',
   syntax: 'house cup',
   patterns: [/^house cup/i],
   description: 'See all the houses and their rankings in the cup!',

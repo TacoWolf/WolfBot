@@ -12,7 +12,6 @@ function voiceCheck(event) {
 }
 module.exports = {
   name: 'voice',
-  author: 'thattacoguy',
   syntax: 'voice',
   patterns: [/^voice/i],
   description: 'Check who wants to join voice chat!',

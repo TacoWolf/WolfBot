@@ -42,7 +42,6 @@ function help(event) {
 
 module.exports = {
   name: 'help',
-  author: 'thattacoguy',
   syntax: 'help',
   patterns: [/^help$/i],
   description: 'Get help from WolfBot! T-that\'s me. >w<',

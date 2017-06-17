@@ -7,7 +7,6 @@ function glare(event) {
 }
 module.exports = {
   name: 'glare',
-  author: 'thattacoguy',
   syntax: 'yiff',
   hidden: true,
   patterns: [/^(yiff|kink|kinky)/i],

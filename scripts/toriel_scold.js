@@ -15,7 +15,6 @@ function scold(event) {
 }
 module.exports = {
   name: 'scold',
-  author: 'thattacoguy',
   syntax: 'fuck',
   hidden: true,
   patterns: [/^(fuck|shit|bitch|cunt)/i],

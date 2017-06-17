@@ -49,7 +49,6 @@ function houseCup(event) {
 }
 module.exports = {
   name: 'Statistics',
-  author: 'thattacoguy',
   syntax: 'stats',
   patterns: [/^stats/i],
   description: 'See all the houses and their rankings in the cup!',

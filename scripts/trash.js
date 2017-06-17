@@ -7,7 +7,6 @@ function trash(event) {
 }
 module.exports = {
   name: 'trash',
-  author: 'thattacoguy',
   syntax: 'trash',
   patterns: [/anime( trash)?|trash/i],
   description: 'H-hehe...',

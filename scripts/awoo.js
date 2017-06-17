@@ -17,7 +17,6 @@ function awoo(event) {
 }
 module.exports = {
   name: 'awoo',
-  author: 'thattacoguy',
   syntax: 'awoo',
   hidden: true,
   patterns: [/^awoo/i, /^howl/i, /^speak/i],

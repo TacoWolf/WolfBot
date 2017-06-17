@@ -20,13 +20,34 @@ function pokefunction(event) {
   const resp = event.message.match(/pokemon (.*)/i);
   let pokemon = resp[1];
   if (resp[1].toLowerCase() === 'missingno') {
-    // TODO
-    // update this embed to be used
-    // jscs:disable
-    msg += 'Oh, you\'re l̨oo̡k̸ing\u0489 for **???͘?̴?????\u0489?**! Here\'s w̢hat ̢Í ̷k͘no̷w about that Pokémon...'; // jshint ignore:line
-    msg += '\n\n**???͘?̴?????\u0489?**\'s national pokedex number is **0̴00̨**. They\'re no͝rmal\u0489ly͝ **3\'3"** tall and weigh about **22.1lbs**.'; // jshint ignore:line
-    msg += ' Their ty̵pes ar̶é t̕h̡e following: **b̡i\u0489r̶d** and **no͞rm\u0489al͞**.'; // jshint ignore:line
-    // jscs:enable
+    imgmsg = `<@${event.userID}>, tha͢t҉'s **?̶?͘?͘?̢?̸??̨**!`;
+    imgmsg += 'Here\'s w̢hat ̢Í ̷k͘no̷w about that Pokémon...';
+    embed.author.name = `?̶?͘?͘?̢?̸??̨`;
+    const fields = [{
+      name: 'Pokedex Number',
+      value: `00̷0`,
+      inline: true,
+    }, {
+      name: 'Height',
+      value: `0.̡9͏90̕60͠0̸000҉0̷0000͟0̕1̷m`,
+      inline: true,
+    }, {
+      name: 'Weight',
+      value: `10͝.́02439͝kg̛`,
+      inline: true,
+    }, {
+      name: 'Types',
+      value: `b̡i\u0489r̶d and no͞rm\u0489al`,
+      inline: true,
+    }];
+    embed.fields = fields;
+    embed.thumbnail.url = `https://i.imgur.com/t5UYqZQ.png`;
+    embed.color = 15602965;
+    event.bot.sendMessage({
+      to: event.channelID,
+      message: imgmsg,
+      embed,
+    });
     event.bot.sendMessage({
       to: event.channelID,
       message: msg,
@@ -90,7 +111,6 @@ function pokefunction(event) {
 }
 module.exports = {
   name: 'pokemon',
-  author: 'thattacoguy',
   syntax: 'pokemon (name|number)',
   patterns: [/^pokemon (.*)/i],
   description: 'Search for Pokemon.',

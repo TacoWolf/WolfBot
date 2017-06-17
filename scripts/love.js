@@ -17,7 +17,6 @@ function love(event) {
 }
 module.exports = {
   name: 'love',
-  author: 'thattacoguy',
   syntax: 'love',
   hidden: true,
   patterns: [/love you/i],

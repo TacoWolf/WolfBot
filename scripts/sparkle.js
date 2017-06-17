@@ -9,7 +9,6 @@ function sparkle(event) {
 }
 module.exports = {
   name: 'sparkle',
-  author: 'thattacoguy',
   syntax: 'sparkle',
   patterns: [/^sparkle/i],
   description: ':3',

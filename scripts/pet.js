@@ -17,7 +17,6 @@ function pet(event) {
 }
 module.exports = {
   name: 'pet',
-  author: 'thattacoguy',
   syntax: 'pet',
   hidden: true,
   patterns: [/^pet/i],

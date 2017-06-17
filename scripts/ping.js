@@ -9,7 +9,6 @@ function ping(event) {
 }
 module.exports = {
   name: 'ping',
-  author: 'thattacoguy',
   syntax: 'ping',
   patterns: [/^ping/i],
   description: 'Ping the bot!',

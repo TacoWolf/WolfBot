@@ -23,7 +23,6 @@ function gameSet(event) {
 }
 module.exports = {
   name: 'set game',
-  author: 'thattacoguy',
   syntax: 'set game to (x)',
   hidden: true,
   patterns: [/^set game (?:to )?(.*)/i],
