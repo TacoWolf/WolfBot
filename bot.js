@@ -10,18 +10,17 @@
 //   ________|   _/_  | |  \  /\  / (_) | | | | |_/ / (_) | |_
 // <__________\______)\__)  \/  \/ \___/|_|_| \____/ \___/ \__|
 // ---------------------------------------------------------------
-// | Author: TacoWolf                                            |
-// | Team: thattacoguy                                           |
+// | Author: thattacoguy                                         |
+// | Team: TacoWolf                                              |
 // | Name: WolfBot                                               |
 // | Download: https://github.com/TacoWolf/WolfBot               |
-// | Version: v2.0                                               |
 // | License: MIT                                                |
-// | Year: 2016                                                  |
+// | Year: 2017                                                  |
 // ---------------------------------------------------------------
 
 
 // Load WolfBot library
-const wolfbot = require('./lib');
+const wolfbot = require('./core');
 // Load requirements
 const bark = require('./scripts/bark.js');
 // Declare variables
