@@ -38,7 +38,6 @@ function hug(event) {
 }
 module.exports = {
   name: 'hug',
-  author: 'thattacoguy',
   syntax: 'hug (@someone|me)',
   patterns: [/^hug me/i,
     /^hug <@(?:!|&)?([0-9]*)>/i,

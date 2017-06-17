@@ -39,7 +39,6 @@ function setHouse(event) {
 }
 module.exports = {
   name: 'house set',
-  author: 'thattacoguy',
   syntax: 'house set (g|r|h|s)',
   patterns: [/^house set (g|r|h|s).*?/i],
   description: 'Set your house for the House Cup! :o',

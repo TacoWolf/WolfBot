@@ -51,7 +51,6 @@ function diceroll(event) {
 }
 module.exports = {
   name: 'roll',
-  author: 'thattacoguy',
   syntax: 'roll (x)d(x)(+x|-x)',
   patterns: [/^roll ([0-9]*d[0-9]*)(\+[0-9]*|-[0-9]*)?/i],
   description: 'Roll some dice!',

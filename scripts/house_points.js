@@ -84,7 +84,6 @@ function points(event) {
 }
 module.exports = {
   name: 'points',
-  author: 'thattacoguy',
   syntax: 'points',
   hidden: true,
   patterns: [/points <@(?:!|&)?([0-9]*)> (\+?[0-9]*|-[0-9]*)/i,

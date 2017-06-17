@@ -52,7 +52,6 @@ const eightBall = function(event) {
 
 module.exports = {
   name: '8ball',
-  author: 'thattacoguy',
   syntax: '8ball (question)',
   patterns: [/^8ball (.*)/i],
   description: 'Ask for advice from the universe, oooo~',

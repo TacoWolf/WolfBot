@@ -47,7 +47,6 @@ function emoteTrigger(event) {
 }
 module.exports = {
   name: 'emotes',
-  author: 'thattacoguy',
   syntax: 'emotes',
   patterns: [emoteList, /^emotes/i],
   description: 'Get a list of emotes!',

@@ -20,7 +20,6 @@ function itWasMe(event) {
 }
 module.exports = {
   name: 'dio',
-  author: 'thattacoguy',
   syntax: 'dio',
   patterns: [/^it was (?:me |me, |me)(.*)?/i, /^dio$/i],
   description: 'I bet you expected a description, but...',

@@ -5,7 +5,7 @@ function thanks(event) {
   const answers = [
     `You're welcome, <@${event.userID}> ! \`^w^\``,
     `I-It was nothing, <@${event.userID}>. >w<`,
-    `**[whines shyly, blushing]**\nY-you're welcome, <@${event.userID}>~ >w<`, // jshint ignore:line
+    `_WolfBot whines shyly, blushing._ \nY-you're welcome, <@${event.userID}>~ >w<`, // jshint ignore:line
     `I-I'm sure you would've done the same, <@${event.userID}>! :3`,
   ];
   // jscs:enable
@@ -18,7 +18,6 @@ function thanks(event) {
 }
 module.exports = {
   name: 'thanks',
-  author: 'thattacoguy',
   syntax: 'thanks',
   hidden: true,
   patterns: [/thank(s| you)/i],

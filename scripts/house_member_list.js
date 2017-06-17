@@ -55,7 +55,6 @@ function houseMembers(event) {
 }
 module.exports = {
   name: 'house',
-  author: 'thattacoguy',
   syntax: 'house members (g|h|r|s)',
   patterns: [/^house member(?:s)? (g|h|r|s).*/i],
   description: 'Check members in a house!!',

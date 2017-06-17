@@ -26,7 +26,6 @@ function restart(event) {
 }
 module.exports = {
   name: 'restart',
-  author: 'thattacoguy',
   syntax: 'restart',
   hidden: true,
   patterns: [/^restart$|^reboot$/i],

@@ -18,7 +18,6 @@ function bark(event) {
 }
 module.exports = {
   name: 'bark',
-  author: 'thattacoguy',
   syntax: 'bark',
   hidden: true,
   patterns: [/^bark/i, /^woof/i, /^yip/i, /^woof/i, /^speak/i],
