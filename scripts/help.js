@@ -13,7 +13,7 @@ function help(event) {
     msg += '\n\nHere\'s some stuff to help you out:\n```md\n';
     msg += '# Commands\n\n[help](You already know what this is. ;3)';
     const rawScripts = require('require-all')(`${__dirname}/../scripts`);
-    const check = helpers.roleCheck(event, 'admin');
+    const check = helpers.roleCheck(event, 'wb admin');
     for (const key in rawScripts) {
       const name = rawScripts[key].syntax;
       const description = rawScripts[key].description;

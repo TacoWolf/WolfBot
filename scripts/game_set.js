@@ -5,7 +5,7 @@ function gameSet(event) {
     description: '',
     color: 10233776,
   };
-  const check = helpers.roleCheck(event, 'admin');
+  const check = helpers.roleCheck(event, 'wb admin');
   if (check === true) {
     const message = /^set game (?:to )?(.*)/i;
     const res = event.message.match(message);

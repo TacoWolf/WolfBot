@@ -1,7 +1,7 @@
 const helpers = require(`${__dirname}/../helpers/`);
 
 function restart(event) {
-  const check = helpers.roleCheck(event, 'admin');
+  const check = helpers.roleCheck(event, 'wb admin');
   let msg = '';
   if (event.pm === true) {
     msg = 'S-sorry, you can\'t do that in a PM with me. ;w;';
