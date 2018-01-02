@@ -12,13 +12,11 @@ function points(event) {
       message: msg,
     });
   } else {
-    const check = helpers.roleCheck(event, 'headmaster');
+    const check = helpers.roleCheck(event, 'professor');
     if (check === true) {
-      // jscs:disable
       const resOne = /points <@(?:!|&)?([0-9]*)> (-[0-9]*|\+?[0-9]*)/i;
-      const resTwo = /<@(?:!|&)?([0-9]*)> (-[0-9]*|\+?[0-9]*|a) points?/i; // jshint ignore:line
-      const resThree = /(-[0-9]*|\+?[0-9]*|a) points? (?:to|from) <@(?:!|&)?([0-9]*)>/i; // jshint ignore:line
-      // jscs:enable
+      const resTwo = /<@(?:!|&)?([0-9]*)> (-[0-9]*|\+?[0-9]*|a) points?/i;
+      const resThree = /(-[0-9]*|\+?[0-9]*|a) points? (?:to|from) <@(?:!|&)?([0-9]*)>/i;
       let recipient = '';
       let amount = 0;
       let res = [];
