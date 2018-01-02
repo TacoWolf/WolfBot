@@ -7,7 +7,7 @@
   "dependencies": {
     "async": "^2.1.5",
     "chance": "^1.0.6",
-    "discord.io": "^2.4.2",
+    "discord.io": "github:woor/discord.io#gateway_v6",
     "mongodb": "^2.2.24",
     "request": "^2.79.0",
     "require-all": "^2.2.0"

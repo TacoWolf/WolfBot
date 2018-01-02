@@ -20,28 +20,28 @@ function pokefunction(event) {
   const resp = event.message.match(/pokemon (.*)/i);
   let pokemon = resp[1];
   if (resp[1].toLowerCase() === 'missingno') {
-    imgmsg = `<@${event.userID}>, tha͢t҉'s **?̶?͘?͘?̢?̸??̨**!`;
+    let imgmsg = `<@${event.userID}>, tha͢t҉'s **?̶?͘?͘?̢?̸??̨**!`;
     imgmsg += 'Here\'s w̢hat ̢Í ̷k͘no̷w about that Pokémon...';
-    embed.author.name = `?̶?͘?͘?̢?̸??̨`;
+    embed.author.name = '?̶?͘?͘?̢?̸??̨';
     const fields = [{
       name: 'Pokedex Number',
-      value: `00̷0`,
+      value: '00̷0',
       inline: true,
     }, {
       name: 'Height',
-      value: `0.̡9͏90̕60͠0̸000҉0̷0000͟0̕1̷m`,
+      value: '0.̡9͏90̕60͠0̸000҉0̷0000͟0̕1̷m',
       inline: true,
     }, {
       name: 'Weight',
-      value: `10͝.́02439͝kg̛`,
+      value: '10͝.́02439͝kg̛',
       inline: true,
     }, {
       name: 'Types',
-      value: `b̡i\u0489r̶d and no͞rm\u0489al`,
+      value: 'b̡i\u0489r̶d and no͞rm\u0489al',
       inline: true,
     }];
     embed.fields = fields;
-    embed.thumbnail.url = `https://i.imgur.com/t5UYqZQ.png`;
+    embed.thumbnail.url = 'https://i.imgur.com/t5UYqZQ.png';
     embed.color = 15602965;
     event.bot.sendMessage({
       to: event.channelID,

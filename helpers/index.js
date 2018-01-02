@@ -11,19 +11,13 @@ module.exports = {
     return members;
   },
   roleCheck(event, roleType) {
-    let checker = '';
     let adminid;
     let verifier = false;
     const serverID = event.bot.servers[event.serverID];
     const roles = serverID.roles;
     const userRole = serverID.members[event.userID].roles;
-    if (roleType === 'headmaster') {
-      checker = 'headmaster';
-    } else {
-      checker = 'wb admin';
-    }
     for (const key in roles) {
-      if (roles[key].name.toLowerCase() === checker) {
+      if (roles[key].name.toLowerCase() === roleType) {
         adminid = roles[key].id;
       }
     }

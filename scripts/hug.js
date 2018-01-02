@@ -17,11 +17,11 @@ function hug(event) {
     huggedUser = res[1];
     if (huggedUser === event.bot.id) {
       hugs = [
-        `_WolfBot tilts his head and scratches his own ear._`,
-        `_WolfBot looks at himself, then nibbles at his fur and falls over trying to hug himself._ Awrrrf~`,
-        `_WolfBot whines softly, then pants and rolls over, wagging his fluffy tail._`,
-        `_WolfBot looks at himself, then up at <@${event.userID}>._ ...Awwr? ;w;`
-      ]
+        '_WolfBot tilts his head and scratches his own ear._',
+        '_WolfBot looks at himself, then nibbles at his fur and falls over trying to hug himself._ Awrrrf~',
+        '_WolfBot whines softly, then pants and rolls over, wagging his fluffy tail._',
+        `_WolfBot looks at himself, then up at <@${event.userID}>._ ...Awwr? ;w;`,
+      ];
     } else {
       hugs = [
         `_WolfBot gives <@${huggedUser}> a really big hug._ :green_heart:`,

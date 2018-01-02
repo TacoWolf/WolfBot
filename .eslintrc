@@ -5,7 +5,6 @@ env:
   browser: true
 ecmaFeatures:
   classes: true
-sourceType: "module"
 rules:
   camelcase: 0
   func-names:
