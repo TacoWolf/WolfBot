@@ -9,7 +9,7 @@
     "chance": "^1.0.6",
     "discord.io": "github:woor/discord.io#gateway_v6",
     "mongodb": "^2.2.24",
-    "request": "^2.79.0",
+    "request": "^2.88.0",
     "require-all": "^2.2.0"
   },
   "scripts": {
