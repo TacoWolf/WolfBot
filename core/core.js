@@ -78,22 +78,11 @@ function logger(type, append, event) {
       console.warn(message);
       break;
     case 'chat':
-      if (event.pm === true) {
-        dir = `./log/PM - ${event.server}`;
-      } else {
-        dir = `./log/${event.server} - ${dateLog}.log`;
-      }
-      console.log(message);
       break;
     default:
       dir = `${dateLog}.log`;
       console.log(message);
   }
-  fs.appendFile(dir, `${message}\n`, (err) => {
-    if (err) {
-      throw err;
-    }
-  });
 }
 
 module.exports = {
