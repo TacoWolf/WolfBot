@@ -1,16 +1,17 @@
 {
   "name": "wolfbot",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "TacoWolf's chat bot for Discord.",
   "private": true,
   "main": "bot.js",
   "dependencies": {
-    "async": "^2.6.2",
+    "async": "^2.6.3",
     "chance": "^1.0.18",
-    "discord.io": "github:woor/discord.io#gateway_v6",
+    "discord.js": "^11.5.1",
     "mongodb": "^2.2.36",
     "request": "^2.88.0",
-    "require-all": "^2.2.0"
+    "require-all": "^2.2.0",
+    "sqlite3": "^4.0.9"
   },
   "scripts": {
     "test": "eslint .",

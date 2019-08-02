@@ -1,19 +1,15 @@
-![](http://i.imgur.com/sLS6kkF.png) 
+![](http://i.imgur.com/sLS6kkF.png)
 
 # WolfBot
 
 [![Dependency Status](https://david-dm.org/tacowolf/wolfbot.svg)](https://david-dm.org/tacowolf/wolfbot)
 
-A simple bot for Discord, built with [discord.io](../../../../izy521/discord.io).
+A simple bot for Discord, built with [discord.js](https://discord.js.org/).
 
-## Requirements
+## Contributing
 
-* Node.js 5.x
-
-## Getting Started 
-
-`[going under a rewrite]`
+Want to contribute? Check out our guidelines [here](contributing.md).
 
 ## Licensing
 
-WolfBot is licensed under the [MIT License](LICENSE.md). If you use WolfBot in any of your projects, please let me know! We'd love to see how you use it. :grin:
+WolfBot is licensed under the [MIT License](license.md). If you use WolfBot in any of your projects, please let me know! We'd love to see how you use it. :grin:
