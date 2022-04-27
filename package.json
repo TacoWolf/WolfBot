@@ -5,7 +5,7 @@
   "private": true,
   "main": "bot.js",
   "dependencies": {
-    "async": "^2.6.2",
+    "async": "^2.6.4",
     "chance": "^1.0.18",
     "discord.io": "github:woor/discord.io#gateway_v6",
     "mongodb": "^2.2.36",
